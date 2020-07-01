@@ -1,0 +1,3 @@
+<view class="container" wx:if="{{!complete}}">
+    <image src="/images/public_loading.gif"></image>
+</view>

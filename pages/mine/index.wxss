@@ -1,0 +1,56 @@
+.container{
+    box-shadow: none;
+}
+.header {
+    width: 750rpx;
+    height: 300rpx;
+    position: relative;
+}
+
+.header>image:first-child {
+    width: 750rpx;
+    height: 300rpx;
+    position: absolute;
+    z-index: -1;
+}
+
+.userAvatarUrl {
+    width: 140rpx;
+    height: 140rpx;
+    border-radius: 15rpx;
+    position: absolute;
+    top: 80rpx;
+    overflow: hidden;
+    left: 30rpx;
+}
+
+.nav {
+    width: 750rpx;
+    padding: 0 20rpx;
+}
+
+.nav-item {
+    width: 710rpx;
+    height: 110rpx;
+    border-bottom: 1rpx solid #dddddd;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.nav-item view:nth-child(2) {
+    margin-left: 20rpx;
+}
+
+.angle {
+    display: block;
+    transform: rotate(45deg);
+    height: 16rpx;
+    width: 16rpx;
+    border-width: 1rpx 1rpx 0 0;
+    border-style: solid;
+    position: absolute;
+    top: calc(50% - 8rpx);
+    right: 20rpx;
+}

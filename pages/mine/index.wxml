@@ -1,0 +1,42 @@
+<view class="container">
+    <view class="header">
+        <image src="/images/mine_banner.png" />
+        <view class="userAvatarUrl">
+            <open-data type="userAvatarUrl"></open-data>
+        </view>
+        <open-data class="userNickName" type="userNickName"></open-data>
+        <view class="phone">{{info.phone}}</view>
+    </view>
+    <view class="nav">
+        <navigator class="nav-item" url="/pages/mine/address/index">
+            <image src="/images/mine_location.png" style="width:35rpx; height:41rpx;" />
+            <view>收货地址</view>
+            <view class="angle"></view>
+        </navigator>
+        <navigator class="nav-item" url="#">
+            <image src="/images/mine_back.png" style="width:38rpx; height:38rpx;" />
+            <view>意见反馈</view>
+            <view class="angle"></view>
+        </navigator>
+        <navigator class="nav-item" url="#">
+            <image src="/images/mine_help.png" style="width:40rpx; height:39rpx;" />
+            <view>帮助说明</view>
+            <view class="angle"></view>
+        </navigator>
+        <navigator class="nav-item" url="/pages/mine/shop/index" wx:if="{{info.shop && !info.review}}">
+            <image src="/images/mine_shop.png" style="width:43rpx; height:39rpx;" />
+            <view>我的店铺</view>
+            <view class="angle"></view>
+        </navigator>
+        <navigator class="nav-item" url="/pages/mine/shop/add" wx:if="{{!info.shop && !info.review}}">
+            <image src="/images/mine_shop.png" style="width:43rpx; height:39rpx;" />
+            <view>商户入驻</view>
+            <view class="angle"></view>
+        </navigator>
+        <navigator class="nav-item" url="#" wx:if="{{!info.shop && !info.review}}">
+            <image src="/images/mine_order.png" style="width:41rpx; height:41rpx;" />
+            <view>用户订单</view>
+            <view class="angle"></view>
+        </navigator>
+    </view>
+</view>

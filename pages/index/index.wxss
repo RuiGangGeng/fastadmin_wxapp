@@ -1,0 +1,166 @@
+.inner {
+    width: 710rpx;
+    margin: auto 20rpx;
+}
+
+.location {
+    height: 70rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.location text {
+    max-width: 630rpx;
+    margin: 0 15rpx;
+}
+
+.search {
+    display: flex;
+    height: 45rpx;
+    justify-content: center;
+    align-items: center;
+    background: #dcdcdc;
+    color: #848484;
+    border-radius: 25rpx;
+}
+
+.banner {
+    width: 100%;
+    height: 220rpx;
+    margin-top: 20rpx;
+    border-radius: 20rpx;
+    overflow: hidden;
+}
+
+.categories {
+    width: 710rpx;
+    height: 300rpx;
+    margin-top: 20rpx;
+}
+
+.categories navigator {
+    float: left;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 142rpx;
+    height: 150rpx;
+}
+
+.navigator-hover {
+    opacity: unset;
+    background: unset;
+}
+
+.headlines {
+    width: 710rpx;
+    height: 55rpx;
+    margin-top: 20rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 32rpx;
+}
+
+.headlines-static {
+    width: 100rpx;
+    height: 37rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 2rpx solid #f5ce8a;
+    position: relative;
+}
+
+.headlines-swiper {
+    width: 580rpx;
+    height: 100%;
+    padding-left: 35rpx;
+}
+
+.headlines-swiper navigator {
+    line-height: 55rpx;
+}
+
+.discount-title,
+.shop-title {
+    height: 90rpx;
+    font-size: 36rpx;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.discount-swiper-top {
+    height: 255rpx;
+    margin-bottom: 10rpx;
+}
+
+.discount-swiper-top navigator {
+    width: 350rpx;
+    height: 255rpx;
+    margin-right: 10rpx;
+    overflow: hidden;
+    border-radius: 10rpx;
+    background: gray;
+}
+
+.discount-swiper-bottom navigator {
+    width: 170rpx;
+    height: 255rpx;
+    margin-right: 10rpx;
+    overflow: hidden;
+    border-radius: 10rpx;
+    background: gray;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop-logo {
+    width: 135rpx;
+    height: 100%;
+}
+
+.shop-logo image {
+    border-radius: 6rpx;
+    border: 1rpx solid #d7d7d7;
+    overflow: hidden;
+}
+
+.shop-detail {
+    width: 575rpx;
+    height: 100%;
+}
+
+.shop-name {
+    font-size: 30rpx;
+    font-weight: bold;
+}
+
+.shop-wrapper {
+    height: 50rpx;
+}
+
+.shop-wrapper view {
+    float: left;
+}
+
+.shop-wrapper view:nth-child(1) {
+    width: 150rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.shop-time {
+    color: #666666;
+    font-size: 20rpx;
+}

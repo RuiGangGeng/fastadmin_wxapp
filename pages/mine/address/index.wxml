@@ -1,0 +1,35 @@
+<scroll-view scroll-y="true" scroll-anchoring="true" bindscrolltolower="loadData" class="container" wx:if="{{complete}}">
+    <!-- 地址列表 -->
+    <view class="item" wx:if="{{list.length>0}}" wx:for="{{list}}" wx:key="index">
+        <view class="item-one">
+            <image src="/images/address_location.png" style="width:34rpx; height:42rpx;"></image>
+            <view class="location text-two">{{item.address}}</view>
+            <view class="address-icon" bindtap="setDefault" data-id="{{item.id}}">
+                <radio checked="{{item.default==1?true:false}}" color="#FF5450" value="{{index}}" />
+            </view>
+        </view>
+        <view class="item-two">
+            <view class="contact">{{item.contact}} {{item.phone}}</view>
+            <view class="operate">
+                <image src="/images/address_edit.png" style="width:36rpx; height:32rpx;" data-id="{{item.id}}" catchtap="editAddress"></image>
+                <image src="/images/address_delete.png" style="width:32rpx; height:32rpx;" data-id="{{item.id}}" catchtap="deleteAddress"></image>
+            </view>
+        </view>
+    </view>
+    <view class="no-more" wx:if="{{page>1 || list.length==10}}">暂无更多数据</view>
+    <!-- 无地址 -->
+    <view wx:if="{{list.length==0}}" class="no-data">
+        <icon type="warn" size="70" color="#b2b2b2"></icon>
+        <view class="inmiddle colorgray">无收货地址，快来告诉我吧</view>
+        <navigator class="btn btn-block btn-default" url="/pages/mine/address/add">
+            添加收货地址
+        </navigator>
+    </view>
+</scroll-view>
+<view class="btn-box" wx:if="{{list.length>0}}">
+    <navigator class="btn btn-block btn-default" url="/pages/mine/address/add">添加收货地址</navigator>
+</view>
+<!-- 加载时页面蒙层 -->
+<view class="container" wx:if="{{!complete}}">
+    <loading complete="{{complete}}"></loading>
+</view>

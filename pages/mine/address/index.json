@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "loading": "../../../Components/loading/loading"
+    },
+    "navigationBarTitleText": "我的收货地址"
+}

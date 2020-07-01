@@ -1,0 +1,26 @@
+<view class="container">
+    <view class="item">
+        <label>收货地址：</label>
+        <view class="item-block">
+            <input wx:if="{{auth}}" type="text" placeholder="请填写" bindfocus="location" bindinput="bindInput" data-field="address" value="{{param.address}}"></input>
+            <button wx:if="{{!auth}}" open-type="openSetting" class="btn btn-none" bindopensetting="location">
+                点击授权位置信息
+            </button>
+        </view>
+    </view>
+    <view class="item">
+        <label>联系人：</label>
+        <view class="item-block">
+            <input type="text" maxlength="6" placeholder="联系人姓名" bindinput="bindInput" data-field="contact" value="{{param.contact}}"></input>
+        </view>
+    </view>
+    <view class="item">
+        <label class="part1">手机号：</label>
+        <view class="item-block">
+            <input type="number" maxlength="11" placeholder="联系人手机号" bindinput="bindInput" data-field="phone" value="{{param.phone}}"></input>
+        </view>
+    </view>
+    <view class="btn-box">
+        <button class="btn btn-block btn-default" bind:tap="submit" disabled="{{onAsync}}">保存</button>
+    </view>
+</view>

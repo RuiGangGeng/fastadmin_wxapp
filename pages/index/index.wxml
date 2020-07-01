@@ -1,0 +1,86 @@
+<scroll-view class="container">
+    <view class="inner">
+        <!-- 定位 -->
+        <view class="location">
+            <image src="/images/index_location.png" style="width:27rpx; height:32rpx;"></image>
+            <text>{{localtion.address}}</text>
+            <image src="/images/icons/arrow_down.png" style="width:16rpx; height:10rpx;"></image>
+        </view>
+        <!-- 搜索 -->
+        <view class="search" bind:tap="search" class='search'>
+            <icon type="search" size="14"></icon>
+            搜索附近的商家商品
+        </view>
+        <!-- 轮播 -->
+        <swiper class="banner" autoplay="true" interval="3000" duration="500" circular="true">
+            <swiper-item wx:for="{{banner}}" wx:key="index">
+                <navigator url="{{item.id}}">
+                    <image src="{{item.image}}" mode="aspectFill" style="width:710rpx; height:220rpx"></image>
+                </navigator>
+            </swiper-item>
+        </swiper>
+        <!-- 分类 -->
+        <view class="categories">
+            <navigator wx:for="{{categories}}" wx:key="index" url="{{item.id}}">
+                <image src="{{item.image}}" mode="aspectFill" style="width:75rpx; height:75rpx"></image>
+                <text>{{item.name}}</text>
+            </navigator>
+        </view>
+        <!-- 头条 -->
+        <!-- <view class="headlines">
+            <image src="/images/index_headlines.png" style="width:710rpx; height:55rpx; position: absolute; z-index-1;" />
+            <view class="headlines-static">头条</view>
+            <swiper class="headlines-swiper" vertical="true" autoplay="true" interval="3000" duration="500" circular="true">
+                <swiper-item wx:for="{{categories}}" wx:key="index">
+                    <navigator url="{{item.id}}">{{item.name}}</navigator>
+                </swiper-item>
+            </swiper>
+        </view> -->
+        <!-- 优惠 -->
+        <!-- <view class="discount">
+            <view class="discount-title">优惠专区</view>
+            <swiper class="discount-swiper-top" autoplay="true" interval="3000" duration="500" circular="true" display-multiple-items="2">
+                <swiper-item wx:for="{{categories}}" wx:key="index">
+                    <navigator url="{{item.id}}">
+                        <image src="{{item.image}}" mode="aspectFill" style="width:350rpx; height:255rpx"></image>
+                    </navigator>
+                </swiper-item>
+            </swiper>
+            <swiper class="discount-swiper-bottom" autoplay="true" interval="3000" duration="500" circular="true" display-multiple-items="4">
+                <swiper-item wx:for="{{categories}}" wx:key="index">
+                    <navigator url="{{item.id}}">
+                        <image src="{{item.image}}" mode="aspectFill" style="width:170rpx; height:255rpx"></image>
+                    </navigator>
+                </swiper-item>
+            </swiper>
+        </view> -->
+        <!-- 店铺 -->
+        <mp-sticky offset-top="0" class="shop">
+            <view class="shop-title">附近店铺</view>
+            <view class="item" wx:for="{{list}}" wx:key="index">
+                <view class="shop-logo">
+                    <image src="{{item.logo_image}}" mode="aspectFill" style="width:120rpx; height:120rpx;" />
+                </view>
+                <view class="shop-detail">
+                    <view class="shop-name text-one">{{item.name}}</view>
+                    <view class="shop-time">
+                        营业时间：{{item.hours_start}}:00 至 {{item.hours_end}}:00
+                    </view>
+                    <view class="shop-wrapper">
+                        <view>
+                            <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;" />
+                            <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;" />
+                            <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;" />
+                            <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;" />
+                            <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;" />
+                        </view>
+                        <view>5.0</view>
+                        <view>{{item.delivery}}分钟</view>
+                        <view>{{item.distance}}m</view>
+                    </view>
+                    <view class="shop-evaluation">{{item.evaluation}}</view>
+                </view>
+            </view>
+        </mp-sticky>
+    </view>
+</scroll-view>
