@@ -1,0 +1,32 @@
+<view class="container">
+    <mp-sticky>
+        <view class="search">
+
+        </view>
+    </mp-sticky>
+    <view class="shop-wrapper">
+
+    </view>
+    <view class="content">
+        <mp-vtabs vtabs="{{categories}}" ext-class="weui-vtabs-bar__wrp" tab-line-color="#44c25a" tab-active-text-color="#44c25a" activeTab="{{activeTab}}" bindtabclick="onTabCLick" bindchange="onChange">
+            <block wx:for="{{categories}}" wx:key="index">
+                <mp-vtabs-content tabIndex="{{index}}" ext-class="weui-vtabs-content__item">
+                    <view class="item-title">{{item.title}}</view>
+                    <view class="item-wrapper" wx:for="{{list}}" wx:key="index_" wx:for-item="i" bindtap="good" data-id="{{i.id}}">
+                        <view class="item-logo">
+                            <image src="{{i.thumb_image}}" style="width: 155rpx;height: 155rpx" mode="aspectFill"></image>
+                        </view>
+                        <view class="item-detail">
+                            <view class="good-name">{{i.name}}</view>
+                            <view class="good-wrapper"><view>月售{{i.stock}}</view><view>好评{{i.stock}}%</view></view>
+                        </view>
+                        <view class="item-operate">
+                            <view class="good-price">{{i.price}}</view>
+                            <view class="good-cart"></view>
+                        </view>
+                    </view>
+                </mp-vtabs-content>
+            </block>
+        </mp-vtabs>
+    </view>
+</view>

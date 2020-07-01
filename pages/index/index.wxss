@@ -95,6 +95,14 @@
     align-items: center;
 }
 
+.sticky {
+    width: 750rpx;
+    background: white;
+    padding-left: 20rpx;
+    box-shadow: 0 1px 5px 0 rgba(0, 27, 78, .15);
+    height: 90rpx;
+}
+
 .discount-swiper-top {
     height: 255rpx;
     margin-bottom: 10rpx;
@@ -121,7 +129,8 @@
 .item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    margin-bottom: 20rpx;
 }
 
 .shop-logo {
@@ -131,7 +140,7 @@
 
 .shop-logo image {
     border-radius: 6rpx;
-    border: 1rpx solid #d7d7d7;
+    border: 1rpx solid #d7d7d7d7;
     overflow: hidden;
 }
 
@@ -146,21 +155,45 @@
 }
 
 .shop-wrapper {
-    height: 50rpx;
+    height: 35rpx;
+    font-size: 24rpx;
+    border-bottom: 1rpx solid #d7d7d7d7;
 }
 
 .shop-wrapper view {
     float: left;
-}
-
-.shop-wrapper view:nth-child(1) {
-    width: 150rpx;
+    height: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
+.shop-wrapper view:nth-child(1) {
+    width: 150rpx;
+}
+
+.shop-wrapper view:nth-child(2) {
+    color: #ffc017;
+}
+
+.shop-wrapper view:nth-child(1) image {
+    margin-left: 6rpx;
+}
+
+.shop-wrapper view:nth-child(3) {
+    color: #666666;
+    float: right;
+    margin-left: 25rpx;
+}
+
+.shop-wrapper view:nth-child(4) {
+    color: #666666;
+    float: right;
+}
+
 .shop-time {
     color: #666666;
     font-size: 20rpx;
+    height: 35rpx;
+    line-height: 35rpx;
 }

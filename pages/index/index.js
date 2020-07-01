@@ -11,9 +11,11 @@ Page({
         discount: [],
         list: [],
         page: 0,
-        onAsync: false
+        onAsync: false,
+        sticky: false,
     },
-    onLoad: function() {
+
+    onLoad: function () {
         let that = this
 
         // 获取地理位置
@@ -24,9 +26,9 @@ Page({
                     'location.latitude': res.latitude,
                     'location.longitude': res.longitude,
                 })
-                user.gpsToAddress(res.longitude, res.latitude, function(res) {
+                user.gpsToAddress(res.longitude, res.latitude, function (res) {
                     that.setData({
-                        'localtion.address': res.result.formatted_addresses.recommend
+                        'location.address': res.result.formatted_addresses.recommend
                     })
                     app.globalData.location = that.data.location
                     that.loadData()
@@ -36,28 +38,51 @@ Page({
 
         // 获取banner
         util.wxRequest("Index/getBanners", {}, res => {
-            res.code == 200 && that.setData({ banner: res.data })
+            res.code == 200 && that.setData({
+                banner: res.data
+            })
         })
 
         // 获取行业分类
         util.wxRequest("Index/getCategories", {}, res => {
-            res.code == 200 && that.setData({ categories: res.data })
+            res.code == 200 && that.setData({
+                categories: res.data
+            })
         })
     },
 
+    // 是否吸顶
+    bindScroll: function (e) {
+        this.setData({sticky: e.detail.isFixed})
+    },
+
+    // 商家主页
+    shop: function (e) {
+        let id = e.currentTarget.dataset.id
+        wx.navigateTo({url: "/pages/index/shop/index?id=" + id})
+    },
+
     // 触底加载
-    onReachBottom: function() {
+    onReachBottom: function () {
         this.loadData()
     },
 
     // 加载列表
-    loadData: function() {
+    loadData: function () {
         let that = this
 
-        if (that.data.onAsync) { return false } else { that.setData({ onAsync: true }) }
+        if (that.data.onAsync) {
+            return false
+        } else {
+            that.setData({
+                onAsync: true
+            })
+        }
 
         wx.showLoading()
-        setTimeout(function() { wx.hideLoading() }, 3000)
+        setTimeout(function () {
+            wx.hideLoading()
+        }, 3000)
 
         let param = {
             page: that.data.page + 1,
@@ -70,12 +95,18 @@ Page({
             res => {
                 let temp = that.data.list.concat(res.data.data)
 
-                that.setData({ page: res.data.current_page, list: temp })
+                that.setData({
+                    page: res.data.current_page,
+                    list: temp
+                })
 
             },
-            () => {},
             () => {
-                that.setData({ onAsync: false })
+            },
+            () => {
+                that.setData({
+                    onAsync: false
+                })
                 wx.hideLoading()
             }
         )

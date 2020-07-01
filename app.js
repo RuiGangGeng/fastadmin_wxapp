@@ -1,7 +1,7 @@
 const util = require('/utils/util.js');
 const user = require('/utils/user.js');
 App({
-    onLaunch: function() {
+    onLaunch: function () {
         user.wxLogin("User/wxAppLogIn")
     },
 
@@ -12,7 +12,7 @@ App({
         storage_time: 2592000,
         user_info: false,
         user_auth: false,
-        lcoation: null,
+        location: null,
         api_host: 'http://www.jd.com/api/'
     }
 

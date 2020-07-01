@@ -6,7 +6,8 @@
         "pages/order/index",
         "pages/mine/address/index",
         "pages/mine/address/add",
-        "pages/mine/shop/add"
+        "pages/mine/shop/add",
+      "pages/index/shop/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

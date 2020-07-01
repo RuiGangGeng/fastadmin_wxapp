@@ -1,0 +1,33 @@
+page {
+    height: 100%;
+}
+
+.search {
+    width: 750rpx;
+    height: 125rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.shop-wrapper {
+    height: 175rpx;
+    width: 750rpx;
+    margin: 0 20rpx;
+}
+
+.content {
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 300rpx);
+    bottom: 0;
+}
+
+.weui-vtabs-content__item {
+    height: 500rpx;
+    border-bottom: 1rpx;
+}
+
+.weui-vtabs-bar__wrp, .weui-vtabs-bar__title {
+    width: 160rpx !important;
+}

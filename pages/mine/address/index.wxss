@@ -20,7 +20,7 @@ radio {
 }
 
 .item {
-    border-bottom: 1rpx solid #d7d7d7;
+    border-bottom: 1rpx solid #d7d7d7d7;
     width: 700rpx;
     margin: auto 25rpx;
     padding: 0 25rpx;

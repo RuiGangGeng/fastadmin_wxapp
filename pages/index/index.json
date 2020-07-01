@@ -1,6 +1,6 @@
 {
     "usingComponents": {
-        "mp-video-swiper": "@miniprogram-component-plus/sticky"
+        "mp-sticky": "@miniprogram-component-plus/sticky"
     },
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#44c25a",
