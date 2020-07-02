@@ -7,13 +7,25 @@
     </swiper>
     <!-- 简介 -->
     <view class="info">
-        <view class="info-wrapper" >
+        <view class="info-name text-one ">{{info.name}}</view>
+        <view class="info-good">
             <view class="info-price">￥{{info.price}}</view>
             <view class="info-through">￥{{info.original}}</view>
-            <view class="info-hot">火热抢购中</view>
+            <view class="info-cart">
+                <image src="/images/icons/inc.png" style="width: 50rpx; height: 50rpx" mode="aspectFill"></image>
+                <view>{{count}}</view>
+                <image src="/images/icons/dec.png" style="width: 50rpx; height: 50rpx" mode="aspectFill"></image>
+            </view>
         </view>
-        <view class="info-space">
-            <view class="text-one info-name">{{info.name}}</view>
+        <view class="info-shop">
+            <view class="shop-name">
+                <image src="" mode="aspectFill" ></image>
+                {{}}
+            </view>
+            <view class="shop-phone" bindtap="phone">
+                <image src="/images/icons/phone.png" mode="aspectFill" style="width: 27rpx; height: 29rpx;"></image>
+                <view>联系商家</view>
+            </view>
         </view>
     </view>
     <!-- 富文本 -->

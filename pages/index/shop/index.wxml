@@ -1,8 +1,13 @@
 <loading show="{{!complete}}"></loading>
-<view class="container" hidden="{{!complete}}">
+<view class="container" wx:if="{{complete}}">
     <!-- 搜索 -->
-    <view class="search" bindtap="search">
-        <view class="search-input"><icon type="search" size="14"></icon>搜索该商家的商品
+    <view class="search">
+        <view bindtap="back" class="search-back">
+            <image src="/images/icons/back.png" style="width: 21rpx; height: 32rpx;" mode="aspectFill"></image>
+        </view>
+        <view class="search-input" bindtap="search">
+            <icon type="search" size="14"></icon>
+            <text>搜索该商家的商品</text>
         </view>
     </view>
     <!-- 商家 -->
@@ -33,8 +38,7 @@
             </view>
         </scroll-view>
         <scroll-view scroll-y="true" class="good" bindscrolltolower="onReachBottom" scroll-anchoring="true">
-            <list goodList="{{list}}" onAsync="{{onAsync}}"></list>
-            <loading show="{{onAsync&& page===0}}"></loading>
+            <list goodList="{{list}}"></list>
         </scroll-view>
     </view>
 </view>

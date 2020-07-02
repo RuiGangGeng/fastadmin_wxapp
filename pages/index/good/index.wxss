@@ -3,73 +3,68 @@
     height: 750rpx;
 }
 
-
 .info {
     width: 100%;
     height: 300rpx;
     box-sizing: border-box;
+    padding: 25rpx;
     border-bottom: 20rpx solid #f1f1f1;
 }
 
-.info-wrapper {
-    position: relative;
-    width: 750rpx;
-    height: 100rpx;
-    background: #44c25a;
+.info-name {
+    font-size: 35rpx;
+    font-weight: bold;
+    height: 35rpx;
+    line-height: 35rpx;
+    color: #232323;
+}
+
+.info-good {
+    width: 100%;
+    height: 65rpx;
     display: flex;
-    box-sizing: border-box;
-    padding: 0 25rpx;
+    justify-content: space-between;
     align-items: center;
-    color: white;
+}
+
+.info-good > view {
+    width: 33.33%;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .info-price {
-    font-size: 45rpx;
-    font-weight: bold;
-    margin-right: 35rpx;
+    font-size: 35rpx;
+    color: #f85537;
 }
 
 .info-through {
     text-decoration: line-through;
+    color: #666666;
 }
 
-.info-hot {
-    width: 226rpx;
-    height: 41rpx;
-    background: rgba(248, 250, 248, 0.767);
-    color: #44c25a;
-    font-size: 26rpx;
-    border-radius: 20rpx;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.info-cart {
+
+}
+
+.shop-name {
+
+}
+
+.shop-phone {
+    width: 100%;
     position: absolute;
-    top: 30rpx;
-    right: 25rpx;
-}
-
-
-.info-space {
+    bottom: 50rpx;
+    right: 0;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    width: 750rpx;
-    height: 200rpx;
-    font-size: 28rpx;
-    position: relative;
-    padding: 0 25rpx;
-    box-sizing: border-box;
+    align-items: center;
 }
 
-.info-name {
-    font-size: 36rpx;
-    font-weight: bold;
-    height: 100rpx;
-    line-height: 100rpx;
-    color: #4b4b4b;
-}
-.content{
+.content {
     padding: 25rpx;
+    border-bottom: 20rpx solid #f1f1f1;
 }
 
 .state {

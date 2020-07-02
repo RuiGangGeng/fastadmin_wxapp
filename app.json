@@ -7,8 +7,11 @@
         "pages/mine/address/index",
         "pages/mine/address/add",
         "pages/mine/shop/add",
-      "pages/index/shop/index",
-      "pages/index/good/index"
+        "pages/index/shop/index",
+        "pages/index/good/index",
+        "pages/mine/complaint/index",
+        "pages/mine/help/index",
+        "pages/mine/shop/index"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -20,7 +23,8 @@
         "selectedColor": "#39a336",
         "borderStyle": "white",
         "backgroundColor": "#f0f0f0",
-        "list": [{
+        "list": [
+            {
                 "pagePath": "pages/index/index",
                 "iconPath": "images/tab/index.png",
                 "selectedIconPath": "images/tab/index_select.png",

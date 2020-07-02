@@ -3,7 +3,7 @@ const user = require('../../../utils/user.js')
 const app = getApp()
 Page({
     data: {
-        info: []
+        info: [],
     },
 
     onLoad: function (e) {

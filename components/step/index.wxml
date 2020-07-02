@@ -1,0 +1,5 @@
+<view class="container">
+    <image hidden="{{count>0}}" src="/images/icons/dec.png" style="width: 50rpx; height: 50rpx" mode="aspectFill" catchtap="dec"></image>
+    <view hidden="{{count>0}}">{{count}}</view>
+    <image src="/images/icons/inc.png" style="width: 50rpx; height: 50rpx" mode="aspectFill" catchtap="inc"></image>
+</view>

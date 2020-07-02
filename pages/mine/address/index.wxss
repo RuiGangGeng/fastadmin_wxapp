@@ -1,3 +1,6 @@
+page{
+    height: 100%;
+}
 .no-data {
     padding-top: 300rpx;
     margin-top: 0;
@@ -81,7 +84,7 @@ radio {
     background: white;
     left: 0;
     bottom: 0;
-    box-shadow: 1px 0 5px 0px rgba(0, 27, 78, .15);
+    box-shadow: 1px 0 5px 0 rgba(0, 27, 78, .15);
 }
 
 .container {

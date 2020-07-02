@@ -13,7 +13,7 @@
             <view>收货地址</view>
             <view class="angle"></view>
         </navigator>
-        <navigator class="nav-item" url="#">
+        <navigator class="nav-item" url="/pages/mine/complaint/index">
             <image src="/images/mine_back.png" style="width:38rpx; height:38rpx;" />
             <view>意见反馈</view>
             <view class="angle"></view>

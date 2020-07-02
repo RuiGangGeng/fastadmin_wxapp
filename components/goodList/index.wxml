@@ -13,7 +13,7 @@
         <view class="item-operate clear_float">
             <view class="good-price">￥{{item.price}}</view>
             <view class="good-cart">
-                <image src="/images/icons/add.png" style="width: 50rpx; height: 50rpx;" mode="aspectFill"></image>
+                <image src="/images/icons/inc.png" style="width: 50rpx; height: 50rpx;" mode="aspectFill"></image>
             </view>
         </view>
     </view>

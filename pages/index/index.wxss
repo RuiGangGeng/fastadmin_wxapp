@@ -193,7 +193,7 @@
 
 .shop-time {
     color: #666666;
-    font-size: 20rpx;
+    font-size: 24rpx;
     height: 35rpx;
     line-height: 35rpx;
 }

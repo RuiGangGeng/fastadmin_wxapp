@@ -32,6 +32,26 @@ Page({
         })
     },
 
+    // 返回上一页
+    back:function(){
+        wx.navigateBack();
+    },
+
+    // 搜索
+    search:function(){},
+
+    // 收藏
+    like:function(e){
+        e.currentTarget.dataset.id
+    },
+
+    // 联系商家
+    phone:function(){
+        wx.makePhoneCall({
+            phoneNumber:this.data.shop_info.phone
+        })
+    },
+
     // 切换分类
     categoryClick: function (e) {
         this.setData({
@@ -59,6 +79,11 @@ Page({
             })
         }
 
+        that.data.complete && wx.showLoading()
+        setTimeout(function () {
+            wx.hideLoading()
+        }, 3000)
+
         let param = {
             shop_id: that.data.shop_id,
             shop_category_id: that.data.select
@@ -81,6 +106,7 @@ Page({
                     onAsync: false,
                     complete: true
                 })
+                wx.hideLoading()
             }
         )
     }

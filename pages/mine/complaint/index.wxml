@@ -1,0 +1,8 @@
+<view class="container">
+    <form bindsubmit="submit">
+        <textarea name='content' class="content" placeholder="请输入您的反馈内容,我们会第一时间给予解决~" placeholder-style="font-size:28rpx;" ></textarea>
+        <view class="btn-box">
+            <button type="primary" form-type="submit" class="btn btn-block btn-default" disabled="{{onAsync}}">提交</button>
+        </view>
+    </form>
+</view>

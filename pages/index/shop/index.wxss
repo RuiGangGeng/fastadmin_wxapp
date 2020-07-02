@@ -8,8 +8,15 @@ page {
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    padding-left: 78rpx;
+    padding-left: 25rpx;
     padding-bottom: 10rpx;
+    /*background: #44c25a;*/
+}
+
+.search-back {
+    width: 21rpx;
+    height: 32rpx;
+    margin: 0 25rpx 10rpx 25rpx;
 }
 
 .search-input {
@@ -124,7 +131,8 @@ page {
     padding: 0 20rpx;
     position: relative;
 }
-.position{
+
+.position {
     position: absolute;
     top: 0;
 }
