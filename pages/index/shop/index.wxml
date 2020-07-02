@@ -1,4 +1,5 @@
-<view class="container">
+<loading show="{{!complete}}"></loading>
+<view class="container" hidden="{{!complete}}">
     <!-- 搜索 -->
     <view class="search" bindtap="search">
         <view class="search-input"><icon type="search" size="14"></icon>搜索该商家的商品
@@ -26,28 +27,14 @@
     <!-- 内容 -->
     <view class="content">
         <scroll-view scroll-y="true" class="categories">
-            <view class="categories-item {{select === index && 'active'}}" wx:for="{{categories}}" wx:key="index" id="{{item.id}}" bindtap='categoryClick'>
-                <view class="{{select === index && 'active_'}}"></view>
+            <view class="categories-item {{select === item.id && 'active'}}" wx:for="{{categories}}" wx:key="index" data-id="{{item.id}}" bindtap='categoryClick'>
+                <view class="{{select === item.id && 'active_'}}"></view>
                 <text>{{item.name}}</text>
             </view>
         </scroll-view>
-        <scroll-view scroll-y="true" class="good">
-            <view class="good" wx:for="{{list}}" wx:key="index_" wx:for-item="i" bindtap="good" data-id="{{i.id}}">
-                <view class="item-logo">
-                    <image src="{{i.thumb_image}}" style="width: 155rpx;height: 155rpx" mode="aspectFill"></image>
-                </view>
-                <view class="item-detail">
-                    <view class="good-name">{{i.name}}</view>
-                    <view class="good-wrapper">
-                        <view>月售{{i.stock}}</view>
-                        <view>好评{{i.stock}}%</view>
-                    </view>
-                </view>
-                <view class="item-operate">
-                    <view class="good-price">{{i.price}}</view>
-                    <view class="good-cart"></view>
-                </view>
-            </view>
+        <scroll-view scroll-y="true" class="good" bindscrolltolower="onReachBottom" scroll-anchoring="true">
+            <list goodList="{{list}}" onAsync="{{onAsync}}"></list>
+            <loading show="{{onAsync&& page===0}}"></loading>
         </scroll-view>
     </view>
 </view>

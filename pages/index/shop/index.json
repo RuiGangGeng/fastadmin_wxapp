@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "loading": "../../../components/loading/loading",
+    "list": "../../../components/goodList/index"
+  },
   "navigationStyle": "custom"
 }

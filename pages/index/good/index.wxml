@@ -1,10 +1,34 @@
 <view class="container">
-    <swiper autoplay="true">
-        <swiper-item wx:for="{{info.goods}}">
-            <image src=""></image>
+    <!-- 轮播 -->
+    <swiper class="swiper" autoplay="true" interval="3000" duration="500" circular="true">
+        <swiper-item wx:for="{{info.images}}" wx:key="index">
+            <image src="{{item}}" mode="aspectFill" style="width: 100%; height: 100%"></image>
         </swiper-item>
     </swiper>
+    <!-- 简介 -->
+    <view class="info">
+        <view class="info-wrapper" >
+            <view class="info-price">￥{{info.price}}</view>
+            <view class="info-through">￥{{info.original}}</view>
+            <view class="info-hot">火热抢购中</view>
+        </view>
+        <view class="info-space">
+            <view class="text-one info-name">{{info.name}}</view>
+        </view>
+    </view>
+    <!-- 富文本 -->
     <view class="content">
-
+        <parser html="{{info.content}}" tag-style="{}" />
+    </view>
+    <!-- 价格说明 -->
+    <view class="state">
+        <view class="state-title">价格说明</view>
+        <view class="state-content">
+            <text>划线价格:</text>划线的价格并非《中华人民共和国价格法》及《禁止价格欺诈行为的规定》等相关法律法规中所指商品“原价” 的含义，仅为到家平台商家处商品的供应商指导价或建议零售价，
+            <text>并非商品原价。</text>
+        </view>
+        <view class="state-content">
+            <text>未划线价格:</text>未划线的价格指该商家处商品在京东到家平台实时标价,具体成交价格根据商品参加的活动，或者您使用优惠券等发生变化，最终以订单结算页面价格为准。
+        </view>
     </view>
 </view>

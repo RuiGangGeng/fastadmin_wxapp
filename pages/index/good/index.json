@@ -1,4 +1,8 @@
 {
   "usingComponents": {
-  }
+    "parser":"/components/parser.min/parser"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#44c25a",
+  "navigationBarTextStyle": "white"
 }

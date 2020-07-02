@@ -80,6 +80,13 @@
 					"pathName": "pages/index/shop/index",
 					"query": "id=1",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/good/index",
+					"pathName": "pages/index/good/index",
+					"query": "id=3",
+					"scene": null
 				}
 			]
 		}

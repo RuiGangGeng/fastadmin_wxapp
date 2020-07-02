@@ -1,5 +1,9 @@
 Component({
-    data: {
-        complete: false
+    externalClasses:['i-class'],
+    properties:{
+        show:Boolean
     },
+    data: {
+        show: false
+    }
 })

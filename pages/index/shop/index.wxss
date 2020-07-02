@@ -91,7 +91,7 @@ page {
 
 .categories {
     height: 100%;
-    width: 160rpx;
+    width: 210rpx;
     background: #f3f3f3;
 }
 
@@ -118,4 +118,13 @@ page {
 
 .active_ {
     background: #44c25a;
+}
+
+.good {
+    padding: 0 20rpx;
+    position: relative;
+}
+.position{
+    position: absolute;
+    top: 0;
 }

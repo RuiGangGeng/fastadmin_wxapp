@@ -1,0 +1,96 @@
+.swiper {
+    width: 750rpx;
+    height: 750rpx;
+}
+
+
+.info {
+    width: 100%;
+    height: 300rpx;
+    box-sizing: border-box;
+    border-bottom: 20rpx solid #f1f1f1;
+}
+
+.info-wrapper {
+    position: relative;
+    width: 750rpx;
+    height: 100rpx;
+    background: #44c25a;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 25rpx;
+    align-items: center;
+    color: white;
+}
+
+.info-price {
+    font-size: 45rpx;
+    font-weight: bold;
+    margin-right: 35rpx;
+}
+
+.info-through {
+    text-decoration: line-through;
+}
+
+.info-hot {
+    width: 226rpx;
+    height: 41rpx;
+    background: rgba(248, 250, 248, 0.767);
+    color: #44c25a;
+    font-size: 26rpx;
+    border-radius: 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30rpx;
+    right: 25rpx;
+}
+
+
+.info-space {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 750rpx;
+    height: 200rpx;
+    font-size: 28rpx;
+    position: relative;
+    padding: 0 25rpx;
+    box-sizing: border-box;
+}
+
+.info-name {
+    font-size: 36rpx;
+    font-weight: bold;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #4b4b4b;
+}
+.content{
+    padding: 25rpx;
+}
+
+.state {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25rpx;
+    font-size: 24rpx;
+    background: white;
+    color: #808080;
+}
+
+.state-title {
+    font-size: 30rpx;
+    color: #434343;
+}
+
+.state-content text {
+    font-weight: bold;
+    color: #434343;
+}
+
+.state-content {
+    margin: 10rpx 0;
+}

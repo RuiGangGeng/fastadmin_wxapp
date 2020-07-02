@@ -6,10 +6,11 @@ Page({
         shop_id: false,
         shop_info: false,
         categories: [],
-        select:0,
+        select: 0,
         list: [],
         page: 0,
         onAsync: false,
+        complete: false,
     },
 
     onLoad: function (e) {
@@ -25,10 +26,20 @@ Page({
         // 获取该商家的分类
         util.wxRequest("Category/getCategories", {shop_id: e.id, list_rows: 100}, res => {
             if (res.code == 200) {
-                that.setData({categories:res.data.data})
+                that.setData({categories: res.data.data, select: res.data.data[0].id})
                 that.loadData()
             }
         })
+    },
+
+    // 切换分类
+    categoryClick: function (e) {
+        this.setData({
+            list: [],
+            page: 0,
+            select: e.currentTarget.dataset.id
+        })
+        this.loadData()
     },
 
     // 触底加载
@@ -48,19 +59,12 @@ Page({
             })
         }
 
-        wx.showLoading()
-        setTimeout(function () {
-            wx.hideLoading()
-        }, 3000)
-
         let param = {
-            page: that.data.page + 1,
-            shop_id:that.data.shop_id,
-            shop_category_id:that.data.categories[that.data.activeTab].id
+            shop_id: that.data.shop_id,
+            shop_category_id: that.data.select
         }
 
-
-        util.wxRequest("Good/getGoods", param,
+        util.wxRequest("Good/getGoods", {page: that.data.page + 1, where: JSON.stringify(param)},
             res => {
                 let temp = that.data.list.concat(res.data.data)
 
@@ -74,9 +78,9 @@ Page({
             },
             () => {
                 that.setData({
-                    onAsync: false
+                    onAsync: false,
+                    complete: true
                 })
-                wx.hideLoading()
             }
         )
     }
