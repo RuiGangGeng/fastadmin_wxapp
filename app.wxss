@@ -4,7 +4,6 @@ page {
 
 image {
     display: block;
-    overflow: hidden;
 }
 
 view {

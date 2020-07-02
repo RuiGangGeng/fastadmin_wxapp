@@ -7,13 +7,77 @@ page {
     height: 125rpx;
     display: flex;
     justify-content: flex-start;
+    align-items: flex-end;
+    padding-left: 78rpx;
+    padding-bottom: 10rpx;
+}
+
+.search-input {
+    width: 445rpx;
+    height: 55rpx;
+    background: #dcdcdc;
+    color: #848484;
+    border-radius: 25rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 35rpx;
+}
+
+.shop {
+    height: 175rpx;
+    width: 710rpx;
+    margin: 0 20rpx;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
 
-.shop-wrapper {
-    height: 175rpx;
-    width: 750rpx;
-    margin: 0 20rpx;
+.shop-logo {
+    border: 1rpx solid #d7d7d7d7;
+    overflow: hidden;
+    border-radius: 6rpx;
+    width: 135rpx;
+    height: 135rpx;
+}
+
+.shop-detail {
+    width: 407rpx;
+    height: 135rpx;
+    color: #242424;
+    padding-left: 20rpx;
+}
+
+.shop-name {
+    font-size: 30rpx;
+    font-weight: bold;
+}
+
+.shop-address {
+    font-size: 26rpx;
+}
+
+.shop-operate {
+    width: 155rpx;
+    height: 100%;
+    position: relative;
+    margin-left: unset !important;
+}
+
+.shop-like {
+    position: absolute;
+    top: 20rpx;
+    right: 0;
+}
+
+.shop-phone {
+    width: 100%;
+    position: absolute;
+    bottom: 50rpx;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .content {
@@ -21,13 +85,37 @@ page {
     width: 100%;
     height: calc(100% - 300rpx);
     bottom: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
-.weui-vtabs-content__item {
-    height: 500rpx;
-    border-bottom: 1rpx;
+.categories {
+    height: 100%;
+    width: 160rpx;
+    background: #f3f3f3;
 }
 
-.weui-vtabs-bar__wrp, .weui-vtabs-bar__title {
-    width: 160rpx !important;
+.categories-item {
+    height: 105rpx;
+    color: #666666;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.categories-item view {
+    width: 6rpx;
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+
+.active {
+    color: #44c25a;
+    background: white !important;
+}
+
+.active_ {
+    background: #44c25a;
 }

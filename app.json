@@ -7,7 +7,8 @@
         "pages/mine/address/index",
         "pages/mine/address/add",
         "pages/mine/shop/add",
-      "pages/index/shop/index"
+      "pages/index/shop/index",
+      "pages/index/good/index"
     ],
     "window": {
         "backgroundTextStyle": "light",

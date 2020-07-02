@@ -1,0 +1,10 @@
+<view class="container">
+    <swiper autoplay="true">
+        <swiper-item wx:for="{{info.goods}}">
+            <image src=""></image>
+        </swiper-item>
+    </swiper>
+    <view class="content">
+
+    </view>
+</view>

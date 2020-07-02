@@ -1,32 +1,53 @@
 <view class="container">
-    <mp-sticky>
-        <view class="search">
-
+    <!-- 搜索 -->
+    <view class="search" bindtap="search">
+        <view class="search-input"><icon type="search" size="14"></icon>搜索该商家的商品
         </view>
-    </mp-sticky>
-    <view class="shop-wrapper">
-
     </view>
+    <!-- 商家 -->
+    <view class="shop">
+        <view class="shop-logo">
+            <image src="{{shop_info.logo_image}}" style="width: 135rpx; height: 135rpx;" mode="aspectFill"></image>
+        </view>
+        <view class="shop-detail">
+            <view class="shop-name text-one">{{shop_info.name}}</view>
+            <view class="shop-address text-two">{{shop_info.shopaddress.address}}</view>
+        </view>
+        <view class="shop-operate" bindtap="like">
+            <view class="shop-like">
+                <image src="{{shop_info.like?'/images/icons/like_active.png':'/images/icons/like_default.png'}}" mode="aspectFill" style="width: 42rpx; height: 40rpx;"></image>
+            </view>
+            <view class="shop-phone" bindtap="phone">
+                <image src="/images/icons/phone.png" mode="aspectFill" style="width: 27rpx; height: 29rpx;"></image>
+                <view>联系商家</view>
+            </view>
+        </view>
+    </view>
+    <!-- 内容 -->
     <view class="content">
-        <mp-vtabs vtabs="{{categories}}" ext-class="weui-vtabs-bar__wrp" tab-line-color="#44c25a" tab-active-text-color="#44c25a" activeTab="{{activeTab}}" bindtabclick="onTabCLick" bindchange="onChange">
-            <block wx:for="{{categories}}" wx:key="index">
-                <mp-vtabs-content tabIndex="{{index}}" ext-class="weui-vtabs-content__item">
-                    <view class="item-title">{{item.title}}</view>
-                    <view class="item-wrapper" wx:for="{{list}}" wx:key="index_" wx:for-item="i" bindtap="good" data-id="{{i.id}}">
-                        <view class="item-logo">
-                            <image src="{{i.thumb_image}}" style="width: 155rpx;height: 155rpx" mode="aspectFill"></image>
-                        </view>
-                        <view class="item-detail">
-                            <view class="good-name">{{i.name}}</view>
-                            <view class="good-wrapper"><view>月售{{i.stock}}</view><view>好评{{i.stock}}%</view></view>
-                        </view>
-                        <view class="item-operate">
-                            <view class="good-price">{{i.price}}</view>
-                            <view class="good-cart"></view>
-                        </view>
+        <scroll-view scroll-y="true" class="categories">
+            <view class="categories-item {{select === index && 'active'}}" wx:for="{{categories}}" wx:key="index" id="{{item.id}}" bindtap='categoryClick'>
+                <view class="{{select === index && 'active_'}}"></view>
+                <text>{{item.name}}</text>
+            </view>
+        </scroll-view>
+        <scroll-view scroll-y="true" class="good">
+            <view class="good" wx:for="{{list}}" wx:key="index_" wx:for-item="i" bindtap="good" data-id="{{i.id}}">
+                <view class="item-logo">
+                    <image src="{{i.thumb_image}}" style="width: 155rpx;height: 155rpx" mode="aspectFill"></image>
+                </view>
+                <view class="item-detail">
+                    <view class="good-name">{{i.name}}</view>
+                    <view class="good-wrapper">
+                        <view>月售{{i.stock}}</view>
+                        <view>好评{{i.stock}}%</view>
                     </view>
-                </mp-vtabs-content>
-            </block>
-        </mp-vtabs>
+                </view>
+                <view class="item-operate">
+                    <view class="good-price">{{i.price}}</view>
+                    <view class="good-cart"></view>
+                </view>
+            </view>
+        </scroll-view>
     </view>
 </view>

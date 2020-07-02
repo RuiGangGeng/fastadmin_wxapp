@@ -6,7 +6,7 @@ Page({
         shop_id: false,
         shop_info: false,
         categories: [],
-        activeTab: 0,
+        select:0,
         list: [],
         page: 0,
         onAsync: false,
@@ -25,25 +25,10 @@ Page({
         // 获取该商家的分类
         util.wxRequest("Category/getCategories", {shop_id: e.id, list_rows: 100}, res => {
             if (res.code == 200) {
-                let categories = []
-                for (let i of res.data.data) categories.push({title: i.name, id: i.id})
-                that.setData({categories})
+                that.setData({categories:res.data.data})
                 that.loadData()
             }
         })
-    },
-
-
-    // 点击分类
-    onTabCLick(e) {
-        const index = e.detail.index
-        console.log('tabClick', e)
-    },
-
-    // 变化
-    onChange(e) {
-        const index = e.detail.index
-        console.log('change', e)
     },
 
     // 触底加载
