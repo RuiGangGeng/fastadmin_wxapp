@@ -6,7 +6,7 @@
             <image src="/images/address_location.png" style="width:34rpx; height:42rpx;"></image>
             <view class="location text-two">{{item.address}}</view>
             <view class="address-icon" bindtap="setDefault" data-id="{{item.id}}">
-                <radio checked="{{item.default===1}}" color="#FF5450" value="{{index}}" />
+                <radio checked="{{item.default===1}}" color="#FF5450" value="{{index}}"/>
             </view>
         </view>
         <view class="item-two">
@@ -17,11 +17,11 @@
             </view>
         </view>
     </view>
-    <view class="no-more" wx:if="{{page>1 || list.length===10}}">暂无更多数据</view>
+    <view class="no-more" wx:if="{{list.length===total}}">暂无更多数据</view>
     <!-- 无地址 -->
     <view wx:if="{{list.length===0}}" class="no-data">
         <icon type="warn" size="70" color="#b2b2b2"></icon>
-        <view class="inmiddle colorgray">无收货地址，快来告诉我吧</view>
+        <view>无收货地址，快来告诉我吧</view>
         <navigator class="btn btn-block btn-default" url="/pages/mine/address/add">
             添加收货地址
         </navigator>

@@ -92,21 +92,3 @@ radio {
     box-sizing: border-box;
     overflow-anchor: none;
 }
-
-.no-more {
-    width: 100%;
-    height: 60rpx;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: #b2b2b2;
-}
-
-.no-more::after,
-.no-more::before {
-    content: '';
-    display: block;
-    width: 100rpx;
-    height: 2rpx;
-    background: #e1e1e1;
-}

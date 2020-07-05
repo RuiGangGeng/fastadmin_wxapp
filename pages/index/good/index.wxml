@@ -11,16 +11,12 @@
         <view class="info-good">
             <view class="info-price">￥{{info.price}}</view>
             <view class="info-through">￥{{info.original}}</view>
-            <view class="info-cart">
-                <image src="/images/icons/inc.png" style="width: 50rpx; height: 50rpx" mode="aspectFill"></image>
-                <view>{{count}}</view>
-                <image src="/images/icons/dec.png" style="width: 50rpx; height: 50rpx" mode="aspectFill"></image>
-            </view>
+            <step top="{{info.stock}}"  bind:inc="inc" bind:dec="dec" showButton="true" topMsg="库存不足" class="info-cart"  goodData="{{info}}" count="{{info.count}}"></step>
         </view>
-        <view class="info-shop">
-            <view class="shop-name">
-                <image src="" mode="aspectFill" ></image>
-                {{}}
+        <view class="info-shop clear_float">
+            <view class="shop-name" bindtap="shop">
+                <image src="/images/icons/contact.png" style="width: 35rpx; height: 30rpx; float: left;" mode="aspectFill"></image>
+                <view class="text-one">{{info.shop_info.name}}</view>
             </view>
             <view class="shop-phone" bindtap="phone">
                 <image src="/images/icons/phone.png" mode="aspectFill" style="width: 27rpx; height: 29rpx;"></image>
@@ -30,7 +26,7 @@
     </view>
     <!-- 富文本 -->
     <view class="content">
-        <parser html="{{info.content}}" tag-style="{}" />
+        <parser html="{{info.content}}" tag-style="{}"/>
     </view>
     <!-- 价格说明 -->
     <view class="state">
@@ -43,4 +39,6 @@
             <text>未划线价格:</text>未划线的价格指该商家处商品在京东到家平台实时标价,具体成交价格根据商品参加的活动，或者您使用优惠券等发生变化，最终以订单结算页面价格为准。
         </view>
     </view>
+    <!-- 购物车 -->
+    <cart class="cart" dataCart="{{cart}}"></cart>
 </view>

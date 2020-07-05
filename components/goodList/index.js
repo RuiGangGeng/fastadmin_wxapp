@@ -1,9 +1,9 @@
 Component({
     properties: {
-        goodList:Array,
+        list:Array,
     },
     data:{
-        goodList:[],
+        list:[],
     },
     methods: {
         // 查看商品详情

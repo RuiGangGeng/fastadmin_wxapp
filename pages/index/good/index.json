@@ -1,8 +1,11 @@
 {
   "usingComponents": {
-    "parser":"/components/parser.min/parser"
+    "parser":"/components/parser.min/parser",
+    "step":"/components/step/index",
+    "cart": "../../../components/goodCart/index"
   },
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#44c25a",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "商品详情"
 }

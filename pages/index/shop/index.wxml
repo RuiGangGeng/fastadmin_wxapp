@@ -38,7 +38,10 @@
             </view>
         </scroll-view>
         <scroll-view scroll-y="true" class="good" bindscrolltolower="onReachBottom" scroll-anchoring="true">
-            <list goodList="{{list}}"></list>
+            <list list="{{list}}" bind:inc="inc" bind:dec="dec"></list>
+            <view class="no-more" wx:if="{{list.length===total}}">暂无更多数据</view>
         </scroll-view>
     </view>
+    <!-- 购物车 -->
+    <cart class="cart" dataCart="{{cart}}"></cart>
 </view>

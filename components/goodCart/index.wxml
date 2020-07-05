@@ -1,0 +1,12 @@
+<view class="container">
+    <view class="cart-img" bindtap="showDetail">
+        <image wx:if="{{total===0}}" src="/images/icons/cart_default.png" mode="aspectFill" style="width: 99rpx; height: 98rpx;"></image>
+        <image wx:if="{{total>0}}" src="/images/icons/cart_active.png" mode="aspectFill" style="width: 99rpx; height: 98rpx;"></image>
+        <view class="point" wx:if="{{total>0}}">{{total}}</view>
+    </view>
+    <view class="price">
+        <view class="price-none" wx:if="{{total===0}}">购物车是空的</view>
+        <view class="price-block" wx:else>{{totalPrice}}</view>
+    </view>
+    <view class="default {{total!==0&&'success'}}">去结算</view>
+</view>

@@ -1,4 +1,4 @@
-<view class="good-wrapper" wx:for="{{goodList}}" wx:key="index" bindtap="good" data-id="{{item.id}}">
+<view class="good-wrapper" wx:for="{{list}}" wx:key="index" bindtap="good" data-id="{{item.id}}">
     <view class="item-logo">
         <image src="{{item.thumb_image}}" style="width: 160rpx;height: 160rpx" mode="aspectFill"></image>
     </view>
@@ -12,9 +12,7 @@
         </view>
         <view class="item-operate clear_float">
             <view class="good-price">￥{{item.price}}</view>
-            <view class="good-cart">
-                <image src="/images/icons/inc.png" style="width: 50rpx; height: 50rpx;" mode="aspectFill"></image>
-            </view>
+            <step class="good-cart" top="{{item.stock}}" goodData="{{item}}" count="{{item.count}}" topMsg="库存不足"></step>
         </view>
     </view>
 </view>

@@ -1,7 +1,8 @@
 {
   "usingComponents": {
-    "loading": "../../../components/loading/loading",
-    "list": "../../../components/goodList/index"
+    "loading": "../../../components/loading/index",
+    "list": "../../../components/goodList/index",
+    "cart": "../../../components/goodCart/index"
   },
   "navigationStyle": "custom"
 }

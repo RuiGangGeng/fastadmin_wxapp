@@ -4,6 +4,7 @@ const app = getApp()
 Page({
     data: {
         info: [],
+        cart: false,
     },
 
     onLoad: function (e) {
@@ -11,11 +12,66 @@ Page({
 
         // 获取商品详情
         util.wxRequest("Good/getGood", {id: e.id}, res => {
-            res.code == 200 && that.setData({info: res.data});
+            if (res.code === 200) {
+                // 获取购物车信息
+                let parent_res = res
+                util.wxRequest("Cart/getCarts", {}, res => {
+                    let cart = res.data
+                    for (let j = 0, length = cart.length; j < length; j++) {
+                        if (parent_res.data.id === cart[j].good_id) {
+                            parent_res.data.count = cart[j].number
+                        }
+                    }
+                    that.setData({cart,info: parent_res.data});
+                })
+            } else {
+                wx.showModal({
+                    title: '温馨提示',
+                    content: res.msg,
+                    showCancel: false,
+                    success(res) {
+                        wx.switchTab({url: '/pages/index/index'})
+                    }
+                })
+            }
         })
     },
 
-    // 加入购物车
+    // 递增购物车商品
+    inc: function (e) {
+        console.log(e)
+        if (e.type === 'inc') {
+            let cart = this.data.cart
+            let in_cart = false
+            for (let i = 0, cart_length = cart.length; i < cart_length; i++) {
+                cart[i].good_id === e.detail.data.id && (cart[i].number++, in_cart = true)
+            }
+            !in_cart && cart.push({good_id: e.detail.data.id, number: 1, price: e.detail.data.price})
+            this.setData({cart})
+        }
+    },
+
+    // 递减购物车商品
+    dec: function (e) {
+        console.log(e)
+        if (e.type === 'dec') {
+            let cart = this.data.cart
+            for (let i = 0, cart_length = cart.length; i < cart_length; i++) cart[i].good_id === e.detail.data.id && cart[i].number--
+            this.setData({cart})
+        }
+    },
+
+    // 商家
+    shop: function () {
+        wx.navigateTo({url: '/pages/index/shop/index?id=' + this.data.info.shop_id})
+    },
+
+    // 联系商家
+    phone: function () {
+        wx.makePhoneCall({
+            phoneNumber: this.data.info.shop_info.phone
+        })
+    },
 
     // 分享
     onShareAppMessage: function () {

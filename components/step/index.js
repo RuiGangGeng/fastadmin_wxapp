@@ -1,27 +1,89 @@
+const util = require('../../utils/util.js')
 Component({
     properties: {
-        count:Number,
-        top:Number,
-        topMsg:String,
-        data:Array
-    },
-    data: {},
-    methods: {
-        inc:function (e) {
-
+        count: Number,
+        top: Number,
+        topMsg: String,
+        goodData: Object,
+        showButton: {
+            type: Boolean,
+            value: false
         },
-        dec:function (e) {
+    },
+    data: {
+        count: 0,
+        showButton: true,
+        onAsync: false,
+    },
+    methods: {
+        pushCart: function () {
+            this.pub()
+        },
+        inc: function () {
+            this.pub()
+        },
+        dec: function () {
+            if (this.data.onAsync) {
+                return false
+            } else {
+                this.setData({
+                    onAsync: true
+                })
+            }
+            let count = this.data.count;
+            count--
+            util.wxRequest("Cart/deleteCart", {good_id: this.data.goodData.id}, res => {
+                if (res.code !== 200) {
+                    wx.showModal({
+                        title: '温馨提示',
+                        content: res.msg,
+                        showCancel: false,
+                    })
+
+                } else {
+                    this.setData({count, onAsync: false})
+                    this.triggerEvent('dec', {data: this.data.goodData}, { bubbles: true, composed: true })
+                }
+            })
+        },
+        pub: function () {
+            if (this.data.onAsync) {
+                return false
+            } else {
+                this.setData({
+                    onAsync: true
+                })
+            }
+
             let count = this.data.count;
             let top = this.data.top;
             let topMsg = this.data.topMsg;
-            if(count++>top){
+
+            if (++count > top) {
                 wx.showModal({
-                    title:"提示",
-                    content:topMsg,
+                    title: '温馨提示',
+                    showCancel: false,
+                    content: topMsg,
+                })
+                this.setData({
+                    onAsync: false
                 })
                 return false
             }
-            this.setData({count:this.data.count++})
+
+            util.wxRequest("Cart/postCart", {good_id: this.data.goodData.id}, res => {
+                if (res.code !== 200) {
+                    wx.showModal({
+                        title: '温馨提示',
+                        content: res.msg,
+                        showCancel: false,
+                    })
+                } else {
+                    this.setData({count})
+                    this.triggerEvent('inc', {data: this.data.goodData}, { bubbles: true, composed: true })
+                }
+                this.setData({onAsync: false})
+            })
         }
     }
 });

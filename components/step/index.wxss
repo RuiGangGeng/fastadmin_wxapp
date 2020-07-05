@@ -1,0 +1,22 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.child{
+    margin-right: 25rpx;
+}
+.child:last-child{
+    margin-right: unset;
+}
+.btn{
+    width: 200rpx;
+    height: 45rpx;
+    line-height: 45rpx;
+    text-align: center;
+    background: #44c25a;
+    border-radius: 45rpx;
+    color: white;
+}

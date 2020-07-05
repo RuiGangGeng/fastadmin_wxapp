@@ -1,5 +1,8 @@
-<view class="container">
-    <image hidden="{{count>0}}" src="/images/icons/dec.png" style="width: 50rpx; height: 50rpx" mode="aspectFill" catchtap="dec"></image>
-    <view hidden="{{count>0}}">{{count}}</view>
-    <image src="/images/icons/inc.png" style="width: 50rpx; height: 50rpx" mode="aspectFill" catchtap="inc"></image>
+<view class="container" wx:if="{{count>0||!showButton}}">
+    <image class="child" wx:if="{{showButton||count>0}}" src="/images/icons/dec.png" style="width: 50rpx; height: 50rpx" mode="aspectFill" catchtap="dec"></image>
+    <view class="child" wx:if="{{showButton||count>0}}">{{count}}</view>
+    <image class="child" src="/images/icons/inc.png" style="width: 50rpx; height: 50rpx" mode="aspectFill" catchtap="inc"></image>
+</view>
+<view class="container" wx:if="{{count<=0&&showButton}}">
+    <view class="btn" bindtap="pushCart">加入购物车</view>
 </view>
