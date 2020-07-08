@@ -1,0 +1,153 @@
+@import "/pages/index/order/add.wxss";
+@import "/pages/order/index.wxss";
+
+.container {
+    background: #f1f1f1f1;
+}
+
+.box-shadow {
+    background: white;
+    border-radius: 10rpx;
+}
+
+.item {
+    width: 700rpx;
+    margin-bottom: unset;
+}
+
+.address {
+    height: 140rpx;
+}
+
+.title {
+    width: 100%;
+    height: 95rpx;
+    line-height: 95rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+    padding: 0 25rpx;
+    border-bottom: 1rpx solid #d7d7d7d7;
+}
+
+.line {
+    padding: 0 25rpx;
+    width: 100%;
+    line-height: 75rpx;
+    min-height: 75rpx;
+    border-bottom: 1rpx solid #d7d7d7d7;
+}
+
+.line view:first-child {
+    min-width: 170rpx;
+    float: left;
+}
+
+.line view:last-child {
+    float: right;
+    /* white-space: nowrap; */
+}
+
+.shop, .shop-phone {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-shop {
+    width: 470rpx;
+}
+
+.item-shop-name {
+    width: 450rpx;
+}
+
+.shop-phone {
+    width: 140rpx;
+}
+
+.shop-phone view {
+    font-size: 26rpx;
+    font-weight: unset;
+}
+
+.item-thumb_image image {
+    border: none;
+}
+
+.good-line {
+    height: 75rpx;
+    line-height: 75rpx;
+    border-bottom: unset;
+    padding: 0 25rpx;
+}
+
+.good-line view:first-child {
+    width: 150rpx;
+    float: left;
+}
+
+.good-line view:last-child {
+    float: right;
+}
+
+.text-danger {
+    font-weight: bold;
+}
+
+.address-text {
+    justify-content: flex-start;
+}
+
+.address-text view {
+    margin-left: 25rpx;
+}
+
+.address-wrapper {
+    padding-left: 59rpx;
+}
+
+.good-operate view:last-child {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.message_ {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(100, 100, 100, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-wrapper {
+    width: 600rpx;
+    padding: 25rpx;
+}
+
+.message-title {
+    font-size: 30rpx;
+    font-weight: bold;
+    height: 55rpx;
+    border-bottom: 1rpx solid #d7d7d7d7;
+}
+
+.message-box {
+    margin: 25rpx 0;
+}
+
+.message-operate {
+    width: 100%;
+    height: 60rpx;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.message-confirm {
+    border-radius: 10rpx;
+}

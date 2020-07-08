@@ -1,0 +1,32 @@
+<view class="container">
+    <!-- 商铺信息展示部分开始 -->
+    <view class="header">
+        <view class="shop_info">
+            <view class="logo">
+                <image mode="aspectFill" src="{{info.logo_image}}"></image>
+            </view>
+            <view class="shop_text">
+                <view class="textinline" style="font-weight:bold;">{{info.name}}</view>
+                <view class="shop_detail">
+                    <view class="textinline">{{info.shopaddress.address}}</view>
+                    <view class="textinline">{{info.shopmaterial.delivery}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 导航按钮 -->
+    <view class="my_order">
+        <navigator url="/pages/mine/shop/order/index?id={{id}}" class="nav_item">
+            <text>订单管理</text>
+            <text class="angle"></text>
+        </navigator>
+        <navigator url="/pages/mine/shop/catelist?id={{id}}" class="nav_item">
+            <text>分类管理</text>
+            <text class="angle"></text>
+        </navigator>
+        <navigator url="/pages/goodlist/goodlist?id={{id}}" class="nav_item">
+            <text>商品管理</text>
+            <text class="angle"></text>
+        </navigator>
+    </view>
+</view>

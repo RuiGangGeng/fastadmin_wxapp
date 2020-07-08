@@ -1,0 +1,74 @@
+<scroll-view class="container" scroll-y="true">
+    <!-- 收货地址 -->
+    <navigator url="/pages/mine/address/index?type=1&shop_id={{param.shop_id}}" class="address box-shadow" wx:if="{{address}}">
+        <view class="address-text">
+            <view class="text-one">{{address.address}}</view>
+            <view class="angle"></view>
+        </view>
+        <view class="address-wrapper">
+            <view class="address-contact">{{address.contact}}</view>
+            <view>{{address.phone}}</view>
+        </view>
+        <view class="tips">温馨提示：请注意仔细核对，防止送错您的商品。</view>
+    </navigator>
+    <!-- 无收货地址 -->
+    <navigator url="/pages/mine/address/add" class="address_ box-shadow" wx:if="{{!address}}">
+        <view>收货地址</view>
+        <view>去添加
+            <view class="angle"></view>
+        </view>
+    </navigator>
+
+    <!-- 购物车产品 -->
+    <view class="good box-shadow">
+        <view class="item" wx:for="{{list}}" wx:key="index">
+            <view class="item-thumb_image">
+                <image src="{{item.thumb_image}}" mode="aspectFill" style="width: 160rpx; height: 160rpx"></image>
+            </view>
+            <view class="item-wrapper">
+                <view class="good-name text-one">{{item.name}}</view>
+                <view class="good-number">
+                    <view>数量：</view>
+                    <view>{{item.number}}</view>
+                </view>
+                <view class="good-original">
+                    <view>原价：</view>
+                    <view>{{item.original}}</view>
+                </view>
+                <view class="good-price">
+                    <view>价格：</view>
+                    <view>{{item.price}}</view>
+                </view>
+                <view class="good-total-price">
+                    <view>小计：</view>
+                    <view>￥{{item.price*item.number}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 留言框 -->
+    <view class="message">
+        <view>订单留言：</view>
+        <textarea class="box-shadow" placeholder="想对店家说的" bindinput="bindInput" data-field="message" value="{{param.message}}"></textarea>
+    </view>
+
+    <!-- 操作 -->
+    <cover-view class="operate-line"></cover-view>
+    <cover-view class="operate clear_float">
+        <cover-view class="operate-good">
+            <cover-view class="operate-price">
+                合计：
+                <cover-view class="text-danger">￥{{total_price}}
+                    <cover-view class="blank"></cover-view>
+                </cover-view>
+            </cover-view>
+            <cover-view class="operate-total clear_float">
+                <cover-view style="float: left;">共</cover-view>
+                <cover-view style="float: left;" class="text-danger">{{total}}</cover-view>
+                <cover-view style="float: left;">件商品</cover-view>
+            </cover-view>
+        </cover-view>
+        <button class="btn btn-default btn-operate" disabled="{{onAsync}}" bindtap="formSubmit">提交订单</button>
+    </cover-view>
+</scroll-view>

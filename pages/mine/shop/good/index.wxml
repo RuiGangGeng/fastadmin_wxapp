@@ -1,0 +1,40 @@
+<view class="container">
+    <!-- 搜索框开始 -->
+    <view class="search_box">
+        <icon type="search" size="17"></icon>
+        <input placeholder="搜索商家商品" bindfocus="bindfocus"></input>
+    </view>
+    <!-- 筛选表头 和 添加商品 -->
+    <view class="operate">
+        <view class="operatetwo">
+            <navigator url="/pages/addpdt/addpdt?shop_id={{shop_id}}" class="manitemr">添加商品</navigator>
+        </view>
+        <view class="operateone">
+            <view>
+                <text class="{{select==1?'select':''}}" bindtap="changeSelect" data-status="1">上架</text>
+                <text class="{{select==0?'select':''}}" bindtap="changeSelect" data-status="0">下架</text>
+            </view>
+        </view>
+    </view>
+    <!-- 数据展示 和TAB -->
+    <view class="content">
+        <!-- 结果列表 -->
+        <scroll-view class="list" scroll-y="true" bindscrolltolower="loadData">
+            <view class="item" wx:for="{{list}}" wx:key="index" bindtap="navEdit" data-id="{{item.id}}">
+                <image mode="aspectFill" src="{{item.image}}" class="goods-image"></image>
+                <view class="goods_info">
+                    <view class="texttwoline">{{item.name}}</view>
+                    <view class="goods_price">
+                        <text>￥{{item.price}}</text>
+                        <text>￥{{item.price_orig}}</text>
+                        <image wx:if="{{item.status==0}}" src="/image/pdtup.png" catchtap="changegood" data-act="up_goods" data-id="{{item.id}}"></image>
+                        <image wx:if="{{item.status==1}}" src="/image/pdtdown.png" catchtap="changegood" data-act="down_goods" data-id="{{item.id}}"></image>
+                        <image src="/image/del.png" catchtap="changegood" data-act="delete_goods" data-id="{{item.id}}"></image>
+                    </view>
+                </view>
+            </view>
+            <!-- 无数据展示效果 -->
+            <view class="noData" wx:if="{{list.length == 0}}">暂无数据</view>
+        </scroll-view>
+    </view>
+</view>

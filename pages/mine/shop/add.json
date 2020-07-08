@@ -2,6 +2,6 @@
     "usingComponents": {},
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#44c25a",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "商户入驻"
 }

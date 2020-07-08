@@ -8,7 +8,7 @@
         <view class="phone">{{info.phone}}</view>
     </view>
     <view class="nav">
-        <navigator class="nav-item" url="/pages/mine/address/index">
+        <navigator class="nav-item" url="/pages/mine/address/index?type=0&shop_id=0">
             <image src="/images/mine_location.png" style="width:35rpx; height:41rpx;" />
             <view>收货地址</view>
             <view class="angle"></view>
@@ -23,7 +23,7 @@
             <view>帮助说明</view>
             <view class="angle"></view>
         </navigator>
-        <navigator class="nav-item" url="/pages/mine/shop/index" wx:if="{{info.shop && !info.review}}">
+        <navigator class="nav-item" url="/pages/mine/shop/index?id={{info.shop_id}}" wx:if="{{info.shop && !info.review}}">
             <image src="/images/mine_shop.png" style="width:43rpx; height:39rpx;" />
             <view>我的店铺</view>
             <view class="angle"></view>
@@ -33,10 +33,10 @@
             <view>商户入驻</view>
             <view class="angle"></view>
         </navigator>
-        <navigator class="nav-item" url="#" wx:if="{{!info.shop && !info.review}}">
-            <image src="/images/mine_order.png" style="width:41rpx; height:41rpx;" />
-            <view>用户订单</view>
-            <view class="angle"></view>
-        </navigator>
+<!--        <navigator class="nav-item" url="#" wx:if="{{!info.shop && !info.review}}">-->
+<!--            <image src="/images/mine_order.png" style="width:41rpx; height:41rpx;" />-->
+<!--            <view>用户订单</view>-->
+<!--            <view class="angle"></view>-->
+<!--        </navigator>-->
     </view>
 </view>

@@ -1,4 +1,5 @@
 <view class="container">
+    <view class="tips" wx:if="{{total>0&&difference>0}}">还差{{difference}}元起送</view>
     <view class="cart-img" bindtap="showDetail">
         <image wx:if="{{total===0}}" src="/images/icons/cart_default.png" mode="aspectFill" style="width: 99rpx; height: 98rpx;"></image>
         <image wx:if="{{total>0}}" src="/images/icons/cart_active.png" mode="aspectFill" style="width: 99rpx; height: 98rpx;"></image>
@@ -8,5 +9,5 @@
         <view class="price-none" wx:if="{{total===0}}">购物车是空的</view>
         <view class="price-block" wx:else>{{totalPrice}}</view>
     </view>
-    <view class="default {{total!==0&&'success'}}">去结算</view>
+    <view class="default {{(total!==0&&difference<=0)&&'success'}}" bindtap="generateOrder">去结算</view>
 </view>

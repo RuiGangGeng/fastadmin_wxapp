@@ -12,7 +12,7 @@
 .item-logo {
     width: 160rpx;
     height: 160rpx;
-    border-radius: 6rpx;
+    border-radius: 10rpx;
     border: 1rpx solid #d7d7d7d7;
     overflow: hidden;
 }

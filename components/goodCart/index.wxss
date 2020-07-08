@@ -12,7 +12,8 @@
     top: -25rpx;
     left: 25rpx;
 }
-.point{
+
+.point {
     font-size: 22rpx;
     padding: 5rpx;
     height: 40rpx;
@@ -27,6 +28,7 @@
     text-align: center;
     box-sizing: border-box;
 }
+
 .price {
     width: 357rpx;
     float: left;
@@ -52,4 +54,18 @@
 
 .success {
     background: #44c25a !important;
+}
+
+.tips {
+    position: absolute;
+    top: -35rpx;
+    left: 0;
+    height: 45rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24rpx;
+    color: #666666;
+    background: rgb(255, 246, 205);
 }

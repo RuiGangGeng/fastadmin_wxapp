@@ -1,1 +1,118 @@
-/* pages/order/index.wxss */
+page {
+    background: #f1f1f1f1;
+    height: 100%;
+}
+
+.box-shadow {
+    background: white;
+    border-radius: unset;
+}
+
+.item {
+    padding: 25rpx;
+    width: 750rpx;
+    margin-bottom: 30rpx;
+}
+
+.item-top {
+    height: 62rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-shop {
+    width: 520rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.item-shop-name {
+    width: 490rpx;
+    font-weight: bold;
+    font-size: 30rpx;
+}
+
+.angle {
+    position: unset;
+}
+
+.item-status {
+    color: #82828282;
+}
+
+.item-time {
+    width: 100%;
+    height: 55rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #82828282;
+}
+
+.item-good-wrapper {
+    width: 100%;
+    height: 125rpx;
+}
+
+.item-good {
+    height: 125rpx;
+    width: 520rpx;
+    float: left;
+}
+
+.item-thumb_image {
+    float: left;
+    margin-right: 20rpx;
+    position: relative;
+}
+
+.item-thumb_image image {
+    overflow: hidden;
+    border-radius: 10rpx;
+}
+
+.point {
+    font-size: 22rpx;
+    padding: 5rpx;
+    height: 40rpx;
+    min-width: 40rpx;
+    line-height: 30rpx;
+    border-radius: 40rpx;
+    background: #f85537;
+    color: white;
+    position: absolute;
+    top: -15rpx;
+    right: -15rpx;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.item-thumb_image_ {
+    float: left;
+    width: 80rpx;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-price {
+    float: right;
+}
+
+.item-operate {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.btn-small {
+    margin: unset;
+}
+
+.text-danger {
+    color: #ff5546;
+    font-weight: bold;
+}

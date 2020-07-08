@@ -15,14 +15,14 @@ Page({
             if (res.code === 200) {
                 // 获取购物车信息
                 let parent_res = res
-                util.wxRequest("Cart/getCarts", {}, res => {
+                util.wxRequest("Cart/getCarts", {shop_id: res.data.shop_id}, res => {
                     let cart = res.data
                     for (let j = 0, length = cart.length; j < length; j++) {
                         if (parent_res.data.id === cart[j].good_id) {
                             parent_res.data.count = cart[j].number
                         }
                     }
-                    that.setData({cart,info: parent_res.data});
+                    that.setData({cart, info: parent_res.data});
                 })
             } else {
                 wx.showModal({
@@ -46,7 +46,17 @@ Page({
             for (let i = 0, cart_length = cart.length; i < cart_length; i++) {
                 cart[i].good_id === e.detail.data.id && (cart[i].number++, in_cart = true)
             }
-            !in_cart && cart.push({good_id: e.detail.data.id, number: 1, price: e.detail.data.price})
+            let cartItem = {
+                good_id: e.detail.data.id,
+                shop_id: e.detail.data.shop_id,
+                price: e.detail.data.price,
+                thumb_image: e.detail.data.thumb_image,
+                name: e.detail.data.name,
+                original: e.detail.data.original,
+                number: 1,
+                select_: '1',
+            }
+            !in_cart && cart.push(cartItem)
             this.setData({cart})
         }
     },

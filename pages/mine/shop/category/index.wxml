@@ -1,0 +1,13 @@
+<view class="container">
+    <view class="navigator">
+        <navigator url="/pages/addcate/addcate?shop_id={{shop_id}}">添加分类</navigator>
+    </view>
+    <view class="item" wx:if="{{list.length > 0}}" wx:for="{{list}}" wx:key="index">
+        <image src="{{item.image}}" mode="aspectFill" />
+        <view>{{item.name}}</view>
+        <image src="/image/delete.png" bindtap="categoryDel" data-id="{{item.id}}" />
+    </view>
+    <view wx:if="{{list.length == 0}}">
+        <text class="noData">暂无数据</text>
+    </view>
+</view>

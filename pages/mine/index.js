@@ -6,7 +6,7 @@ Page({
         info: null,
     },
 
-    onLoad: function(options) {
+    onShow: function() {
         let that = this
 
         // 获取用户信息 [在获取之前需要先进行微信登录]

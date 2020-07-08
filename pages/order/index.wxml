@@ -1,2 +1,50 @@
-<!--pages/order/index.wxml-->
-<text>pages/order/index.wxml</text>
+<scroll-view class="container" scroll-y="true">
+    <view class="container-shadow"></view>
+    <view class="item box-shadow" wx:if="{{list.length>0}}" wx:for="{{list}}" wx:key="index" bindtap="order" data-id="{{item.id}}">
+        <!-- 商店名称 和 订单状态 -->
+        <view class="item-top">
+            <view class="item-shop">
+                <view class="item-shop-name text-one" catchtap="shop" data-id="{{item.ordershop.id}}">{{item.ordershop.name}}</view>
+                <view class="angle"></view>
+            </view>
+            <view class="item-status">
+                <!-- 交易状态:-1=超时,0=待付款,1=待发货,2=待收货,3=交易完成,4=待退款,5=已退款,6=拒绝退款,7=商家退单 -->
+                <view wx:if="{{item.status==='-1'}}">超时取消</view>
+                <view wx:if="{{item.status==='0'}}" class="text-danger">待付款</view>
+                <view wx:if="{{item.status==='1'}}" class="text-green">待发货</view>
+                <view wx:if="{{item.status==='2'}}" class="text-green">待收货</view>
+                <view wx:if="{{item.status==='3'}}" class="text-green">交易完成</view>
+                <view wx:if="{{item.status==='4'}}">待退款</view>
+                <view wx:if="{{item.status==='5'}}">已退款</view>
+                <view wx:if="{{item.status==='6'}}">拒绝退款</view>
+            </view>
+        </view>
+        <!-- 下单时间 -->
+        <view class="item-time">{{item.createtime}}</view>
+        <!-- 商品和价格 -->
+        <view class="item-good-wrapper clear_float">
+            <view class="item-good clear_float">
+                <view class="item-thumb_image" wx:for="{{item.ordergood}}" wx:key="i" wx:for-item="v">
+                    <view class="point" wx:if="{{v.counts>1}}">{{v.counts}}</view>
+                    <image src="{{v.thumb_image}}" mode="aspectFill" style="width: 125rpx; height: 125rpx"></image>
+                </view>
+                <view class="item-thumb_image_" wx:if="{{item.more}}">
+                    <image src="/images/icons/more.png" mode="aspectFill" style="width: 48rpx; height: 48rpx;"></image>
+                </view>
+            </view>
+            <view class="item-price">
+                <view class="text-danger">￥{{item.total_price}}</view>
+                <view class="text-total">共{{item.total_counts}}件</view>
+            </view>
+        </view>
+        <!-- 操作 -->
+        <view class="item-operate">
+            <button class="btn btn-danger btn-small" wx:if="{{item.status==='0'}}" catchtap="pay" disabled="{{payOnAsync}}" data-id="{{item.id}}">去支付</button>
+        </view>
+    </view>
+
+    <block wx:if="{{list.length===0}}">
+        <view style="height: 1rpx;"></view>
+        <view class="no-data">您还没有订单哦，赶紧去购物吧</view>
+    </block>
+</scroll-view>

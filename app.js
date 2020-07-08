@@ -8,12 +8,21 @@ App({
     // 全局参数
     globalData: {
         debug: true,
+        // api_host: 'http://www.jd.com/api/'
+        api_host: 'https://mini-jd.7758521.work/api/',
         token: false,
         storage_time: 2592000,
         user_info: false,
         user_auth: false,
         location: null,
-        api_host: 'http://www.jd.com/api/'
+        status_bar_height: wx.getSystemInfoSync()['statusBarHeight'],
+        pixel_ratio: wx.getSystemInfoSync()['pixelRatio'],
     }
 
 })
+// {
+//     "pagePath": "pages/active/index",
+//     "iconPath": "images/tab/index.png",
+//     "selectedIconPath": "images/tab/index_select.png",
+//     "text": "活动"
+// },

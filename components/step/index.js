@@ -71,7 +71,7 @@ Component({
                 return false
             }
 
-            util.wxRequest("Cart/postCart", {good_id: this.data.goodData.id}, res => {
+            util.wxRequest("Cart/postCart", {good_id: this.data.goodData.id,shop_id:this.data.goodData.shop_id}, res => {
                 if (res.code !== 200) {
                     wx.showModal({
                         title: '温馨提示',

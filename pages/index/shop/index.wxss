@@ -4,7 +4,7 @@ page {
 
 .search {
     width: 750rpx;
-    height: 125rpx;
+    height: 80rpx;
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;

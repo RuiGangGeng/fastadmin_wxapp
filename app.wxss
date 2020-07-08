@@ -15,7 +15,16 @@ view {
     color: #353535;
     font-size: 28rpx;
     transition: all 0.3s;
-    box-shadow: inset 0 1px 5px 0 rgba(0, 27, 78, .15);
+}
+
+.container-shadow {
+    height: 1rpx;
+    width: 100%;
+    background: #dadada;
+    box-shadow: 1rpx 1rpx 10rpx #858585;
+    position: fixed;
+    top: 0;
+    z-index: 99999;
 }
 
 .text-one {
@@ -33,11 +42,13 @@ view {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
-.clear_float::after,.clear_float::before{
+
+.clear_float::after, .clear_float::before {
     content: '';
     clear: both;
     display: block;
 }
+
 .no-data {
     font-size: 32rpx;
     display: block;
@@ -60,6 +71,19 @@ view {
     color: white;
 }
 
+.btn-danger {
+    background-color: #ff5546;
+    color: white;
+}
+
+.btn-small {
+    width: 210rpx;
+    height: 57rpx;
+    border-radius: 57rpx;
+    line-height: 57rpx;
+    font-size: 28rpx;
+}
+
 .btn-block {
     width: 700rpx;
     margin: auto 25rpx;
@@ -69,6 +93,7 @@ view {
 .navigator-hover {
     opacity: 0.85;
 }
+
 .no-more {
     width: 100%;
     height: 60rpx;
@@ -85,4 +110,25 @@ view {
     width: 100rpx;
     height: 2rpx;
     background: #e1e1e1;
+}
+
+.box-shadow {
+    box-shadow: 0 0 3px 0 rgba(183, 183, 183, 0.8);
+    border-radius: 10rpx;
+    overflow: hidden;
+}
+
+.angle {
+    display: block;
+    transform: rotate(45deg);
+    height: 16rpx;
+    width: 16rpx;
+    border-width: 1rpx 1rpx 0 0;
+    border-style: solid;
+    position: absolute;
+    top: calc(50% - 8rpx);
+    right: 20rpx;
+}
+.text-green {
+    color: #41b049;
 }

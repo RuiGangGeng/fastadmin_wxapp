@@ -3,6 +3,8 @@ const user = require('../../../utils/user.js')
 const app = getApp()
 Page({
     data: {
+        bar_height: false,
+
         shop_id: false,
         shop_info: false,
 
@@ -21,9 +23,7 @@ Page({
 
     onLoad: function (e) {
         let that = this
-
-        that.setData({shop_id: e.id})
-
+        that.setData({shop_id: e.id, bar_height: app.globalData.status_bar_height})
         // 获取该商家的信息
         util.wxRequest("Shop/getShop", {id: e.id}, res => {
             res.code === 200 && that.setData({shop_info: res.data})
@@ -144,7 +144,7 @@ Page({
 
     // 获取购物车
     loadCart: function (list) {
-        util.wxRequest("Cart/getCarts", {}, res => {
+        util.wxRequest("Cart/getCarts", {shop_id: this.data.shop_id}, res => {
             res = res.data
             for (let i = 0, length_cart = res.length; i < length_cart; i++) for (let j = 0, length = list.length; j < length; j++) list[j].id === res[i].good_id ? list[j].count = res[i].number : ''
             this.setData({list, cart: res})
@@ -161,7 +161,17 @@ Page({
             for (let i = 0, cart_length = cart.length; i < cart_length; i++) {
                 cart[i].good_id === e.detail.data.id && (cart[i].number++, in_cart = true)
             }
-            !in_cart && cart.push({good_id: e.detail.data.id, number: 1, price: e.detail.data.price})
+            let cartItem = {
+                good_id: e.detail.data.id,
+                shop_id: e.detail.data.shop_id,
+                price: e.detail.data.price,
+                thumb_image: e.detail.data.thumb_image,
+                name: e.detail.data.name,
+                original: e.detail.data.original,
+                number: 1,
+                select_: '1',
+            }
+            !in_cart && cart.push(cartItem)
             this.setData({cart})
         }
     },

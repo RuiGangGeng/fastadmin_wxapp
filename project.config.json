@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -28,7 +28,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.11.1",
-	"appid": "wxbb98e1aa25ea3d7c",
+	"appid": "wx2da77fb1c48677a4",
 	"projectname": "%E5%A4%9A%E5%95%86%E6%88%B7%E5%95%86%E5%9F%8E-%E4%BB%BF%E4%BA%AC%E4%B8%9C%E5%88%B0%E5%AE%B6",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -62,20 +62,6 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/mine/address/index",
-					"pathName": "pages/mine/address/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/address/add",
-					"pathName": "pages/mine/address/add",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/index/shop/index",
 					"pathName": "pages/index/shop/index",
 					"query": "id=1",
@@ -90,9 +76,51 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/mine/complaint/index",
-					"pathName": "pages/mine/complaint/index",
-					"query": "id=3",
+					"name": "pages/index/order/add",
+					"pathName": "pages/index/order/add",
+					"query": "shop_id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/order/index",
+					"pathName": "pages/order/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "pages/order/info",
+					"pathName": "pages/order/info",
+					"query": "id=59",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/shop/add",
+					"pathName": "pages/mine/shop/add",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/index",
+					"pathName": "pages/mine/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/shop/index",
+					"pathName": "pages/mine/shop/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "pages/mine/shop/order/index",
+					"pathName": "pages/mine/shop/order/index",
+					"query": "id=1",
 					"scene": null
 				}
 			]

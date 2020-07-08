@@ -12,7 +12,7 @@ Page({
 
     onLoad: function(options) {
         let that = this
-        if (options.id != undefined) {
+        if (options.id !== undefined) {
             this.address(options.id)
         }
 
@@ -46,7 +46,7 @@ Page({
 
     // 选择地址
     location: function() {
-        var that = this
+        let that = this
         wx.chooseLocation({
             success: function(res) {
                 getApp().globalData.debug && console.log(res)
@@ -58,7 +58,7 @@ Page({
                 })
             },
             fail: function(res) {
-                res.errMsg == "chooseLocation:fail auth deny" && that.setData({ auth: false })
+                res.errMsg === "chooseLocation:fail auth deny" && that.setData({ auth: false })
             }
         })
     },
@@ -81,7 +81,7 @@ Page({
         }
 
         util.wxRequest('Address/postAddress', that.data.param, res => {
-            wx.showToast({ title: res.msg, icon: res.code == 200 ? 'success' : 'none' })
+            wx.showToast({ title: res.msg, icon: res.code === 200 ? 'success' : 'none' })
             setTimeout(function() { wx.navigateBack() }, 2000)
         })
     },

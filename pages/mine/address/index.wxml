@@ -1,7 +1,8 @@
 <loading show="{{!complete}}"></loading>
 <scroll-view scroll-y="true" scroll-anchoring="true" bindscrolltolower="loadData" class="container" wx:if="{{complete}}">
+    <view class="container-shadow"></view>
     <!-- 地址列表 -->
-    <view class="item" wx:if="{{list.length>0}}" wx:for="{{list}}" wx:key="index">
+    <view class="item" wx:if="{{list.length>0}}" wx:for="{{list}}" wx:key="index" bindtap="checkAddress" data-id="{{item.id}}">
         <view class="item-one">
             <image src="/images/address_location.png" style="width:34rpx; height:42rpx;"></image>
             <view class="location text-two">{{item.address}}</view>

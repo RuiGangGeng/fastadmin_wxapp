@@ -1,5 +1,6 @@
 const app = getApp()
 const util = require('../../../utils/util.js');
+const storage = require('../../../utils/storage.js');
 
 Page({
     data: {
@@ -9,25 +10,29 @@ Page({
         total: 0,
         complete: false,
         onAsync: false,
+        type: false,
+        shop_id: false,
     },
 
-    onLoad: function () {
+    onLoad: function (options) {
+        this.setData({type: options.type,shop_id:options.shop_id})
         this.loadData()
     },
 
     // 设置默认地址
     setDefault: function (e) {
-        var that = this
+        let that = this
+        // if (that.data.type === '1') return false
         let id = e.currentTarget.dataset.id
-        var param = {id: id, data: JSON.stringify({default: 1})}
+        let param = {id: id, data: JSON.stringify({default: 1})}
         util.wxRequest('Address/putAddress', param, res => {
             if (res.code === 200) {
                 wx.showToast({title: res.msg, icon: res.code === 200 ? 'success' : 'none'})
                 let temp = that.data.list
-                for (let i of temp) i.id == id ? i.default = 1 : i.default = 0
+                for (let i of temp) i.id === id ? i.default = 1 : i.default = 0
                 that.setData({list: temp})
             } else {
-                wx.showToast({title: data.msg, icon: 'warn', duration: 2000})
+                wx.showToast({title: res.msg, icon: 'none', duration: 2000})
             }
         })
     },
@@ -53,7 +58,26 @@ Page({
                 res.confirm && util.wxRequest('Address/deleteAddress', {id: id}, res => {
                     wx.showToast({title: res.msg, icon: res.code === 200 ? 'success' : 'none'})
                     that.setData({list: [], page: 0, complete: false})
-                    that.onLoad()
+                    that.loadData()
+                })
+            }
+        })
+    },
+
+    // 选择收货地址 判断配送距离
+    checkAddress:function(e){
+        let that = this;
+        if (that.data.type === '0') return false
+        let id = e.currentTarget.dataset.id;
+        util.wxRequest('Address/checkAddress', {address_id: id,shop_id:that.data.shop_id}, res => {
+            if(res.code===200){
+                storage.setStorage('generateOrder_address_id',id)
+                wx.navigateBack()
+            }else {
+                wx.showModal({
+                    title:'温馨提示',
+                    content:res.msg,
+                    showCancel:false,
                 })
             }
         })

@@ -38,14 +38,14 @@ Page({
 
         // 获取banner
         util.wxRequest("Index/getBanners", {}, res => {
-            res.code == 200 && that.setData({
+            res.code === 200 && that.setData({
                 banner: res.data
             })
         })
 
         // 获取行业分类
         util.wxRequest("Index/getCategories", {}, res => {
-            res.code == 200 && that.setData({
+            res.code === 200 && that.setData({
                 categories: res.data
             })
         })

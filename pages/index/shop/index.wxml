@@ -1,7 +1,8 @@
 <loading show="{{!complete}}"></loading>
 <view class="container" wx:if="{{complete}}">
+    <view style="height: 1rpx"></view>
     <!-- 搜索 -->
-    <view class="search">
+    <view class="search" style="margin-top: {{bar_height}}px;">
         <view bindtap="back" class="search-back">
             <image src="/images/icons/back.png" style="width: 21rpx; height: 32rpx;" mode="aspectFill"></image>
         </view>
@@ -43,5 +44,5 @@
         </scroll-view>
     </view>
     <!-- 购物车 -->
-    <cart class="cart" dataCart="{{cart}}"></cart>
+    <cart class="cart" dataCart="{{cart}}" base_price="{{shop_info.shopaddress.base_price}}"></cart>
 </view>

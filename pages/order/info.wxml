@@ -1,0 +1,153 @@
+<scroll-view class="container" scroll-y="true">
+    <view class="container-shadow"></view>
+    <!-- 收货地址 -->
+    <view class="address box-shadow">
+        <view class="address-text">
+            <image src="/images/address_location.png" style="width:34rpx; height:42rpx;"></image>
+            <view class="text-one">{{info.orderaddress.address}}</view>
+        </view>
+        <view class="address-wrapper">
+            <view class="address-contact">{{info.orderaddress.contact}}</view>
+            <view>{{info.orderaddress.phone}}</view>
+        </view>
+    </view>
+
+    <!-- 商品 -->
+    <view class="good box-shadow">
+        <view class="shop title">
+            <view class="item-shop">
+                <view class="item-shop-name text-one" catchtap="shop" data-id="{{info.ordershop.id}}">{{info.ordershop.name}}</view>
+                <view class="angle"></view>
+            </view>
+            <view class="shop-phone" bindtap="phone">
+                <image src="/images/icons/phone.png" mode="aspectFill" style="width: 27rpx; height: 29rpx;"></image>
+                <view>联系商家</view>
+            </view>
+        </view>
+
+        <view class="item" wx:for="{{info.ordergood}}" wx:key="index" bindtap="good" data-id="{{item.id}}">
+            <view class="item-thumb_image">
+                <image src="{{item.thumb_image}}" mode="aspectFill" style="width: 160rpx; height: 160rpx"></image>
+            </view>
+            <view class="item-wrapper">
+                <view class="good-name text-one">{{item.name}}</view>
+                <view class="good-number">
+                    <view>数量：</view>
+                    <view>{{item.counts}}</view>
+                </view>
+                <view class="good-original">
+                    <view>原价：</view>
+                    <view>{{item.original}}</view>
+                </view>
+                <view class="good-price">
+                    <view>价格：</view>
+                    <view>{{item.price}}</view>
+                </view>
+                <view class="good-total-price">
+                    <view>小计：</view>
+                    <view>￥{{item.price*item.counts}}</view>
+                </view>
+            </view>
+        </view>
+
+        <view class="good-line clear_float">
+            <view>商品总数：</view>
+            <view>{{info.total_counts}}</view>
+        </view>
+        <view class="good-line clear_float">
+            <view>优惠信息：</view>
+            <view>无</view>
+        </view>
+        <view class="good-line clear_float" style="border-bottom: 1rpx solid #d7d7d7d7;">
+            <view>实付金额：</view>
+            <view class="text-danger">￥{{info.total_price}}</view>
+        </view>
+        <view class="good-line clear_float">
+            <view>订单状态：</view>
+            <!-- 交易状态:-1=超时,0=待付款,1=待发货,2=待收货,3=交易完成,4=待退款,5=已退款,6=拒绝退款,7=商家退单 -->
+            <view wx:if="{{info.status==='-1'}}">超时取消</view>
+            <view wx:if="{{info.status==='0'}}" class="text-danger">待付款</view>
+            <view wx:if="{{info.status==='1'}}">待发货</view>
+            <view wx:if="{{info.status==='2'}}">待收货</view>
+            <view wx:if="{{info.status==='3'}}">交易完成</view>
+            <view wx:if="{{info.status==='4'}}">待退款</view>
+            <view wx:if="{{info.status==='5'}}">已退款</view>
+            <view wx:if="{{info.status==='6'}}">拒绝退款</view>
+        </view>
+        <view class="good-line good-operate clear_float">
+            <view></view>
+            <view wx:if="{{info.status==='0'}}">
+                <button class="btn btn-small btn-danger" data-id="{{info.id}}" bindtap="pay">去支付</button>
+            </view>
+            <view wx:if="{{info.status==='2'}}">
+                <button class="btn btn-small btn-default" data-id="{{info.id}}" bindtap="confirm">确认收货</button>
+            </view>
+            <view wx:if="{{info.status!=='4'&&info.status!=='-1'&&info.status!=='0'&&info.status!=='5'&&info.status!=='6'}}">
+                <button class="btn btn-small btn-default" data-id="{{info.id}}" bindtap="refund">申请退款</button>
+            </view>
+        </view>
+    </view>
+
+    <!-- 信息 -->
+    <view class="info good box-shadow">
+        <view class="title">订单信息</view>
+        <view class="line clear_float">
+            <view>订单号码：</view>
+            <view>{{info.numbers}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.transaction}}">
+            <view>交易流水号：</view>
+            <view>{{info.transaction}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.createtime}}">
+            <view>下单时间：</view>
+            <view>{{info.createtime}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.pay_time}}">
+            <view>付款时间：</view>
+            <view>{{info.pay_time}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.delivery_time}}">
+            <view>发货时间：</view>
+            <view>{{info.delivery_time}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.receiving_time}}">
+            <view>收货时间：</view>
+            <view>{{info.receiving_time}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.refund_apply_time}}">
+            <view>申请退款时间：</view>
+            <view>{{info.refund_apply_time}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.refund_apply_msg}}">
+            <view>退款申请：</view>
+            <view>{{info.refund_apply_msg}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.refund_agree_time}}">
+            <view>同意退款时间：</view>
+            <view>{{info.refund_agree_time}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.refund_refuse_time}}">
+            <view>拒绝退款时间：</view>
+            <view>{{info.refund_refuse_time}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.refund_refuse_msg}}">
+            <view>拒绝原因：</view>
+            <view>{{info.refund_refuse_msg}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.message}}">
+            <view>订单留言：</view>
+            <view>{{info.message}}</view>
+        </view>
+    </view>
+</scroll-view>
+
+<view class="message_" wx:if="{{refund}}">
+    <view class="message-wrapper box-shadow">
+        <view class="message-title">请输入</view>
+        <textarea class="message-box box-shadow" bindinput="bindInput" data-field="refund_refuse_msg" value="{{param.refund_refuse_msg}}"></textarea>
+        <view class="message-operate">
+            <button class="btn btn-default btn-small message-confirm" bindtap="confirmRefund">确定</button>
+        </view>
+    </view>
+</view>

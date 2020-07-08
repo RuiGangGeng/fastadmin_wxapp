@@ -1,13 +1,14 @@
-.container{
+.container {
     box-shadow: none;
 }
+
 .header {
     width: 750rpx;
     height: 300rpx;
     position: relative;
 }
 
-.header>image:first-child {
+.header > image:first-child {
     width: 750rpx;
     height: 300rpx;
     position: absolute;
@@ -43,14 +44,10 @@
     margin-left: 20rpx;
 }
 
-.angle {
-    display: block;
-    transform: rotate(45deg);
-    height: 16rpx;
-    width: 16rpx;
-    border-width: 1rpx 1rpx 0 0;
-    border-style: solid;
+.userNickName {
     position: absolute;
-    top: calc(50% - 8rpx);
-    right: 20rpx;
+    top: 85rpx;
+    color: white;
+    left: 191rpx;
+    font-size: 30rpx;
 }
