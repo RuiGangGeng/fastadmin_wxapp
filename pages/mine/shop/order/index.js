@@ -169,7 +169,7 @@ Page({
             wx.showToast({title: '请输入拒绝原由', icon: 'none'})
             return false
         }
-        let param = {id: that.data.param.id, back_msg: that.data.param.refund_refuse_msg}
+        let param = {id: that.data.param.id, refund_refuse_msg: that.data.param.refund_refuse_msg}
         util.wxRequest("Order/refundRefuse", param, res => {
             if (res.code === 200) {
                 wx.showToast({title: res.msg})
@@ -216,7 +216,7 @@ Page({
             shop_id: this.data.param.shop_id,
         }
 
-        Object.assign(param, that.data.param)
+        // Object.assign(param, that.data.param)
 
         util.wxRequest("Order/getOrders", param, res => {
             if (res.code === 200) {

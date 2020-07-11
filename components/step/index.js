@@ -9,6 +9,10 @@ Component({
             type: Boolean,
             value: false
         },
+        scene: {
+            type: Boolean,
+            value: false
+        }
     },
     data: {
         count: 0,
@@ -32,7 +36,11 @@ Component({
             }
             let count = this.data.count;
             count--
-            util.wxRequest("Cart/deleteCart", {good_id: this.data.goodData.id}, res => {
+            let param = {good_id: this.data.goodData.id}
+            if (this.data.scene) {
+                param = {good_id: this.data.goodData.good_id}
+            }
+            util.wxRequest("Cart/deleteCart", param, res => {
                 if (res.code !== 200) {
                     wx.showModal({
                         title: '温馨提示',
@@ -42,7 +50,7 @@ Component({
 
                 } else {
                     this.setData({count, onAsync: false})
-                    this.triggerEvent('dec', {data: this.data.goodData}, { bubbles: true, composed: true })
+                    this.triggerEvent('dec', {data: this.data.goodData, type: this.data.scene}, {bubbles: true, composed: true})
                 }
             })
         },
@@ -70,8 +78,11 @@ Component({
                 })
                 return false
             }
-
-            util.wxRequest("Cart/postCart", {good_id: this.data.goodData.id,shop_id:this.data.goodData.shop_id}, res => {
+            let param = {good_id: this.data.goodData.id, shop_id: this.data.goodData.shop_id}
+            if (this.data.scene) {
+                param = {good_id: this.data.goodData.good_id, shop_id: this.data.goodData.shop_id}
+            }
+            util.wxRequest("Cart/postCart", param, res => {
                 if (res.code !== 200) {
                     wx.showModal({
                         title: '温馨提示',
@@ -80,7 +91,7 @@ Component({
                     })
                 } else {
                     this.setData({count})
-                    this.triggerEvent('inc', {data: this.data.goodData}, { bubbles: true, composed: true })
+                    this.triggerEvent('inc', {data: this.data.goodData, type: this.data.scene}, {bubbles: true, composed: true})
                 }
                 this.setData({onAsync: false})
             })

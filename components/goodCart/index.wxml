@@ -10,4 +10,34 @@
         <view class="price-block" wx:else>{{totalPrice}}</view>
     </view>
     <view class="default {{(total!==0&&difference<=0)&&'success'}}" bindtap="generateOrder">去结算</view>
+
+    <!-- 购物车详情 -->
+    <view wx:if="{{showDetail}}" class="show">
+        <view class="show-box">
+            <view class="title">
+                <view bindtap="select_">
+                    <radio checked="{{select_}}"/>全选（已选{{total}}件）
+                </view>
+                <view class="clear-cart" catchtap="clearCart">
+                    <image src="/images/address_delete.png" style="width:28rpx; height:28rpx; margin-right: 18rpx;"></image>
+                    清空购车
+                </view>
+            </view>
+            <view class="good-box">
+                <view class="item clear_float" wx:for="{{dataCart}}" wx:key="index" wx:if="{{item.number>0}}">
+                    <radio checked="{{item.select_==='1'}}"/>
+                    <view class="thumb_image">
+                        <image src="{{item.thumb_image}}" mode="aspectFill" style="width: 100rpx; height: 100rpx"></image>
+                    </view>
+                    <view class="detail">
+                        <view class="good-name text-one">{{item.name}}</view>
+                        <view class="good-operate">
+                            <view class="price" style="margin-left: unset; color: #f85537;">￥{{item.price}}</view>
+                            <step class="good-cart" scene="true" top="{{item.stock}}" goodData="{{item}}" count="{{item.number}}" topMsg="库存不足"></step>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>

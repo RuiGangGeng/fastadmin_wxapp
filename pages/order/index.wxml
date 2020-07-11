@@ -15,8 +15,9 @@
                 <view wx:if="{{item.status==='2'}}" class="text-green">待收货</view>
                 <view wx:if="{{item.status==='3'}}" class="text-green">交易完成</view>
                 <view wx:if="{{item.status==='4'}}">待退款</view>
-                <view wx:if="{{item.status==='5'}}">已退款</view>
+                <view wx:if="{{item.status==='5'}}" class="text-green">已退款</view>
                 <view wx:if="{{item.status==='6'}}">拒绝退款</view>
+                <view wx:if="{{item.status==='7'}}">商家退单</view>
             </view>
         </view>
         <!-- 下单时间 -->

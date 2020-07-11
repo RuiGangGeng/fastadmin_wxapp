@@ -18,12 +18,15 @@
             <view class="order-phone" catchtap="makeCall" data-phone="{{item.orderaddress.phone}}">
                 <image src="/images/icons/phone.png" mode="aspectFill" style="width: 27rpx; height: 29rpx;"></image>
                 <text>{{item.orderaddress.phone}}</text>
+                <image src="/images/icons/contact.png" style="width: 35rpx; height: 30rpx; float: left; margin-left:25rpx;" mode="aspectFill"></image>
+                <text>{{item.orderaddress.contact}}</text>
             </view>
         </view>
         <view class="order-details clear_float">
             <view class="clear_float order-details-img">
-                <view wx:for="{{item.ordergood}}" wx:for-item="v" wx:key="i" >
+                <view wx:for="{{item.ordergood}}" wx:for-item="v" wx:key="i">
                     <image src="{{v.thumb_image}}" mode="aspectFill" style="width: 125rpx; height: 125rpx"></image>
+                    <view class="point" wx:if="{{v.counts>1}}">{{v.counts}}</view>
                 </view>
                 <view class="item-thumb_image_">
                     <image wx:if="{{item.more}}" src="/images/icons/more.png" mode="aspectFill" style="width: 48rpx; height: 48rpx;"></image>
@@ -44,19 +47,20 @@
             <view wx:if="{{item.status === '4'}}" data-id="{{item.id}}" class="btn btn-small btn-danger" catchtap="refund_agree">同意退款</view>
             <view wx:if="{{item.status === '5'}}" class="btn btn-small btn-default">已退款</view>
             <view wx:if="{{item.status === '6'}}" class="btn btn-small btn-default">已拒绝</view>
+            <view wx:if="{{item.status === '7'}}" class="btn btn-small btn-default">主动退单</view>
         </view>
     </view>
 
     <!-- 无数据 -->
     <view class="no-order" wx:if="{{list.length === 0}}">
-        <view class="text">还没有订单呢</view>
+        <view class="text">暂时还没有该类型的订单</view>
     </view>
 </view>
 
 <view class="message_" wx:if="{{back}}">
     <view class="message-wrapper box-shadow">
         <view class="message-title">请输入原由</view>
-        <textarea class="message-box box-shadow" bindinput="bindInput" data-field="back_msg" value="{{param.back_msg}}"></textarea>
+        <textarea class="message-box box-shadow" fixed="true" bindinput="bindInput" data-field="back_msg" value="{{param.back_msg}}"></textarea>
         <view class="message-operate">
             <button class="btn btn-default btn-small message-confirm btn-green" bindtap="confirmBack">确定</button>
         </view>
@@ -66,7 +70,7 @@
 <view class="message_" wx:if="{{refund}}">
     <view class="message-wrapper box-shadow">
         <view class="message-title">请输入原由</view>
-        <textarea class="message-box box-shadow" bindinput="bindInput" data-field="refund_refuse_msg" value="{{param.refund_refuse_msg}}"></textarea>
+        <textarea class="message-box box-shadow" fixed="true" bindinput="bindInput" data-field="refund_refuse_msg" value="{{param.refund_refuse_msg}}"></textarea>
         <view class="message-operate">
             <button class="btn btn-default btn-small message-confirm btn-green" bindtap="confirmRefund">确定</button>
         </view>

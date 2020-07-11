@@ -11,6 +11,7 @@
     position: absolute;
     top: -25rpx;
     left: 25rpx;
+    z-index: 101;
 }
 
 .point {
@@ -58,7 +59,7 @@
 
 .tips {
     position: absolute;
-    top: -35rpx;
+    top: -45rpx;
     left: 0;
     height: 45rpx;
     width: 100%;
@@ -68,4 +69,94 @@
     font-size: 24rpx;
     color: #666666;
     background: rgb(255, 246, 205);
+}
+
+.show {
+    height: calc(100% - 80rpx);
+    position: fixed;
+    bottom: 100rpx;
+    left: 0;
+    width: 100%;
+    background: white;
+    background: rgba(100, 100, 100, 0.4);
+}
+
+.show-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-height: 600rpx;
+    width: 100%;
+    padding: 25rpx;
+    font-size: 24rpx;
+    color: #666666;
+    background: white;
+}
+
+.good-box {
+    overflow-y: scroll;
+    max-height: 515rpx;
+}
+
+.title {
+    height: 60rpx;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-bottom: 1rpx solid #d7d7d7d7;
+}
+
+radio {
+    transform: scale(0.7);
+}
+
+.clear-cart {
+    width: 150rpx;
+    display: flex;
+    align-items: center;
+}
+
+.item {
+    width: 100%;
+    height: 150rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.clear_float::after, .clear_float::before {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.thumb_image {
+    width: 100rpx;
+    height: 100rpx;
+    overflow: hidden;
+    border-radius: 8rpx;
+}
+
+.detail {
+    width: 500rpx;
+    padding-left: 25rpx;
+}
+
+.good-name {
+    width: 100%;
+}
+
+.text-one {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.good-operate {
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

@@ -4,8 +4,10 @@ Page({
         info: [],
         refund: false,
         param: {
-            refund_refuse_msg: ''
-        }
+            refund_apply_msg: ''
+        },
+        type: false,
+        id: false,
     },
     onLoad: function (options) {
         // 获取订单详情
@@ -19,8 +21,9 @@ Page({
                 res.data.refund_agree_time = res.data.refund_agree_time ? util.formatTime(new Date(res.data.refund_agree_time * 1000)) : res.data.refund_agree_time
                 res.data.refund_refuse_time = res.data.refund_refuse_time ? util.formatTime(new Date(res.data.refund_refuse_time * 1000)) : res.data.refund_refuse_time
                 res.data.updatetime = res.data.updatetime ? util.formatTime(new Date(res.data.updatetime * 1000)) : res.data.updatetime
+                res.data.back_time = res.data.back_time ? util.formatTime(new Date(res.data.back_time * 1000)) : res.data.back_time
 
-                this.setData({info: res.data});
+                this.setData({info: res.data, id: options.id, type: options.type});
             }
         })
     },
@@ -68,7 +71,7 @@ Page({
                     content: res.msg,
                     showCancel: false,
                     success: function () {
-                        that.onLoad({id: that.data.info.id})
+                        that.onLoad({id: that.data.id, type: that.data.type})
                     }
                 })
             }
@@ -89,30 +92,30 @@ Page({
     // 提交退款申请
     confirmRefund: function () {
         let that = this
-        if (that.data.param.refund_refuse_msg === '') {
+        if (that.data.param.refund_apply_msg === '') {
             wx.showToast({title: '请输入退款理由', icon: 'none'})
             return false
         }
 
         let param = {
             id: that.data.info.id,
-            refund_refuse_msg: that.data.param.refund_refuse_msg
+            refund_apply_msg: that.data.param.refund_apply_msg
         }
 
-        util.wxRequest("Order/confirmRefund", param, res => {
+        util.wxRequest("Order/refundApply", param, res => {
             wx.showToast({title: res.msg, icon: res.code === 200 ? 'success' : 'none'})
             that.setData({
                 refund: false,
-                'param.refund_refuse_msg': ''
+                'param.refund_apply_msg': ''
             })
             setTimeout(function () {
-                that.onLoad({id: that.data.info.id})
-            }, 1500)
+                that.onLoad({id: that.data.id, type: that.data.type})
+            }, 200)
         })
     },
 
     // 确认收货
-    confirm: function (e) {
+    confirmReceiving: function (e) {
         let that = this
         let param = {id: e.currentTarget.dataset.id}
         wx.showModal({
@@ -123,8 +126,8 @@ Page({
                     util.wxRequest("Order/confirmReceiving", param, res => {
                         wx.showToast({title: res.msg, icon: res.code === 200 ? 'success' : 'none'})
                         setTimeout(function () {
-                            that.onLoad({id: that.data.info.id})
-                        }, 1500)
+                            that.onLoad({id: that.data.id, type: that.data.type})
+                        }, 200)
                     })
                 }
             },

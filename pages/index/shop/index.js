@@ -146,7 +146,11 @@ Page({
     loadCart: function (list) {
         util.wxRequest("Cart/getCarts", {shop_id: this.data.shop_id}, res => {
             res = res.data
-            for (let i = 0, length_cart = res.length; i < length_cart; i++) for (let j = 0, length = list.length; j < length; j++) list[j].id === res[i].good_id ? list[j].count = res[i].number : ''
+            for (let i = 0, length_cart = res.length; i < length_cart; i++) {
+                for (let j = 0, length = list.length; j < length; j++) {
+                    list[j].id === res[i].good_id && (list[j].count = res[i].number, res[i].stock = list[j].stock)
+                }
+            }
             this.setData({list, cart: res})
             wx.hideLoading()
         })
@@ -155,39 +159,67 @@ Page({
     // 递增购物车商品
     inc: function (e) {
         console.log(e)
-        if (e.type === 'inc') {
-            let cart = this.data.cart
-            let in_cart = false
-            for (let i = 0, cart_length = cart.length; i < cart_length; i++) {
+        let cart = this.data.cart
+        let list = this.data.list
+        let in_cart = false
+        for (let i = 0, cart_length = cart.length; i < cart_length; i++) {
+            if (e.detail.type) {
+                cart[i].good_id === e.detail.data.good_id && (cart[i].number++, in_cart = true)
+            } else {
                 cart[i].good_id === e.detail.data.id && (cart[i].number++, in_cart = true)
             }
-            let cartItem = {
-                good_id: e.detail.data.id,
-                shop_id: e.detail.data.shop_id,
-                price: e.detail.data.price,
-                thumb_image: e.detail.data.thumb_image,
-                name: e.detail.data.name,
-                original: e.detail.data.original,
-                number: 1,
-                select_: '1',
-            }
-            !in_cart && cart.push(cartItem)
-            this.setData({cart})
         }
+        let cartItem = {
+            good_id: e.detail.data.id,
+            shop_id: e.detail.data.shop_id,
+            price: e.detail.data.price,
+            thumb_image: e.detail.data.thumb_image,
+            name: e.detail.data.name,
+            original: e.detail.data.original,
+            number: 1,
+            stock: e.detail.data.stock,
+            select_: '1',
+        }
+        !in_cart && cart.push(cartItem)
+
+        for (let i = 0, cart_length = cart.length; i < cart_length; i++) {
+            for (let j = 0, length = list.length; j < length; j++) {
+                list[j].id === cart[i].good_id && (list[j].count = cart[i].number)
+            }
+        }
+
+        this.setData({list, cart})
     },
 
     // 递减购物车商品
     dec: function (e) {
-        console.log(e)
-        if (e.type === 'dec') {
-            let cart = this.data.cart
-            for (let i = 0, cart_length = cart.length; i < cart_length; i++) cart[i].good_id === e.detail.data.id && cart[i].number--
-            this.setData({cart})
+        let cart = this.data.cart
+        let list = this.data.list
+        for (let i = 0, cart_length = cart.length; i < cart_length; i++) {
+            if (e.detail.type) {
+                cart[i].good_id === e.detail.data.good_id && cart[i].number--
+            } else {
+                cart[i].good_id === e.detail.data.id && cart[i].number--
+            }
+            for (let j = 0, length = list.length; j < length; j++) {
+                list[j].id === cart[i].good_id && (list[j].count = cart[i].number)
+            }
         }
+        this.setData({list, cart})
     },
 
     // 清空购物车商品
     clear: function () {
-        console.log('清空购物车')
+        let that = this
+        util.wxRequest("Cart/clearCart", {shop_id: this.data.shop_id}, res => {
+            wx.showModal({
+                title: '温馨提示',
+                content: res.msg,
+                showCancel: false,
+                success() {
+                    that.onShow()
+                }
+            })
+        })
     }
 });

@@ -1,4 +1,5 @@
-<scroll-view class="container" scroll-y="true">
+<view class="container">
+    <view class="container-shadow"></view>
     <!-- 收货地址 -->
     <navigator url="/pages/mine/address/index?type=1&shop_id={{param.shop_id}}" class="address box-shadow" wx:if="{{address}}">
         <view class="address-text">
@@ -71,4 +72,4 @@
         </cover-view>
         <button class="btn btn-default btn-operate" disabled="{{onAsync}}" bindtap="formSubmit">提交订单</button>
     </cover-view>
-</scroll-view>
+</view>

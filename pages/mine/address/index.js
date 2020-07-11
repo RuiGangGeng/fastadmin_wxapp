@@ -15,7 +15,11 @@ Page({
     },
 
     onLoad: function (options) {
-        this.setData({type: options.type,shop_id:options.shop_id})
+        this.setData({type: options.type, shop_id: options.shop_id})
+    },
+
+    onShow: function () {
+        this.setData({list: [], page: 0, complete: false})
         this.loadData()
     },
 
@@ -65,19 +69,19 @@ Page({
     },
 
     // 选择收货地址 判断配送距离
-    checkAddress:function(e){
+    checkAddress: function (e) {
         let that = this;
         if (that.data.type === '0') return false
         let id = e.currentTarget.dataset.id;
-        util.wxRequest('Address/checkAddress', {address_id: id,shop_id:that.data.shop_id}, res => {
-            if(res.code===200){
-                storage.setStorage('generateOrder_address_id',id)
+        util.wxRequest('Address/checkAddress', {address_id: id, shop_id: that.data.shop_id}, res => {
+            if (res.code === 200) {
+                storage.setStorage('generateOrder_address_id', id)
                 wx.navigateBack()
-            }else {
+            } else {
                 wx.showModal({
-                    title:'温馨提示',
-                    content:res.msg,
-                    showCancel:false,
+                    title: '温馨提示',
+                    content: res.msg,
+                    showCancel: false,
                 })
             }
         })

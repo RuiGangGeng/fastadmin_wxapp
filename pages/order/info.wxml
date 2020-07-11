@@ -14,7 +14,7 @@
 
     <!-- 商品 -->
     <view class="good box-shadow">
-        <view class="shop title">
+        <view class="shop title" wx:if="{{type ==='user'}}">
             <view class="item-shop">
                 <view class="item-shop-name text-one" catchtap="shop" data-id="{{info.ordershop.id}}">{{info.ordershop.name}}</view>
                 <view class="angle"></view>
@@ -73,18 +73,12 @@
             <view wx:if="{{info.status==='4'}}">待退款</view>
             <view wx:if="{{info.status==='5'}}">已退款</view>
             <view wx:if="{{info.status==='6'}}">拒绝退款</view>
+            <view wx:if="{{info.status==='7'}}">商家退单</view>
         </view>
-        <view class="good-line good-operate clear_float">
-            <view></view>
-            <view wx:if="{{info.status==='0'}}">
-                <button class="btn btn-small btn-danger" data-id="{{info.id}}" bindtap="pay">去支付</button>
-            </view>
-            <view wx:if="{{info.status==='2'}}">
-                <button class="btn btn-small btn-default" data-id="{{info.id}}" bindtap="confirm">确认收货</button>
-            </view>
-            <view wx:if="{{info.status!=='4'&&info.status!=='-1'&&info.status!=='0'&&info.status!=='5'&&info.status!=='6'}}">
-                <button class="btn btn-small btn-default" data-id="{{info.id}}" bindtap="refund">申请退款</button>
-            </view>
+        <view class="good-operate clear_float" wx:if="{{type ==='user'}}">
+            <button wx:if="{{info.status==='0'}}" class="btn btn-small btn-danger" data-id="{{info.id}}" bindtap="pay">去支付</button>
+            <button wx:if="{{info.status==='2'}}" class="btn btn-small btn-default" data-id="{{info.id}}" bindtap="confirmReceiving">确认收货</button>
+            <button wx:if="{{info.status==='1'||info.status==='2'}}" class="btn btn-small btn-default" data-id="{{info.id}}" bindtap="refund">申请退款</button>
         </view>
     </view>
 
@@ -135,6 +129,14 @@
             <view>拒绝原因：</view>
             <view>{{info.refund_refuse_msg}}</view>
         </view>
+        <view class="line clear_float" wx:if="{{info.back_time}}">
+            <view>商家退单时间：</view>
+            <view>{{info.back_time}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.back_msg}}">
+            <view>拒绝原因：</view>
+            <view>{{info.back_msg}}</view>
+        </view>
         <view class="line clear_float" wx:if="{{info.message}}">
             <view>订单留言：</view>
             <view>{{info.message}}</view>
@@ -145,7 +147,7 @@
 <view class="message_" wx:if="{{refund}}">
     <view class="message-wrapper box-shadow">
         <view class="message-title">请输入</view>
-        <textarea class="message-box box-shadow" bindinput="bindInput" data-field="refund_refuse_msg" value="{{param.refund_refuse_msg}}"></textarea>
+        <textarea class="message-box box-shadow" fixed="true" bindinput="bindInput" data-field="refund_apply_msg" value="{{param.refund_apply_msg}}"></textarea>
         <view class="message-operate">
             <button class="btn btn-default btn-small message-confirm" bindtap="confirmRefund">确定</button>
         </view>

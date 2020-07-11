@@ -20,11 +20,15 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.11.1",
@@ -62,64 +66,22 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/index/shop/index",
-					"pathName": "pages/index/shop/index",
-					"query": "id=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/good/index",
-					"pathName": "pages/index/good/index",
-					"query": "id=3",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/order/add",
-					"pathName": "pages/index/order/add",
-					"query": "shop_id=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order/index",
-					"pathName": "pages/order/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "pages/order/info",
-					"pathName": "pages/order/info",
-					"query": "id=59",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/shop/add",
-					"pathName": "pages/mine/shop/add",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/mine/index",
 					"pathName": "pages/mine/index",
-					"query": "",
+					"query": "id=72&type=user",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/mine/shop/index",
-					"pathName": "pages/mine/shop/index",
-					"query": "id=1",
+					"name": "pages/mine/address/add",
+					"pathName": "pages/mine/address/add",
+					"query": "id=27",
 					"scene": null
 				},
 				{
-					"id": 8,
-					"name": "pages/mine/shop/order/index",
-					"pathName": "pages/mine/shop/order/index",
+					"id": -1,
+					"name": "pages/index/shop/index",
+					"pathName": "pages/index/shop/index",
 					"query": "id=1",
 					"scene": null
 				}

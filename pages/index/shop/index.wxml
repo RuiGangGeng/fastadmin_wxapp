@@ -44,5 +44,5 @@
         </scroll-view>
     </view>
     <!-- 购物车 -->
-    <cart class="cart" dataCart="{{cart}}" base_price="{{shop_info.shopaddress.base_price}}"></cart>
+    <cart class="cart" dataCart="{{cart}}" bind:inc="inc" bind:dec="dec" bind:clear="clear"  base_price="{{shop_info.shopaddress.base_price}}"></cart>
 </view>

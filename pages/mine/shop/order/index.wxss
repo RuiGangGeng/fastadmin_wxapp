@@ -120,6 +120,7 @@ page {
 }
 
 .order-details-img view {
+    position: relative;
     float: left;
     margin-right: 25rpx;
 }
@@ -139,7 +140,7 @@ page {
 
 .order-details-text {
     width: 175rpx;
-    float: left;
+    float: right;
     height: 100%;
     display: flex;
     justify-content: flex-end;
@@ -394,4 +395,24 @@ textarea {
 
 .message-confirm {
     border-radius: 10rpx;
+}
+
+.point {
+    font-size: 22rpx;
+    padding: 5rpx;
+    height: 40rpx;
+    min-width: 40rpx;
+    line-height: 30rpx;
+    border-radius: 40rpx;
+    background: #f85537;
+    color: white;
+    position: absolute !important;
+    top: -15rpx;
+    right: -15rpx;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.btn-danger {
+    color: white !important;
 }

@@ -25,7 +25,7 @@ Page({
     // 订单主页
     order: function (e) {
         let id = e.currentTarget.dataset.id
-        wx.navigateTo({url: "/pages/order/info?id=" + id})
+        wx.navigateTo({url: "/pages/order/info?type=user&id=" + id})
     },
 
     // 触底加载
