@@ -1,0 +1,4 @@
+<view class="container">
+    <view style="padding: 25rpx; font-size: 32rpx; font-weight: bold;">{{info.title}}</view>
+    <parser html="{{info.content}}" tag-style="{}" style="padding: 20rpx;"/>
+</view>

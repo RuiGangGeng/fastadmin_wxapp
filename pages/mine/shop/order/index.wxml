@@ -1,12 +1,10 @@
 <view class="container">
-    <mp-sticky>
-        <view class="status-box">
-            <view bindtap="statusTap" class="status-label {{index === currentType ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="index" data-index="{{index}}">
-                {{item.name}}
-            </view>
+    <view class="status-box">
+        <view bindtap="statusTap" class="status-label {{index === currentType ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="index" data-index="{{index}}">
+            {{item.name}}
         </view>
-    </mp-sticky>
-    <view class="container-shadow"></view>
+        <view class="container-shadow"></view>
+    </view>
 
     <!-- 有数据 -->
     <view class="order-list box-shadow" bindtap="order_details" data-id="{{item.id}}" wx:if="{{list.length > 0}}" wx:for="{{list}}" wx:key="index">

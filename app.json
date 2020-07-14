@@ -4,6 +4,7 @@
         "pages/index/shop/index",
         "pages/index/good/index",
         "pages/index/order/add",
+        "pages/index/categories/index",
         "pages/mine/index",
         "pages/mine/address/index",
         "pages/mine/address/add",
@@ -16,7 +17,10 @@
         "pages/mine/shop/category/index",
         "pages/active/index",
         "pages/order/index",
-        "pages/order/info"
+        "pages/order/info",
+        "pages/index/content/index",
+        "pages/mine/shop/category/add",
+        "pages/mine/shop/good/add"
     ],
     "window": {
         "backgroundTextStyle": "light",

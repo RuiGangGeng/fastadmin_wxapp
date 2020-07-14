@@ -7,6 +7,11 @@ page {
     background-color: #f1f1f1f1;
 }
 
+.container {
+    padding-top: 100rpx;
+
+}
+
 .status-box {
     width: 750rpx;
     line-height: 100rpx;
@@ -14,6 +19,9 @@ page {
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
+    position: fixed;
+    top: 0;
+    z-index: 100;
 }
 
 .container-shadow {

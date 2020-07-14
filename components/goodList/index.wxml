@@ -4,10 +4,14 @@
     </view>
     <view style="padding-left: 20rpx">
         <view class="item-detail">
-            <view class="good-name text-two">{{item.name}}</view>
+            <view class="good-name text-one">{{item.name}}</view>
             <view class="good-text clear_float">
-                <view>月售{{item.stock}}</view>
-                <view>好评{{item.stock}}%</view>
+                <view>库存:{{item.stock}}</view>
+            </view>
+            <view class="good-text clear_float">
+                <view>原价:
+                    <text style="text-decoration: line-through;">{{item.original}}</text>
+                </view>
             </view>
         </view>
         <view class="item-operate clear_float">

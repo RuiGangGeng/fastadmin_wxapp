@@ -75,7 +75,6 @@
 }
 
 .content {
-    padding: 25rpx;
     border-bottom: 20rpx solid #f1f1f1;
 }
 

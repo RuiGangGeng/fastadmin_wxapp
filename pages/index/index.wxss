@@ -16,6 +16,7 @@
 }
 
 .search {
+    width: 700rpx;
     display: flex;
     height: 45rpx;
     justify-content: center;
@@ -27,9 +28,9 @@
 
 .banner {
     width: 100%;
-    height: 220rpx;
+    height: 320rpx;
     margin-top: 20rpx;
-    border-radius: 20rpx;
+    border-radius: 10rpx;
     overflow: hidden;
 }
 
@@ -98,9 +99,11 @@
 .sticky {
     width: 750rpx;
     background: white;
-    padding-left: 20rpx;
     box-shadow: 0 1px 5px 0 rgba(0, 27, 78, .15);
-    height: 90rpx;
+    height: 65rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .discount-swiper-top {
@@ -146,15 +149,20 @@
 
 .shop-detail {
     width: 575rpx;
-    height: 100%;
+    height: 130rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
 .shop-name {
-    font-size: 30rpx;
     font-weight: bold;
 }
 
 .shop-wrapper {
+    padding-bottom: 10rpx;
+    width: 100%;
     height: 35rpx;
     font-size: 24rpx;
     border-bottom: 1rpx solid #d7d7d7d7;

@@ -21,9 +21,16 @@ Page({
         util.wxRequest("Cart/getCarts", {shop_id: this.data.param.shop_id}, res => {
             let total_price = 0
             let total = 0
-            for (let i of res.data) (total += i.number, total_price += i.price * i.number)
+            let list = []
+            for (let i of res.data) {
+                if (i.select_ === '1') {
+                    total += i.number
+                    total_price += i.price * i.number
+                    list.push(i)
+                }
+            }
             total_price = total_price.toFixed(2)
-            this.setData({list: res.data, total, total_price})
+            this.setData({list, total, total_price})
         })
 
         // 获取收货地址
@@ -52,7 +59,7 @@ Page({
     // 下单支付
     formSubmit: function () {
         let that = this
-        if(!that.data.address){
+        if (!that.data.address) {
             wx.showModal({
                 title: '温馨提示',
                 content: '您还没有收货地址，点击确定添加地址',

@@ -1,5 +1,5 @@
 page {
-    height: 100%;
+    height: calc(100% - 25rpx);
     background: #f1f1f1f1;
 }
 

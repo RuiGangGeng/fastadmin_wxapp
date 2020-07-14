@@ -28,7 +28,7 @@ Page({
     },
 
     onLoad: function (e) {
-        this.setData({'param.shop_id': e.id})
+        this.setData({'param.shop_id': e.shop_id})
         this.loadData()
     },
 

@@ -16,10 +16,7 @@
 .item input, .item picker, .item button {
     width: 480rpx;
     float: right;
-    display: flex;
-    justify-content: flex-end;
     text-align: right;
-    align-items: center;
 }
 
 .btn-none {

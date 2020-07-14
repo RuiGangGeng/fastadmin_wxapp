@@ -26,7 +26,7 @@ const wxRequest = (url, params, successCallback, errorCallback, completeCallback
         },
         method: method,
         success: function(res) {
-            if (res.statusCode == 200) {
+            if (res.statusCode === 200) {
                 getApp().globalData.debug && console.log(res.data)
                 successCallback(res.data)
             }

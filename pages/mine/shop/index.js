@@ -1,18 +1,18 @@
 const util = require('../../../utils/util.js');
 Page({
     data: {
-        id: null,
+        shop_id: null,
         info: null,
     },
 
-    onLoad: function(options) {
+    onLoad: function (options) {
         let that = this
         // 获取商家ID
-        that.setData({ id: options.id })
+        that.setData({shop_id: options.shop_id})
 
         // 获取商家基本信息
-        util.wxRequest("Shop/getShop", { id: options.id }, res => {
-            res.code === 200 ? that.setData({ info: res.data }) : ''
+        util.wxRequest("Shop/getShop", {id: options.shop_id}, res => {
+            res.code === 200 ? that.setData({info: res.data}) : ''
         })
     }
 })

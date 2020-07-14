@@ -50,5 +50,11 @@ navigator {
     justify-content: center;
     align-items: center;
     bottom: 0;
-    box-shadow: 0px 0px 30px 0px rgba(183, 183, 183, 0.4);
+    box-shadow: 0 0 30px 0 rgba(183, 183, 183, 0.4);
+}
+
+.operate {
+    width: 110rpx;
+    display: flex;
+    justify-content: space-between;
 }

@@ -98,17 +98,76 @@ Page({
             return false
         }
 
-        let param = {}
+        // 上传图片
+        wx.showLoading({title: '上传图片中'})
+        let token = getApp().globalData.token.toString()
 
-        Object.assign(param, that.data.param)
+        wx.uploadFile({
+            url: app.globalData.api_host + "index/upload",
+            filePath: that.data.param.storefront_image,
+            header: {token: token},
+            name: 'file',
+            success: function (res) {
+                res = JSON.parse(res.data)
+                if (res.code === 1) {
+                    that.setData({'param.storefront_image': res.data.url})
+                    wx.uploadFile({
+                        url: app.globalData.api_host + "index/upload",
+                        filePath: that.data.param.license_image,
+                        header: {token: token},
+                        name: 'file',
+                        success: function (res) {
+                            res = JSON.parse(res.data)
+                            if (res.code === 1) {
+                                that.setData({'param.license_image': res.data.url})
+                                wx.uploadFile({
+                                    url: app.globalData.api_host + "index/upload",
+                                    filePath: that.data.param.card_down_image,
+                                    header: {token: token},
+                                    name: 'file',
+                                    success: function (res) {
+                                        res = JSON.parse(res.data)
+                                        if (res.code === 1) {
+                                            that.setData({'param.card_down_image': res.data.url})
+                                            wx.uploadFile({
+                                                url: app.globalData.api_host + "index/upload",
+                                                header: {token: token},
+                                                filePath: that.data.param.card_up_image,
+                                                name: 'file',
+                                                success: function (res) {
+                                                    res = JSON.parse(res.data)
+                                                    if (res.code === 1) {
+                                                        that.setData({'param.card_up_image': res.data.url})
+                                                        let param = {}
+                                                        Object.assign(param, that.data.param)
+                                                        that.ajax(param)
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    },
 
+    ajax: function (param) {
         // 提交数据
-        util.wxRequest('Shop/setShop', that.data.param, res => {
+        util.wxRequest('Shop/setShop', param, res => {
             wx.showToast({title: res.msg, icon: res.code === 200 ? 'success' : 'none'})
             if (res.code === 200) {
-                setTimeout(function () {
-                    wx.navigateBack();
-                }, 2000)
+                wx.showModal({
+                    title: '温馨提示',
+                    content: res.msg,
+                    showCancel: false,
+                    success(res) {
+                        wx.navigateBack()
+                    }
+                })
             }
         })
     },
@@ -116,15 +175,15 @@ Page({
     // 初始化验证器
     initValidate: function () {
         const rules = {
-            contact: {required: true},
-            phone: {required: true, tel: true},
-            name: {required: true},
-            category_id: {required: true},
-            address: {required: true},
-            storefront_image: {required: true},
-            license_image: {required: true},
-            card_down_image: {required: true},
-            card_up_image: {required: true},
+            // contact: {required: true},
+            // phone: {required: true, tel: true},
+            // name: {required: true},
+            // category_id: {required: true},
+            // address: {required: true},
+            // storefront_image: {required: true},
+            // license_image: {required: true},
+            // card_down_image: {required: true},
+            // card_up_image: {required: true},
         }
         const messages = {
             contact: {required: '请输入联系人'},
@@ -132,10 +191,10 @@ Page({
             name: {required: '请输入店铺名称'},
             category_id: {required: '请选择行业分类'},
             address: {required: '请选择详细地址'},
-            storefront_image: {required: '请选择营业执照（副本）照片'},
-            license_image: {required: '请选择实体店铺照片照片'},
-            card_down_image: {required: '请选择身份证正面照片'},
-            card_up_image: {required: '请选择身份证反面照片'},
+            storefront_image: {required: '请选择实体店铺照片照片'},
+            license_image: {required: '请选择营业执照（副本）照片'},
+            card_down_image: {required: '请选择身份证反面照片'},
+            card_up_image: {required: '请选择身份证正面照片'},
         }
 
         this.validate = new WxValidate(rules, messages)

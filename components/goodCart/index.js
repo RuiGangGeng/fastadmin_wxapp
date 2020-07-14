@@ -1,3 +1,4 @@
+const util = require('../../utils/util.js')
 Component({
     properties: {
         dataCart: Array,
@@ -18,10 +19,10 @@ Component({
             for (let i = 0, length = dataCart.length; i < length; i++) {
                 if (dataCart[i].select_ === '1') {
                     totalPrice += dataCart[i].price * dataCart[i].number
-                    total += dataCart[i].number
                 } else {
                     select_ = false
                 }
+                total += dataCart[i].number
             }
             totalPrice = totalPrice.toFixed(2)
             let difference = 0;
@@ -66,12 +67,37 @@ Component({
                 }
             }
             select_ = !select_
-            this.setData({dataCart, select_})
+            util.wxRequest("Cart/changeCarts", {shop_id: dataCart[0].shop_id, type: select_ ? '1' : '0'}, res => {
+                if (res.code === 200) {
+                    this.setData({dataCart, select_})
+                } else {
+                    wx.showModal({
+                        title: '温馨提示',
+                        content: res.msg,
+                        showCancel: false,
+                    })
+                }
+            })
+
         },
 
         // 选择 取消选择
-        select: function () {
-            console.log(this.data)
+        select: function (e) {
+            let dataCart = this.data.dataCart
+            let data = dataCart[e.currentTarget.dataset.index]
+            let select = data.select_
+            util.wxRequest("Cart/changeCart", {shop_id: data.shop_id, good_id: data.good_id}, res => {
+                if (res.code === 200) {
+                    data.select_ = data.select_==='0' ? '1' : '0'
+                    this.setData({dataCart})
+                } else {
+                    wx.showModal({
+                        title: '温馨提示',
+                        content: res.msg,
+                        showCancel: false,
+                    })
+                }
+            })
         }
     }
 });

@@ -16,15 +16,15 @@
     </view>
     <!-- 导航按钮 -->
     <view class="my_order">
-        <navigator url="/pages/mine/shop/order/index?id={{id}}" class="nav_item">
+        <navigator url="/pages/mine/shop/order/index?shop_id={{shop_id}}" class="nav_item">
             <text>订单管理</text>
             <text class="angle"></text>
         </navigator>
-        <navigator url="/pages/mine/shop/catelist?id={{id}}" class="nav_item">
+        <navigator url="/pages/mine/shop/category/index?shop_id={{shop_id}}" class="nav_item">
             <text>分类管理</text>
             <text class="angle"></text>
         </navigator>
-        <navigator url="/pages/goodlist/goodlist?id={{id}}" class="nav_item">
+        <navigator url="/pages/mine/shop/good/index?shop_id={{shop_id}}" class="nav_item">
             <text>商品管理</text>
             <text class="angle"></text>
         </navigator>

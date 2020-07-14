@@ -43,6 +43,20 @@ Page({
             })
         })
 
+        // 获取优惠专区
+        util.wxRequest("Index/getDiscount", {}, res => {
+            res.code === 200 && that.setData({
+                discount: res.data
+            })
+        })
+
+        // 获取优惠专区
+        util.wxRequest("Index/getHeadLine", {}, res => {
+            res.code === 200 && that.setData({
+                headlines: res.data
+            })
+        })
+
         // 获取行业分类
         util.wxRequest("Index/getCategories", {}, res => {
             res.code === 200 && that.setData({
@@ -90,9 +104,7 @@ Page({
             latitude: that.data.location.latitude,
         }
 
-
-        util.wxRequest("Shop/getShops", param,
-            res => {
+        util.wxRequest("Shop/getShops", param, res => {
                 let temp = that.data.list.concat(res.data.data)
 
                 that.setData({
@@ -100,10 +112,8 @@ Page({
                     list: temp
                 })
 
-            },
-            () => {
-            },
-            () => {
+            }, () => {
+            }, () => {
                 that.setData({
                     onAsync: false
                 })

@@ -25,7 +25,7 @@
             </view>
             <view class="good-box">
                 <view class="item clear_float" wx:for="{{dataCart}}" wx:key="index" wx:if="{{item.number>0}}">
-                    <radio checked="{{item.select_==='1'}}"/>
+                    <radio checked="{{item.select_==='1'}}" bindtap="select" data-index="{{index}}"/>
                     <view class="thumb_image">
                         <image src="{{item.thumb_image}}" mode="aspectFill" style="width: 100rpx; height: 100rpx"></image>
                     </view>

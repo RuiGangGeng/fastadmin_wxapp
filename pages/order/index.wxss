@@ -29,7 +29,7 @@ page {
 }
 
 .item-shop-name {
-    width: 490rpx;
+    max-width: 490rpx;
     font-weight: bold;
     font-size: 30rpx;
 }
