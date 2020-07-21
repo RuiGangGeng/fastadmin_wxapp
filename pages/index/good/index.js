@@ -10,31 +10,61 @@ Page({
     onLoad: function (e) {
         let that = this
 
-        // 获取商品详情
-        util.wxRequest("Good/getGood", {id: e.id}, res => {
-            if (res.code === 200) {
-                // 获取购物车信息
-                let parent_res = res
-                util.wxRequest("Cart/getCarts", {shop_id: res.data.shop_id}, res => {
-                    let cart = res.data
-                    for (let j = 0, length = cart.length; j < length; j++) {
-                        if (parent_res.data.id === cart[j].good_id) {
-                            parent_res.data.count = cart[j].number
+        if (app.wxLoginCallback) {
+            // 获取商品详情
+            util.wxRequest("Good/getGood", { id: e.id }, res => {
+                if (res.code === 200) {
+                    // 获取购物车信息
+                    let parent_res = res
+                    util.wxRequest("Cart/getCarts", { shop_id: res.data.shop_id }, res => {
+                        let cart = res.data
+                        for (let j = 0, length = cart.length; j < length; j++) {
+                            if (parent_res.data.id === cart[j].good_id) {
+                                parent_res.data.count = cart[j].number
+                            }
                         }
-                    }
-                    that.setData({cart, info: parent_res.data});
-                })
-            } else {
-                wx.showModal({
-                    title: '温馨提示',
-                    content: res.msg,
-                    showCancel: false,
-                    success(res) {
-                        wx.switchTab({url: '/pages/index/index'})
+                        that.setData({ cart, info: parent_res.data });
+                    })
+                } else {
+                    wx.showModal({
+                        title: '温馨提示',
+                        content: res.msg,
+                        showCancel: false,
+                        success(res) {
+                            wx.switchTab({ url: '/pages/index/index' })
+                        }
+                    })
+                }
+            })
+        } else {
+            app.wxLoginCallback = function () {
+                // 获取商品详情
+                util.wxRequest("Good/getGood", { id: e.id }, res => {
+                    if (res.code === 200) {
+                        // 获取购物车信息
+                        let parent_res = res
+                        util.wxRequest("Cart/getCarts", { shop_id: res.data.shop_id }, res => {
+                            let cart = res.data
+                            for (let j = 0, length = cart.length; j < length; j++) {
+                                if (parent_res.data.id === cart[j].good_id) {
+                                    parent_res.data.count = cart[j].number
+                                }
+                            }
+                            that.setData({ cart, info: parent_res.data });
+                        })
+                    } else {
+                        wx.showModal({
+                            title: '温馨提示',
+                            content: res.msg,
+                            showCancel: false,
+                            success(res) {
+                                wx.switchTab({ url: '/pages/index/index' })
+                            }
+                        })
                     }
                 })
             }
-        })
+        }
     },
 
     // 递增购物车商品
@@ -57,7 +87,7 @@ Page({
                 select_: '1',
             }
             !in_cart && cart.push(cartItem)
-            this.setData({cart})
+            this.setData({ cart })
         }
     },
 
@@ -67,13 +97,13 @@ Page({
         if (e.type === 'dec') {
             let cart = this.data.cart
             for (let i = 0, cart_length = cart.length; i < cart_length; i++) cart[i].good_id === e.detail.data.id && cart[i].number--
-            this.setData({cart})
+            this.setData({ cart })
         }
     },
 
     // 商家
     shop: function () {
-        wx.navigateTo({url: '/pages/index/shop/index?id=' + this.data.info.shop_id})
+        wx.navigateTo({ url: '/pages/index/shop/index?id=' + this.data.info.shop_id })
     },
 
     // 联系商家
@@ -88,7 +118,7 @@ Page({
         let that = this;
         return {
             title: that.data.info.short,
-            path: 'pages/index/good/index?id=' + that.data.id, // 路径，传递参数到指定页面。
+            path: 'pages/index/good/index?id=' + that.data.info.id, // 路径，传递参数到指定页面。
             imageUrl: that.data.info.images[0], // 分享的封面图
             success: function (res) {
                 wx.showToast({

@@ -1,0 +1,31 @@
+.img-box {
+    position: relative;
+    width: 700rpx;
+    height: 700rpx;
+    margin: 0 25rpx;
+    background: white;
+    border-radius: 10rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    width: 500rpx;
+    height: 500rpx;
+}
+
+page {
+    height: 100%;
+    background: #f1f1f1f1;
+}
+
+.btn {
+    border-radius: 10rpx !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 30rpx;
+    right: 30rpx;
+}

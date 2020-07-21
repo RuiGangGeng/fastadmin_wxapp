@@ -20,12 +20,16 @@
             <text>订单管理</text>
             <text class="angle"></text>
         </navigator>
-        <navigator url="/pages/mine/shop/category/index?shop_id={{shop_id}}" class="nav_item">
+        <navigator url="/pages/mine/shop/categories/index?shop_id={{shop_id}}" class="nav_item">
             <text>分类管理</text>
             <text class="angle"></text>
         </navigator>
         <navigator url="/pages/mine/shop/good/index?shop_id={{shop_id}}" class="nav_item">
             <text>商品管理</text>
+            <text class="angle"></text>
+        </navigator>
+        <navigator url="/pages/mine/shop/cash/add?shop_id={{shop_id}}" class="nav_item">
+            <text>我要提现</text>
             <text class="angle"></text>
         </navigator>
     </view>

@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -66,30 +66,30 @@
 			"list": [
 				{
 					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/mine/shop/add",
+					"query": "q=https%3A%2F%2Fmini-jd.7758521.work%2Fapi%2Fshop%2Fextension%3Fuser_id%3D2&scancode_time=1594912950",
+					"scene": null
+				},
+				{
+					"id": -1,
 					"name": "pages/mine/index",
 					"pathName": "pages/mine/index",
-					"query": "id=72&type=user",
+					"query": "q=https%3A%2F%2Fmini-jd.7758521.work%2Fapi%2Fshop%2Fextension%3Fuser_id%3D2&scancode_time=1594912950",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/mine/address/add",
-					"pathName": "pages/mine/address/add",
-					"query": "id=27",
-					"scene": null
-				},
-				{
-					"id": -1,
+					"id": 2,
 					"name": "pages/index/shop/index",
 					"pathName": "pages/index/shop/index",
 					"query": "id=1",
 					"scene": null
 				},
 				{
-					"id": 3,
-					"name": "pages/mine/shop/order/index",
-					"pathName": "pages/mine/shop/index",
-					"query": "shop_id=1",
+					"id": -1,
+					"name": "pages/index/good/index",
+					"pathName": "pages/index/good/index",
+					"query": "id=23",
 					"scene": null
 				}
 			]

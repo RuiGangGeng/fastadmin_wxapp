@@ -132,3 +132,6 @@ view {
 .text-green {
     color: #41b049;
 }
+.text-danger {
+    color: #ff5546;
+}

@@ -27,7 +27,8 @@
     align-items: center;
 }
 
-.info-good > view, .info-cart {
+.info-good>view,
+.info-cart {
     width: 33.33%;
     height: 100%;
     display: flex;
@@ -51,6 +52,7 @@
 }
 
 .shop-name {
+    width: 66%;
     float: left;
     display: flex;
     justify-content: flex-start;
@@ -59,14 +61,14 @@
 
 .shop-name view {
     float: left;
-    width: 500rpx;
+    width: 425rpx;
     margin-left: 10rpx;
 }
 
 .shop-phone {
     float: right;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 

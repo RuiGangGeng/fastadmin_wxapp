@@ -1,3 +1,12 @@
-<view class="container">
-    <view></view>
+<view class="container" wx:if="{{!auth&&show}}">
+    <!-- 登录提示框 -->
+    <view class="loginShadow">
+        <view class="login">
+            <text>尊敬的用户，请登录</text>
+            <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+                微信授权登录
+            </button>
+        </view>
+    </view>
+    <!-- 登录提示框 -->
 </view>

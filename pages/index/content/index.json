@@ -1,5 +1,6 @@
 {
     "usingComponents": {
         "parser":"/components/parser.min/parser"
-    }
+    },
+    "navigationBarTitleText": "头条信息"
 }

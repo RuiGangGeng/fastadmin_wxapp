@@ -1,0 +1,50 @@
+<view class="container">
+    <view class="container-shadow"></view>
+    <view class="item">
+        <label>分类：</label>
+        <picker class="text-green" bindchange="bindPicker" data-name="categoriesSelectName" data-field="shop_category_id" data-list="categories" range="{{categories}}" range-key="name">
+            <view>{{categoriesSelectName}}</view>
+        </picker>
+    </view>
+    <view class="item">
+        <label>商品名称：</label>
+        <input placeholder="请输入商品名称" bindinput="bindInput" data-field="name" value="{{param.name}}"></input>
+    </view>
+    <view class="item">
+        <label>原价：</label>
+        <input placeholder="请输入商品原价" type="digit" bindinput="bindInput" data-field="original" value="{{param.original}}"></input>
+    </view>
+    <view class="item">
+        <label>售价：</label>
+        <input placeholder="请输入商品售价" type="digit" bindinput="bindInput" data-field="price" value="{{param.price}}"></input>
+    </view>
+    <view class="item">
+        <label>库存：</label>
+        <input placeholder="请输入商品库存" type="number" bindinput="bindInput" data-field="stock" value="{{param.stock}}"></input>
+    </view>
+    <view class="item">
+        <label>简介：</label>
+        <input placeholder="请输入商品简介,简介在分享时展示" bindinput="bindInput" data-field="short" value="{{param.short}}"></input>
+    </view>
+    <view class="item clear_float">
+        <label>详情：</label>
+        <textarea class="box-shadow" placeholder="请输入详情,详情可在PC端编辑" bindinput="bindInput" data-field="content" value="{{param.content}}"></textarea>
+    </view>
+    <view class="images clear_float">
+        <view class="images_">商品缩略图:</view>
+        <view class="img" bindtap="chooseImage" data-field="thumb_image" data-index="0">
+            <image src="/images/thumb_image.png" wx:if="{{!thumb_image}}" style="width:160rpx; height: 160rpx;" mode="aspectFill"></image>
+            <image src="{{thumb_image}}" wx:if="{{thumb_image}}" style="width:160rpx; height: 160rpx;" mode="aspectFill"></image>
+        </view>
+    </view>
+    <view class="images last clear_float">
+        <view class="images_">商品详情图:</view>
+        <view class="img" bindtap="chooseImage" wx:for="{{images}}" wx:key="index" data-index="{{index}}" data-field="images" style="{{index%4===0?'':'margin-left:20rpx'}}">
+            <image src="/images/thumb_image.png" wx:if="{{!images[index]}}" style="width:160rpx; height: 160rpx;" mode="aspectFill"></image>
+            <image src="{{images[index]}}" wx:if="{{images[index]}}" style="width:160rpx; height: 160rpx;" mode="aspectFill"></image>
+        </view>
+    </view>
+    <view class="btn-box">
+        <button class="btn btn-block btn-default" bindtap="onSubmit" disabled="{{onAsync}}">提交</button>
+    </view>
+</view>

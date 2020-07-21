@@ -2,8 +2,9 @@
     "usingComponents": {
         "mp-sticky": "@miniprogram-component-plus/sticky"
     },
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#44c25a",
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "首页"
+    "navigationBarTitleText": "首页",
+    "enablePullDownRefresh": true
 }

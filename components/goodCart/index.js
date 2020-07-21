@@ -1,4 +1,5 @@
 const util = require('../../utils/util.js')
+const app = getApp()
 Component({
     properties: {
         dataCart: Array,
@@ -10,6 +11,7 @@ Component({
         difference: 0,
         showDetail: false,
         select_: true,
+        auth_show: false
     },
     observers: {
         "dataCart": function (dataCart) {
@@ -46,6 +48,12 @@ Component({
         // 生成订单
         generateOrder: function () {
             if (this.data.total !== 0 && this.data.difference <= 0) {
+                if (!app.globalData.user_auth) {
+                    this.setData({
+                        auth_show: true
+                    })
+                    return false
+                }
                 wx.navigateTo({'url': '/pages/index/order/add?shop_id=' + this.data.dataCart[0].shop_id})
             }
         },
@@ -88,7 +96,7 @@ Component({
             let select = data.select_
             util.wxRequest("Cart/changeCart", {shop_id: data.shop_id, good_id: data.good_id}, res => {
                 if (res.code === 200) {
-                    data.select_ = data.select_==='0' ? '1' : '0'
+                    data.select_ = data.select_ === '0' ? '1' : '0'
                     this.setData({dataCart})
                 } else {
                     wx.showModal({

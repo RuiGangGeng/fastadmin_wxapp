@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mp-sticky": "@miniprogram-component-plus/sticky"
+  },
+  "navigationBarTitleText": "搜索"
+
+}

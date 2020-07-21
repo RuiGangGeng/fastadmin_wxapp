@@ -1,0 +1,38 @@
+@import "/pages/mine/shop/add.wxss";
+
+.item {
+    min-height: 95rpx;
+    height: unset;
+}
+
+textarea {
+    float: left;
+    width: 650rpx;
+    height: 250rpx;
+    padding: 25rpx;
+    margin-top: 25rpx;
+}
+
+.img {
+    width: 160rpx;
+    height: 160rpx;
+    border: 1rpx solid #d7d7d7d7;
+}
+
+.img:nth-child(2n) {
+    float: left;
+}
+
+
+.images {
+    margin-bottom: unset;
+}
+
+.last {
+    margin-bottom: 130rpx;
+}
+
+/* .last .img {
+    width: 340rpx;
+    height: 340rpx;
+} */

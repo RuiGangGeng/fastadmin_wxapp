@@ -1,0 +1,32 @@
+<view class="container">
+    <view class="item">
+        <label>分类名称：</label>
+        <view class="item-block">
+            <input type="text" maxlength="5" placeholder="分类名称" bindinput="bindInput" data-field="name" value="{{param.name}}"></input>
+        </view>
+    </view>
+    <view class="item">
+        <label>排序：</label>
+        <view class="item-block">
+            <input type="number" placeholder="排序，可不填写" bindinput="bindInput" data-field="weigh" value="{{param.weigh}}"></input>
+        </view>
+    </view>
+    <view class="item" wx:if="{{update}}">
+        <label>状态：</label>
+        <view class="item-block">
+            <radio-group bindchange="bindInput" data-field="status">
+                <view style="float: left; display: flex;justify-content: space-between;align-items: center; margin-right: 20rpx;">
+                    <radio value="1" checked="{{param.status==='1'}}"/>
+                    <view class="">显示</view>
+                </view>
+                <view style="float: left; display: flex;justify-content: space-between;align-items: center; margin-right: 20rpx;">
+                    <radio value="0" checked="{{param.status==='0'}}"/>
+                    <view class="">关闭</view>
+                </view>
+            </radio-group>
+        </view>
+    </view>
+    <view class="btn-box">
+        <button class="btn btn-block btn-default" bind:tap="submit" disabled="{{onAsync}}">保存</button>
+    </view>
+</view>

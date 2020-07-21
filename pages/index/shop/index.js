@@ -7,6 +7,7 @@ Page({
 
         shop_id: false,
         shop_info: false,
+        like: false,
 
         categories: false,
         select: 0,
@@ -19,50 +20,78 @@ Page({
 
         onAsync: false,
         complete: false,
+        flag: false,
     },
 
     onLoad: function (e) {
         let that = this
-        that.setData({shop_id: e.id, bar_height: app.globalData.status_bar_height})
-        // 获取该商家的信息
-        util.wxRequest("Shop/getShop", {id: e.id}, res => {
-            res.code === 200 && that.setData({shop_info: res.data})
-        })
+        that.setData({ shop_id: e.id, bar_height: app.globalData.status_bar_height })
+        if (app.wxLoginCallback) {
+            // 获取该商家的信息
+            util.wxRequest("Shop/getShop", { id: e.id }, res => {
+                res.code === 200 && that.setData({ shop_info: res.data })
+            })
+            util.wxRequest("Index/like_", { shop_id: e.id }, res => {
+                res.code === 200 && that.setData({ like: true })
+            })
+        } else {
+            app.wxLoginCallback = function () {
+                // 获取该商家的信息
+                util.wxRequest("Shop/getShop", { id: e.id }, res => {
+                    res.code === 200 && that.setData({ shop_info: res.data })
+                })
+                util.wxRequest("Index/like_", { shop_id: e.id }, res => {
+                    res.code === 200 && that.setData({ like: true })
+                })
+                that.setData({ flag: true })
+                that.onShow()
+            }
+        }
     },
 
     // 页面显示刷新 购物车与商品的对应关系
     onShow: function () {
-
-        // 获取该商家的分类
-        this.data.categories === false && util.wxRequest("Category/getCategories", {shop_id: this.data.shop_id, list_rows: 100}, res => {
-            if (res.code === 200) {
-                this.setData({categories: res.data.data, select: res.data.data[0].id})
-                this.loadData()
-            }
-        })
-
-        this.data.categories !== false && function (that) {
-            that.setData({
-                list: [],
-                page: 0,
+        if (app.wxLoginCallback && this.data.flag) {
+            // 获取该商家的分类
+            this.data.categories === false && util.wxRequest("Category/getCategories", { shop_id: this.data.shop_id, list_rows: 1000 }, res => {
+                if (res.code === 200) {
+                    this.setData({ categories: res.data.data, select: res.data.data[0].id })
+                    this.loadData()
+                }
             })
-            that.loadData()
-        }(this)
+
+            this.data.categories !== false && function (that) {
+                that.setData({
+                    list: [],
+                    page: 0,
+                })
+                that.loadData()
+            }(this)
+        }
 
     },
 
     // 返回上一页
     back: function () {
-        wx.navigateBack();
-    },
-
-    // 搜索
-    search: function () {
+        wx.navigateBack({
+            complete(res) {
+                if (res.errMsg !== 'navigateBack:ok') {
+                    wx.switchTab({url: '/pages/index/index'})
+                }
+            }
+        })
     },
 
     // 收藏
-    like: function (e) {
-        e.currentTarget.dataset.id
+    like: function () {
+        let that = this
+        let like = this.data.like
+        util.wxRequest("Index/like", { shop_id: that.data.shop_id }, res => {
+            if (res.code === 200) {
+                wx.showToast({ title: like ? "取消成功" : '收藏成功' })
+                that.setData({ like: !like })
+            }
+        })
     },
 
     // 联系商家
@@ -106,10 +135,11 @@ Page({
 
         let param = {
             shop_id: that.data.shop_id,
-            shop_category_id: that.data.select
+            shop_category_id: that.data.select,
+            status: 1
         }
 
-        util.wxRequest("Good/getGoods", {page: that.data.page + 1, where: JSON.stringify(param)}, res => {
+        util.wxRequest("Good/getGoods", { page: that.data.page + 1, where: JSON.stringify(param) }, res => {
             let temp = that.data.list.concat(res.data.data)
             that.setData({
                 page: res.data.current_page,
@@ -144,14 +174,14 @@ Page({
 
     // 获取购物车
     loadCart: function (list) {
-        util.wxRequest("Cart/getCarts", {shop_id: this.data.shop_id}, res => {
+        util.wxRequest("Cart/getCarts", { shop_id: this.data.shop_id }, res => {
             res = res.data
             for (let i = 0, length_cart = res.length; i < length_cart; i++) {
                 for (let j = 0, length = list.length; j < length; j++) {
                     list[j].id === res[i].good_id && (list[j].count = res[i].number, res[i].stock = list[j].stock)
                 }
             }
-            this.setData({list, cart: res})
+            this.setData({ list, cart: res })
             wx.hideLoading()
         })
     },
@@ -188,7 +218,7 @@ Page({
             }
         }
 
-        this.setData({list, cart})
+        this.setData({ list, cart })
     },
 
     // 递减购物车商品
@@ -205,13 +235,13 @@ Page({
                 list[j].id === cart[i].good_id && (list[j].count = cart[i].number)
             }
         }
-        this.setData({list, cart})
+        this.setData({ list, cart })
     },
 
     // 清空购物车商品
     clear: function () {
         let that = this
-        util.wxRequest("Cart/clearCart", {shop_id: this.data.shop_id}, res => {
+        util.wxRequest("Cart/clearCart", { shop_id: this.data.shop_id }, res => {
             wx.showModal({
                 title: '温馨提示',
                 content: res.msg,

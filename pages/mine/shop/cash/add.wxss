@@ -1,0 +1,44 @@
+@import "/pages/mine/shop/add.wxss";
+
+.title {
+    font-weight: bold;
+    width: 100%;
+    height: 120rpx;
+    font-size: 32rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.price {
+    width: 100%;
+    height: 120rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price > view {
+    width: 50%;
+    height: 120rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10rpx;
+}
+
+.btn_ {
+    width: 100%;
+    height: 120rpx;
+    display: flex;
+    padding: 0 25rpx;
+    justify-content: flex-end;
+    align-items: center;
+}

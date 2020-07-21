@@ -1,0 +1,90 @@
+@import "/components/goodList/index.wxss";
+@import "/pages/mine/shop/good/index.wxss";
+
+.good-wrapper {
+    border-top: unset;
+    padding-left: 25rpx;
+    padding-right: 25rpx;
+}
+
+.list {
+    border-top: unset;
+}
+
+.content {
+    height: unset;
+}
+
+page {
+    height: 100%;
+}
+
+.search {
+    float: left;
+    width: 700rpx;
+    height: 55rpx;
+    margin: 0 25rpx;
+    padding: 0 25rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #f1f1f1f1;
+    color: #848484;
+    border-radius: 25rpx;
+}
+
+.search icon {
+    margin-right: 15rpx;
+}
+
+.search input {
+    width: 100%;
+    height: 100%;
+}
+
+.search-sub {
+    width: 100rpx;
+    height: 55rpx;
+    float: right;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sticky {
+    width: 750rpx;
+    background: white;
+    box-shadow: 0 1px 5px 0 rgba(0, 27, 78, .15);
+    height: 75rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.history {
+    min-height: 100rpx;
+    width: 700rpx;
+    margin: 25rpx;
+}
+
+.history-t {
+    width: 100%;
+    height: 50rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25rpx;
+}
+
+.history-i view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35rpx;
+    background: #f1f1f1f1;
+    color: #666666;
+    float: left;
+    padding: 0 10rpx;
+    border-radius: 5rpx;
+    margin-right: 20rpx;
+}

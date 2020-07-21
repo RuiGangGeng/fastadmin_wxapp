@@ -40,4 +40,6 @@
             </view>
         </view>
     </view>
+    <!-- 授权登录 -->
+    <auth show="{{auth_show}}" bind:Auth="generateOrder"></auth>
 </view>

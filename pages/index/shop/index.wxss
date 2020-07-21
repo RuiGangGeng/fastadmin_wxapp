@@ -16,13 +16,13 @@ page {
 .search-back {
     width: 21rpx;
     height: 32rpx;
-    margin: 0 25rpx 10rpx 25rpx;
+    margin: 0 50rpx 10rpx 0rpx;
 }
 
 .search-input {
-    width: 445rpx;
+    width: 400rpx;
     height: 55rpx;
-    background: #dcdcdc;
+    background: #f1f1f1f1;
     color: #848484;
     border-radius: 25rpx;
     display: flex;

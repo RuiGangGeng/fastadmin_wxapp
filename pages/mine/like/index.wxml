@@ -1,0 +1,31 @@
+<view class="container">
+    <view class="inner">
+        <!-- 店铺 -->
+        <view class="shop">
+            <view class="item" wx:for="{{list}}" wx:key="index" bindtap="shop" data-id="{{item.id}}">
+                <view class="shop-logo">
+                    <image src="{{item.logo_image}}" mode="aspectFill" style="width:120rpx; height:120rpx;"/>
+                </view>
+                <view class="shop-detail">
+                    <view class="shop-name text-one">{{item.name}}</view>
+                    <view class="shop-time">
+                        营业时间：{{item.hours_start}}:00 至 {{item.hours_end}}:00
+                    </view>
+                    <view class="shop-wrapper">
+                        <view>
+                            <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;"/>
+                            <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;"/>
+                            <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;"/>
+                            <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;"/>
+                            <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;"/>
+                        </view>
+                        <view>5.0</view>
+                        <view>{{item.distance}}km</view>
+                        <view>{{item.delivery}}分钟</view>
+                    </view>
+                </view>
+            </view>
+            <view class="no-more">暂无更多数据</view>
+        </view>
+    </view>
+</view>

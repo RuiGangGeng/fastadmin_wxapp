@@ -1,4 +1,6 @@
 {
   "usingComponents": {
-  }
+      "parser":"/components/parser.min/parser"
+  },
+    "navigationBarTitleText": "帮助说明"
 }

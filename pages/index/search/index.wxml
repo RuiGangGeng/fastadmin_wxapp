@@ -1,0 +1,67 @@
+<view class="container">
+    <mp-sticky bindscroll="bindScroll">
+        <view class="clear_float {{sticky&&'sticky'}}">
+            <view class="search" style="width: {{param.search.length>0&&'600'}}rpx;">
+                <icon wx:if="{{param.search.length<1}}" type="search" size="14"></icon>
+                <input placeholder="请输入搜索关键字" focus value="{{param.search}}" data-field="search" bindinput="bindInput" bindconfirm="search"></input>
+            </view>
+            <view wx:if="{{param.search.length>0}}" class="text-green search-sub" bindtap="search">搜索</view>
+        </view>
+    </mp-sticky>
+
+    <view class="history" wx:if="{{history.length>0&&list.length===0&&type!=='back'}}">
+        <view class="history-t">
+            <view class="history-title">搜索历史</view>
+            <view class="btn" bindtap="clearHistory">
+                <image src="/images/address_delete.png" mode="aspectFill" style="width: 32rpx; height: 32rpx;"/>
+            </view>
+        </view>
+        <view class="history-i clear_float">
+            <view wx:for="{{history}}" wx:key="index" bindtap="history" data-text="{{item}}">{{item}}</view>
+        </view>
+    </view>
+
+    <view class="good-wrapper" wx:if="{{type==='index'||type==='shop'}}" wx:for="{{list}}" wx:key="index" bindtap="good" data-id="{{item.id}}">
+        <view class="item-logo">
+            <image src="{{item.thumb_image}}" style="width: 160rpx;height: 160rpx" mode="aspectFill"></image>
+        </view>
+        <view style="padding-left: 20rpx">
+            <view class="item-detail">
+                <view class="good-name text-one">{{item.name}}</view>
+                <view class="good-text clear_float">
+                    <view class="text-one" style="width: 100%;">简介:{{item.short}}</view>
+                </view>
+                <view class="good-text clear_float">
+                    <view>原价:
+                        <text style="text-decoration: line-through;">{{item.original}}</text>
+                    </view>
+                    <view>库存:{{item.stock}}</view>
+                </view>
+            </view>
+            <view class="item-operate clear_float">
+                <view class="good-price">￥{{item.price}}</view>
+            </view>
+        </view>
+    </view>
+
+    <!-- 数据展示 和TAB -->
+    <view class="content" wx:if="{{type==='back'}}">
+        <!-- 结果列表 -->
+        <scroll-view class="list" scroll-y="true" bindscrolltolower="loadData">
+            <view class="item" wx:for="{{list}}" wx:key="index" bindtap="edit" data-id="{{item.id}}">
+                <image mode="aspectFill" src="{{item.thumb_image}}" class="goods-image"></image>
+                <view class="goods_info">
+                    <view class="texttwoline">{{item.name}}</view>
+                    <view class="goods_price">
+                        <text>￥{{item.price}}</text>
+                        <text>￥{{item.original}}</text>
+                        <image wx:if="{{item.status===0}}" src="/images/icons/good_up.png" style="width: 42rpx; height: 42rpx;" catchtap="changeGood" data-act="up" data-id="{{item.id}}"></image>
+                        <image wx:if="{{item.status===1}}" src="/images/icons/good_down.png" style="width: 42rpx; height: 42rpx;" catchtap="changeGood" data-act="down" data-id="{{item.id}}"></image>
+                        <image src="/images/address_delete.png" catchtap="changeGood" data-act="delete" data-id="{{item.id}}"></image>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>
+

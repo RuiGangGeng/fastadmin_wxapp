@@ -1,9 +1,11 @@
 const util = require('../../utils/util.js')
 const user = require('../../utils/user.js')
+const storage = require('../../utils/storage.js');
 const app = getApp()
 Page({
     data: {
         auth: false,
+        has_location: false,
         location: {},
         banner: [],
         categories: [],
@@ -13,10 +15,16 @@ Page({
         page: 0,
         onAsync: false,
         sticky: false,
+        review: false
     },
 
     onLoad: function () {
         let that = this
+
+        // 获取送审信息
+        util.wxRequest("Index/review", {}, res => {
+            this.setData({ review: res.data })
+        })
 
         // 获取地理位置
         wx.getLocation({
@@ -28,10 +36,17 @@ Page({
                 })
                 user.gpsToAddress(res.longitude, res.latitude, function (res) {
                     that.setData({
-                        'location.address': res.result.formatted_addresses.recommend
+                        'location.address': res.result.formatted_addresses.recommend,
+                        has_location: true,
                     })
                     app.globalData.location = that.data.location
-                    that.loadData()
+                    if (app.globalData.user_info) {
+                        that.loadData()
+                    } else {
+                        app.wxLoginCallback = e => {
+                            that.loadData()
+                        }
+                    }
                 })
             }
         })
@@ -50,7 +65,7 @@ Page({
             })
         })
 
-        // 获取优惠专区
+        // 获取头条信息
         util.wxRequest("Index/getHeadLine", {}, res => {
             res.code === 200 && that.setData({
                 headlines: res.data
@@ -65,15 +80,22 @@ Page({
         })
     },
 
+    onShow: function () {
+        if (this.data.has_location) {
+            this.setData({ list: [], page: 0 })
+            this.loadData()
+        }
+    },
+
     // 是否吸顶
     bindScroll: function (e) {
-        this.setData({sticky: e.detail.isFixed})
+        this.setData({ sticky: e.detail.isFixed })
     },
 
     // 商家主页
     shop: function (e) {
         let id = e.currentTarget.dataset.id
-        wx.navigateTo({url: "/pages/index/shop/index?id=" + id})
+        wx.navigateTo({ url: "/pages/index/shop/index?id=" + id })
     },
 
     // 触底加载
@@ -105,20 +127,84 @@ Page({
         }
 
         util.wxRequest("Shop/getShops", param, res => {
-                let temp = that.data.list.concat(res.data.data)
+            let temp = that.data.list.concat(res.data.data)
 
-                that.setData({
-                    page: res.data.current_page,
-                    list: temp
-                })
+            that.setData({
+                page: res.data.current_page,
+                list: temp
+            })
 
-            }, () => {
-            }, () => {
-                that.setData({
-                    onAsync: false
-                })
-                wx.hideLoading()
-            }
+        }, () => {
+        }, () => {
+            that.setData({
+                onAsync: false
+            })
+            wx.hideLoading()
+            wx.stopPullDownRefresh()
+        }
         )
-    }
+    },
+
+    // 下拉刷新
+    onPullDownRefresh: function () {
+        let that = this
+        that.setData({
+            page: 0,
+            list: []
+        })
+        storage.removeStorage('token')
+        app.wxLoginCallback = function () {
+            that.onLoad()
+        }
+        user.wxLogin("User/wxAppLogIn")
+    },
+
+    // 分享
+    onShareAppMessage: function () {
+        let that = this;
+        return {
+            title: '京小美',
+            path: 'pages/index/index',
+            success: function (res) {
+                wx.showToast({
+                    title: '转发成功',
+                })
+            },
+            fail: function (res) {
+                wx.showToast({
+                    title: '转发失败',
+                    icon: "none"
+                })
+            }
+        }
+    },
+
+    // 选择地址
+    location: function () {
+        let that = this
+        wx.chooseLocation({
+            success: function (res) {
+                that.setData({
+                    auth: true,
+                    'location.latitude': res.latitude,
+                    'location.longitude': res.longitude,
+                })
+                user.gpsToAddress(res.longitude, res.latitude, function (res) {
+                    that.setData({
+                        'location.address': res.result.formatted_addresses.recommend,
+                        has_location: true,
+                    })
+                    app.globalData.location = that.data.location
+                    that.setData({
+                        list: [],
+                        page: 0
+                    })
+                    that.loadData()
+                })
+            },
+            fail: function (res) {
+                res.errMsg === "chooseLocation:fail auth deny" && that.setData({ has_location: false })
+            }
+        })
+    },
 })

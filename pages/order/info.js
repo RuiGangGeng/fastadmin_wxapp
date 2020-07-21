@@ -22,6 +22,8 @@ Page({
                 res.data.refund_refuse_time = res.data.refund_refuse_time ? util.formatTime(new Date(res.data.refund_refuse_time * 1000)) : res.data.refund_refuse_time
                 res.data.updatetime = res.data.updatetime ? util.formatTime(new Date(res.data.updatetime * 1000)) : res.data.updatetime
                 res.data.back_time = res.data.back_time ? util.formatTime(new Date(res.data.back_time * 1000)) : res.data.back_time
+                res.data.platform_refuse_time = res.data.platform_refuse_time ? util.formatTime(new Date(res.data.platform_refuse_time * 1000)) : res.data.platform_refuse_time
+                res.data.platform_agree_time = res.data.platform_agree_time ? util.formatTime(new Date(res.data.platform_agree_time * 1000)) : res.data.platform_agree_time
 
                 this.setData({info: res.data, id: options.id, type: options.type});
             }
@@ -114,6 +116,24 @@ Page({
         })
     },
 
+    // 申请平台介入
+    refundPlatform: function () {
+        let that = this
+        wx.showModal({
+            title: '温馨提示',
+            content: '确定申请平台介入吗？',
+            success: res => {
+                let param = {id: that.data.info.id}
+                util.wxRequest("Order/refundPlatform", param, res => {
+                    wx.showToast({title: res.msg, icon: res.code === 200 ? 'success' : 'none'})
+                    setTimeout(function () {
+                        that.onLoad({id: that.data.id, type: that.data.type})
+                    }, 200)
+                })
+            },
+        })
+    },
+
     // 确认收货
     confirmReceiving: function (e) {
         let that = this
@@ -140,5 +160,18 @@ Page({
         let param = this.data.param;
         param[field] = e.detail.value
         this.setData({param})
+    },
+
+    // 长按复制
+    copy: function (e) {
+        let that = this;
+        wx.setClipboardData({
+            data: e.currentTarget.dataset.text,
+            success: function (res) {
+                wx.showToast({
+                    title: '复制成功',
+                });
+            }
+        });
     },
 });

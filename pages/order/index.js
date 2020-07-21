@@ -67,7 +67,7 @@ Page({
         let param = {
             id: e.currentTarget.dataset.id
         }
-        //调用订单创建接口
+        // 调用订单创建接口
         util.wxRequest('Pay/payAgain', param, res => {
             if (res.code === 200) {
                 // 发起支付
@@ -95,6 +95,22 @@ Page({
                     }
                 })
             }
+        })
+    },
+
+    // 删除订单
+    delete_:function (e) {
+        let that = this
+        that.setData({payOnAsync: true})
+        let param = {
+            id: e.currentTarget.dataset.id
+        }
+        // 调用订单隐藏
+        util.wxRequest('Order/deleteOrder', param, res => {
+            wx.showToast({title:res.msg,icon:res.code === 200?'success':'none'})
+            setTimeout(function () {
+                that.onShow()
+            },2000)
         })
     }
 })

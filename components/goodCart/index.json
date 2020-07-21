@@ -1,6 +1,7 @@
 {
     "component": true,
     "usingComponents": {
-        "step": "/components/step/index"
+        "step": "/components/step/index",
+        "auth": "/components/auth/index"
     }
 }

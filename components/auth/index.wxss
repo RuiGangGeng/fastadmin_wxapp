@@ -1,0 +1,47 @@
+.container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginShadow {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.login {
+    width: 600rpx;
+    background: white;
+    border-radius: 10rpx;
+    height: 360rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 0 10rpx #22222222;
+}
+
+.login text {
+    font-size: 40rpx;
+    height: 150rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login button {
+    background: #39a336;
+    width: 80%;
+    margin: auto;
+    color: white;
+}

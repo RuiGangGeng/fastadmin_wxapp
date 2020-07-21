@@ -1,0 +1,31 @@
+<view class="container">
+    <view class="title text-danger">总收益：￥{{total_price}}</view>
+    <view class="price text-green">
+        <view>余额：￥{{balance}}</view>
+        <view>已提现：￥{{cash}}</view>
+    </view>
+    <view class="item">
+        <label>开户行：</label>
+        <input placeholder="请输入开户行" bindinput="bindInput" data-field="bank" value="{{param.bank}}"></input>
+    </view>
+    <view class="item">
+        <label>开户人：</label>
+        <input placeholder="请输入开户人姓名" disabled="{{lock_name}}" bindinput="bindInput" data-field="name" value="{{param.name}}"></input>
+    </view>
+    <view class="item">
+        <label>银行卡号：</label>
+        <input placeholder="请输入银行卡号" type="number" bindinput="bindInput" data-field="bank_number" value="{{param.bank_number}}"></input>
+    </view>
+    <view class="item">
+        <label>提现金额：</label>
+        <input placeholder="请输入提现金额" type="digit" bindinput="bindInput" data-field="cash" value="{{param.cash}}"></input>
+    </view>
+
+    <view class="btn_">
+        <navigator class="btn btn-default btn-small" url="/pages/mine/shop/cash/index?shop_id={{param.shop_id}}">提现记录</navigator>
+    </view>
+
+    <view class="btn-box">
+        <button class="btn btn-block btn-default" bindtap="onSubmit" disabled="{{onAsync}}">提交</button>
+    </view>
+</view>

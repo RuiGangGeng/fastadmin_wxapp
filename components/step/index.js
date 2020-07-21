@@ -55,6 +55,7 @@ Component({
             })
         },
         pub: function () {
+            console.log(this.data)
             if (this.data.onAsync) {
                 return false
             } else {

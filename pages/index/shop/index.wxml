@@ -6,10 +6,10 @@
         <view bindtap="back" class="search-back">
             <image src="/images/icons/back.png" style="width: 21rpx; height: 32rpx;" mode="aspectFill"></image>
         </view>
-        <view class="search-input" bindtap="search">
+        <navigator url="/pages/index/search/index?type=shop&shop_id={{shop_id}}" class="search-input">
             <icon type="search" size="14"></icon>
             <text>搜索该商家的商品</text>
-        </view>
+        </navigator>
     </view>
     <!-- 商家 -->
     <view class="shop">
@@ -20,9 +20,9 @@
             <view class="shop-name text-one">{{shop_info.name}}</view>
             <view class="shop-address text-two">{{shop_info.shopaddress.address}}</view>
         </view>
-        <view class="shop-operate" bindtap="like">
-            <view class="shop-like">
-                <image src="{{shop_info.like?'/images/icons/like_active.png':'/images/icons/like_default.png'}}" mode="aspectFill" style="width: 42rpx; height: 40rpx;"></image>
+        <view class="shop-operate">
+            <view class="shop-like" bindtap="like">
+                <image src="{{like?'/images/icons/like_active.png':'/images/icons/like_default.png'}}" mode="aspectFill" style="width: 42rpx; height: 40rpx;"></image>
             </view>
             <view class="shop-phone" bindtap="phone">
                 <image src="/images/icons/phone.png" mode="aspectFill" style="width: 27rpx; height: 29rpx;"></image>

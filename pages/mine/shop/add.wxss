@@ -14,7 +14,7 @@
 }
 
 .item input, .item picker, .item button {
-    width: 480rpx;
+    width: 450rpx;
     float: right;
     text-align: right;
 }

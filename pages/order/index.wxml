@@ -8,7 +8,7 @@
                 <view class="angle"></view>
             </view>
             <view class="item-status">
-                <!-- 交易状态:-1=超时,0=待付款,1=待发货,2=待收货,3=交易完成,4=待退款,5=已退款,6=拒绝退款,7=商家退单 -->
+                <!-- 交易状态:-1=超时,0=待付款,1=待发货,2=待收货,3=交易完成,4=待退款,5=已退款,6=拒绝退款,7=商家退单,8=平台介入,9=平台退单,10=平台拒绝 -->
                 <view wx:if="{{item.status==='-1'}}">超时取消</view>
                 <view wx:if="{{item.status==='0'}}" class="text-danger">待付款</view>
                 <view wx:if="{{item.status==='1'}}" class="text-green">待发货</view>
@@ -18,6 +18,9 @@
                 <view wx:if="{{item.status==='5'}}" class="text-green">已退款</view>
                 <view wx:if="{{item.status==='6'}}">拒绝退款</view>
                 <view wx:if="{{item.status==='7'}}">商家退单</view>
+                <view wx:if="{{item.status==='8'}}">平台介入</view>
+                <view wx:if="{{item.status==='9'}}">平台退单</view>
+                <view wx:if="{{item.status==='10'}}">平台拒绝</view>
             </view>
         </view>
         <!-- 下单时间 -->
@@ -40,6 +43,7 @@
         </view>
         <!-- 操作 -->
         <view class="item-operate">
+            <button class="btn btn-default btn-small" wx:if="{{item.status!=='1'&&item.status!=='2'}}" catchtap="delete_" disabled="{{payOnAsync}}" data-id="{{item.id}}">删除订单</button>
             <button class="btn btn-danger btn-small" wx:if="{{item.status==='0'}}" catchtap="pay" disabled="{{payOnAsync}}" data-id="{{item.id}}">去支付</button>
         </view>
     </view>

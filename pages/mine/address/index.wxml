@@ -5,7 +5,7 @@
     <view class="item" wx:if="{{list.length>0}}" wx:for="{{list}}" wx:key="index" bindtap="checkAddress" data-id="{{item.id}}">
         <view class="item-one">
             <image src="/images/address_location.png" style="width:34rpx; height:42rpx;"></image>
-            <view class="location text-two">{{item.address}}</view>
+            <view class="location text-two">{{item.address}}{{item.doorplate}}</view>
             <view class="address-icon" bindtap="setDefault" data-id="{{item.id}}">
                 <radio checked="{{item.default===1}}" color="#FF5450" value="{{index}}"/>
             </view>
@@ -18,7 +18,7 @@
             </view>
         </view>
     </view>
-    <view class="no-more" wx:if="{{list.length===total}}">暂无更多数据</view>
+    <view class="no-more" wx:if="{{list.length===total&&page>1}}">暂无更多数据</view>
     <!-- 无地址 -->
     <view wx:if="{{list.length===0}}" class="no-data">
         <icon type="warn" size="70" color="#b2b2b2"></icon>

@@ -15,6 +15,36 @@ const formatNumber = n => {
     return n[1] ? n : '0' + n
 }
 
+const wxUploads = (url, token, data, callback, success, index = 0) => {
+    let multiple = data instanceof Array
+    let length = multiple ? data.length : 1
+    if (multiple) {
+        if (length === 0) {
+            success([])
+        }
+    }
+    wx.uploadFile({
+        url: getApp().globalData.api_host + url,
+        filePath: multiple ? data[index] : data,
+        header: {token: token},
+        name: 'file',
+        success: function (res) {
+            res = JSON.parse(res.data)
+            if (res.code === 1) {
+                multiple ? data[index] = res.data.url : data = res.data.url
+            }
+        },
+        complete() {
+            index++
+            if (index === length) { // 上传完毕调用成功回调暴露指定数据出去
+                success(data)
+            } else { // 执行下一张上传
+                callback(url, token, data, callback, success, index)
+            }
+        }
+    })
+}
+
 // 封装异步请求
 const wxRequest = (url, params, successCallback, errorCallback, completeCallback, method = 'GET') => {
     wx.request({
@@ -43,4 +73,5 @@ const wxRequest = (url, params, successCallback, errorCallback, completeCallback
 module.exports = {
     formatTime: formatTime,
     wxRequest: wxRequest,
+    wxUploads: wxUploads,
 }

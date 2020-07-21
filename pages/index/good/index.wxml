@@ -1,44 +1,44 @@
 <view class="container">
-    <!-- 轮播 -->
-    <swiper class="swiper" autoplay="true" interval="3000" duration="500" circular="true">
-        <swiper-item wx:for="{{info.images}}" wx:key="index">
-            <image src="{{item}}" mode="aspectFill" style="width: 100%; height: 100%"></image>
-        </swiper-item>
-    </swiper>
-    <!-- 简介 -->
-    <view class="info">
-        <view class="info-name text-one ">{{info.name}}</view>
-        <view class="info-good">
-            <view class="info-price">￥{{info.price}}</view>
-            <view class="info-through">￥{{info.original}}</view>
-            <step top="{{info.stock}}"  bind:inc="inc" bind:dec="dec" showButton="true" topMsg="库存不足" class="info-cart"  goodData="{{info}}" count="{{info.count}}"></step>
-        </view>
-        <view class="info-shop clear_float">
-            <view class="shop-name" bindtap="shop">
-                <image src="/images/icons/contact.png" style="width: 35rpx; height: 30rpx; float: left;" mode="aspectFill"></image>
-                <view class="text-one">{{info.shop_info.name}}</view>
-            </view>
-            <view class="shop-phone" bindtap="phone">
-                <image src="/images/icons/phone.png" mode="aspectFill" style="width: 27rpx; height: 29rpx;"></image>
-                <view>联系商家</view>
-            </view>
-        </view>
-    </view>
-    <!-- 富文本 -->
-    <view class="content">
-        <parser html="{{info.content}}" tag-style="{}"/>
-    </view>
-    <!-- 价格说明 -->
-    <view class="state">
-        <view class="state-title">价格说明</view>
-        <view class="state-content">
-            <text>划线价格:</text>划线的价格并非《中华人民共和国价格法》及《禁止价格欺诈行为的规定》等相关法律法规中所指商品“原价” 的含义，仅为到家平台商家处商品的供应商指导价或建议零售价，
-            <text>并非商品原价。</text>
-        </view>
-        <view class="state-content">
-            <text>未划线价格:</text>未划线的价格指该商家处商品在京东到家平台实时标价,具体成交价格根据商品参加的活动，或者您使用优惠券等发生变化，最终以订单结算页面价格为准。
-        </view>
-    </view>
-    <!-- 购物车 -->
-    <cart class="cart" dataCart="{{cart}}" base_price="{{info.shop_info.shopaddress.base_price}}"></cart>
+	<!-- 轮播 -->
+	<swiper class="swiper" autoplay="true" interval="3000" duration="500" circular="true">
+		<swiper-item wx:for="{{info.images}}" wx:key="index">
+			<image src="{{item}}" mode="aspectFill" style="width: 100%; height: 100%"></image>
+		</swiper-item>
+	</swiper>
+	<!-- 简介 -->
+	<view class="info">
+		<view class="info-name text-one ">{{info.name}}</view>
+		<view class="info-good">
+			<view class="info-price">￥{{info.price}}</view>
+			<view class="info-through">￥{{info.original}}</view>
+			<view class="shop-phone" bindtap="phone">
+				<image src="/images/icons/phone.png" mode="aspectFill" style="width: 27rpx; height: 29rpx;"></image>
+				<view>联系商家</view>
+			</view>
+		</view>
+		<view class="info-shop clear_float">
+			<view class="shop-name" bindtap="shop">
+				<image src="/images/icons/contact.png" style="width: 35rpx; height: 30rpx; float: left;" mode="aspectFill"></image>
+				<view class="text-one">{{info.shop_info.name}}</view>
+			</view>
+			<step top="{{info.stock}}" bind:inc="inc" bind:dec="dec" showButton="true" topMsg="库存不足" class="info-cart" goodData="{{info}}" count="{{info.count}}"></step>
+		</view>
+	</view>
+	<!-- 富文本 -->
+	<view class="content">
+		<parser html="{{info.content}}" tag-style="{}" />
+	</view>
+	<!-- 价格说明 -->
+	<view class="state">
+		<view class="state-title">价格说明</view>
+		<view class="state-content">
+			<text>划线价格:</text>划线的价格并非《中华人民共和国价格法》及《禁止价格欺诈行为的规定》等相关法律法规中所指商品“原价” 的含义，仅为到家平台商家处商品的供应商指导价或建议零售价，
+			<text>并非商品原价。</text>
+		</view>
+		<view class="state-content">
+			<text>未划线价格:</text>未划线的价格指该商家处商品在京东到家平台实时标价,具体成交价格根据商品参加的活动，或者您使用优惠券等发生变化，最终以订单结算页面价格为准。
+		</view>
+	</view>
+	<!-- 购物车 -->
+	<cart class="cart" dataCart="{{cart}}" base_price="{{info.shop_info.shopaddress.base_price}}"></cart>
 </view>

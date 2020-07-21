@@ -3,7 +3,7 @@
     <!-- 收货地址 -->
     <navigator url="/pages/mine/address/index?type=1&shop_id={{param.shop_id}}" class="address box-shadow" wx:if="{{address}}">
         <view class="address-text">
-            <view class="text-one">{{address.address}}</view>
+            <view class="text-one">{{address.address}}{{address.doorplate}}</view>
             <view class="angle"></view>
         </view>
         <view class="address-wrapper">

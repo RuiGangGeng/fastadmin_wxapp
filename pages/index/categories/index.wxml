@@ -3,15 +3,15 @@
         <!-- 优惠 -->
         <!--位置:1=首页大图,2=首页小图,3=分类页大图,4=分类页小图-->
         <view class="discount">
-<!--            <view class="discount-title">优惠专区</view>-->
-            <swiper class="discount-swiper-top" autoplay="true" interval="3000" duration="500" circular="true" display-multiple-items="2">
-                <swiper-item wx:for="{{discount}}" wx:key="index" wx:if="{{item.type_list==='3'}}">
+        <!--<view class="discount-title">优惠专区</view>-->
+            <swiper wx:if="{{discount.length>0}}" class="discount-swiper-top" autoplay="true" interval="3000" duration="500" circular="true" display-multiple-items="{{discount.length>2?'2':'1'}}">
+                <swiper-item wx:for="{{discount}}" wx:key="index">
                     <navigator url="/pages/index/good/index?id={{item.good_id}}">
                         <image src="{{item.image}}" mode="aspectFill" style="width:350rpx; height:255rpx"></image>
                     </navigator>
                 </swiper-item>
             </swiper>
-            <swiper class="discount-swiper-bottom" autoplay="true" interval="3000" duration="500" circular="true" display-multiple-items="4">
+            <swiper wx:if="{{discount_.length>0}}" class="discount-swiper-bottom" autoplay="true" interval="3000" duration="500" circular="true" display-multiple-items="{{discount.length>4?'4':discount.length}}">
                 <swiper-item wx:for="{{discount}}" wx:key="index" wx:if="{{item.type_list==='4'}}">
                     <navigator url="/pages/index/good/index?id={{item.good_id}}">
                         <image src="{{item.image}}" mode="aspectFill" style="width:170rpx; height:255rpx"></image>

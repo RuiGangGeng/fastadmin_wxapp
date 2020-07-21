@@ -116,3 +116,7 @@ page {
     color: #ff5546;
     font-weight: bold;
 }
+
+.btn {
+    margin-left: 25rpx;
+}

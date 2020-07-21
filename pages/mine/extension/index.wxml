@@ -1,0 +1,7 @@
+<view class="container">
+    <view style="height: 120rpx;width: 100%;"></view>
+    <view class="img-box">
+        <image class="img" src="{{code}}"></image>
+        <navigator class="btn btn-default btn-small" url="/pages/mine/extension/list?user_id={{user_id}}">推广记录</navigator>
+    </view>
+</view>

@@ -64,7 +64,7 @@
         </view>
         <view class="good-line clear_float">
             <view>订单状态：</view>
-            <!-- 交易状态:-1=超时,0=待付款,1=待发货,2=待收货,3=交易完成,4=待退款,5=已退款,6=拒绝退款,7=商家退单 -->
+            <!-- 交易状态:-1=超时,0=待付款,1=待发货,2=待收货,3=交易完成,4=待退款,5=已退款,6=拒绝退款,7=商家退单,8=平台介入,9=平台退单,10=平台拒绝 -->
             <view wx:if="{{info.status==='-1'}}">超时取消</view>
             <view wx:if="{{info.status==='0'}}" class="text-danger">待付款</view>
             <view wx:if="{{info.status==='1'}}">待发货</view>
@@ -74,11 +74,15 @@
             <view wx:if="{{info.status==='5'}}">已退款</view>
             <view wx:if="{{info.status==='6'}}">拒绝退款</view>
             <view wx:if="{{info.status==='7'}}">商家退单</view>
+            <view wx:if="{{info.status==='8'}}">平台介入</view>
+            <view wx:if="{{info.status==='9'}}">平台退单</view>
+            <view wx:if="{{info.status==='10'}}">平台拒绝</view>
         </view>
         <view class="good-operate clear_float" wx:if="{{type ==='user'}}">
             <button wx:if="{{info.status==='0'}}" class="btn btn-small btn-danger" data-id="{{info.id}}" bindtap="pay">去支付</button>
             <button wx:if="{{info.status==='2'}}" class="btn btn-small btn-default" data-id="{{info.id}}" bindtap="confirmReceiving">确认收货</button>
             <button wx:if="{{info.status==='1'||info.status==='2'}}" class="btn btn-small btn-default" data-id="{{info.id}}" bindtap="refund">申请退款</button>
+            <button wx:if="{{info.status==='6'}}" class="btn btn-small btn-default" bindtap="refundPlatform">申请平台介入</button>
         </view>
     </view>
 
@@ -87,11 +91,15 @@
         <view class="title">订单信息</view>
         <view class="line clear_float">
             <view>订单号码：</view>
-            <view>{{info.numbers}}</view>
+            <view>
+                <text selectable='true' bindlongtap='copy' data-text="{{info.numbers}}">{{info.numbers}}</text>
+            </view>
         </view>
         <view class="line clear_float" wx:if="{{info.transaction}}">
             <view>交易流水号：</view>
-            <view>{{info.transaction}}</view>
+            <view>
+                <text selectable='true' bindlongtap='copy' data-text="{{info.transaction}}">{{info.transaction}}</text>
+            </view>
         </view>
         <view class="line clear_float" wx:if="{{info.createtime}}">
             <view>下单时间：</view>
@@ -140,6 +148,22 @@
         <view class="line clear_float" wx:if="{{info.message}}">
             <view>订单留言：</view>
             <view>{{info.message}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.platform_agree_time}}">
+            <view>平台退款时间：</view>
+            <view>{{info.platform_agree_time}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.platform_agree_msg}}">
+            <view>平台退款原因：</view>
+            <view>{{info.platform_agree_msg}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.platform_refuse_time}}">
+            <view>平台拒绝时间：</view>
+            <view>{{info.platform_refuse_time}}</view>
+        </view>
+        <view class="line clear_float" wx:if="{{info.platform_refuse_msg}}">
+            <view>平台拒绝原因：</view>
+            <view>{{info.platform_refuse_msg}}</view>
         </view>
     </view>
 </scroll-view>

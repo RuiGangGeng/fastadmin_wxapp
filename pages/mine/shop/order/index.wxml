@@ -3,8 +3,8 @@
         <view bindtap="statusTap" class="status-label {{index === currentType ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="index" data-index="{{index}}">
             {{item.name}}
         </view>
-        <view class="container-shadow"></view>
     </view>
+    <view class="container-shadow"></view>
 
     <!-- 有数据 -->
     <view class="order-list box-shadow" bindtap="order_details" data-id="{{item.id}}" wx:if="{{list.length > 0}}" wx:for="{{list}}" wx:key="index">
@@ -36,7 +36,7 @@
             </view>
         </view>
         <view class="order-ctrl">
-            <!-- 交易状态:-1=超时,0=待付款,1=待发货,2=待收货,3=交易完成,4=待退款,5=已退款,6=拒绝退款,7=商家退单 -->
+            <!-- 交易状态:-1=超时,0=待付款,1=待发货,2=待收货,3=交易完成,4=待退款,5=已退款,6=拒绝退款,7=商家退单,8=平台介入,9=平台退单,10=平台拒绝 -->
             <view wx:if="{{item.status === '1'}}" data-id="{{item.id}}" class="btn btn-small btn-default" catchtap="back">退单</view>
             <view wx:if="{{item.status === '1'}}" data-id="{{item.id}}" class="btn btn-small btn-green" catchtap="delivery">发货</view>
             <view wx:if="{{item.status === '2'}}" class="btn btn-small btn-default">配送中</view>
@@ -46,6 +46,9 @@
             <view wx:if="{{item.status === '5'}}" class="btn btn-small btn-default">已退款</view>
             <view wx:if="{{item.status === '6'}}" class="btn btn-small btn-default">已拒绝</view>
             <view wx:if="{{item.status === '7'}}" class="btn btn-small btn-default">主动退单</view>
+            <view wx:if="{{item.status === '8'}}" class="btn btn-small btn-default">平台介入</view>
+            <view wx:if="{{item.status === '9'}}" class="btn btn-small btn-default">平台退单</view>
+            <view wx:if="{{item.status === '10'}}" class="btn btn-small btn-default">平台拒绝</view>
         </view>
     </view>
 

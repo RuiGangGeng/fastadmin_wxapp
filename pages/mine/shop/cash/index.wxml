@@ -1,0 +1,23 @@
+<view class="container">
+    <view class="container-shadow"></view>
+    <view class="item box-shadow" wx:if="{{list.length>0}}" wx:for="{{list}}" wx:key="index">
+        <view class="status text-green" wx:if="{{item.status==='1'}}">已打款</view>
+        <view class="status text-danger" wx:if="{{item.status==='0'}}">未打款</view>
+        <view>开户行：
+            <view>{{item.bank}}</view>
+        </view>
+        <view>开户人：
+            <view>{{item.name}}</view>
+        </view>
+        <view>银行卡号：
+            <view>{{item.bank_number}}</view>
+        </view>
+        <view>申请时间：
+            <view>{{item.createtime}}</view>
+        </view>
+        <view>打款时间：
+            <view>{{item.pay_time}}</view>
+        </view>
+    </view>
+    <view class="no-more" wx:if="{{list.length===total&&page>1}}">暂无更多数据</view>
+</view>

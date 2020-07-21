@@ -5,11 +5,15 @@
     </view>
     <view class="item">
         <label>手机号：</label>
-        <input placeholder="请输入手机号" bindinput="bindInput" data-field="phone" value="{{param.phone}}"></input>
+        <input placeholder="请输入手机号" bindinput="bindInput" type="number" data-field="phone" value="{{param.phone}}"></input>
     </view>
     <view class="item">
         <label>店铺名称：</label>
         <input placeholder="请输入店铺名称" bindinput="bindInput" data-field="name" value="{{param.name}}"></input>
+    </view>
+    <view class="item">
+        <label>店铺简介：</label>
+        <input placeholder="请输入店铺简介，展示在分享时" bindinput="bindInput" data-field="short" value="{{param.short}}"></input>
     </view>
     <view class="item">
         <label>行业分类：</label>
@@ -24,26 +28,46 @@
             点击授权位置信息
         </button>
     </view>
+    <view class="item">
+        <label>开始营业时间：</label>
+        <picker class="text-green" bindchange="bindPicker" data-name="hours_startSelectName" data-field="hours_start" data-list="hours_starts" range="{{hours_starts}}" range-key="name">
+            <view>{{hours_startSelectName}}</view>
+        </picker>
+    </view>
+    <view class="item">
+        <label>结束营业时间：</label>
+        <picker class="text-green" bindchange="bindPicker" data-name="hours_endSelectName" data-field="hours_end" data-list="hours_starts" range="{{hours_starts}}" range-key="name">
+            <view>{{hours_endSelectName}}</view>
+        </picker>
+    </view>
+    <view class="item">
+        <label>配送距离（千米）：</label>
+        <input placeholder="请输入配送距离" type="number" bindinput="bindInput" data-field="distance" value="{{param.distance}}"></input>
+    </view>
+    <view class="item">
+        <label>配送时间（分钟）：</label>
+        <input placeholder="在配送距离内需要的时间" type="number" bindinput="bindInput" data-field="delivery" value="{{param.delivery}}"></input>
+    </view>
+    <view class="item">
+        <label>起送价格：</label>
+        <input placeholder="请输入起送价格" type="digit" bindinput="bindInput" data-field="base_price" value="{{param.base_price}}"></input>
+    </view>
     <view class="images clear_float">
         <view class="images_">请上传对应得照片</view>
         <view class="img" bindtap="chooseImage" data-field="license_image">
-            <image src="/images/mine_shop_image.png" wx:if="{{!param.license_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
-            <image src="{{param.license_image}}" wx:if="{{param.license_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
+            <image src="{{temp.license_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
             <view>营业执照（副本）</view>
         </view>
         <view class="img" bindtap="chooseImage" data-field="storefront_image">
-            <image src="/images/mine_shop_image.png" wx:if="{{!param.storefront_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
-            <image src="{{param.storefront_image}}" wx:if="{{param.storefront_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
+            <image src="{{temp.storefront_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
             <view>实体店铺照片</view>
         </view>
         <view class="img" bindtap="chooseImage" data-field="card_up_image">
-            <image src="/images/mine_shop_image.png" wx:if="{{!param.card_up_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
-            <image src="{{param.card_up_image}}" wx:if="{{param.card_up_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
+            <image src="{{temp.card_up_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
             <view>身份证正面</view>
         </view>
         <view class="img" bindtap="chooseImage" data-field="card_down_image">
-            <image src="/images/mine_shop_image.png" wx:if="{{!param.card_down_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
-            <image src="{{param.card_down_image}}" wx:if="{{param.card_down_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
+            <image src="{{temp.card_down_image}}" style="width:322rpx; height: 230rpx;" mode="aspectFill"></image>
             <view>身份证反面</view>
         </view>
     </view>

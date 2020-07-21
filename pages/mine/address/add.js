@@ -108,6 +108,9 @@ Page({
             address: {
                 required: true,
             },
+            doorplate: {
+                required: true,
+            },
             contact: {
                 required: true,
             },
@@ -119,6 +122,9 @@ Page({
         const messages = {
             address: {
                 required: "请选择地址",
+            },
+            doorplate: {
+                required: "请输入门牌号",
             },
             contact: {
                 required: "请输入联系人姓名",

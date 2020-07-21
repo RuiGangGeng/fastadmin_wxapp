@@ -1,0 +1,36 @@
+@import "/pages/mine/address/index.wxss";
+.item {
+    height: 90rpx;
+}
+
+.item label {
+    height: 100%;
+    width: 165rpx;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.item input {
+    width: 100%;
+}
+
+.item-block {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 485rpx;
+    height: 100%;
+}
+
+.btn-box {
+    box-shadow: none;
+    position: unset;
+    margin-top: 150rpx;
+}
+
+.btn-none {
+    font-size: 28rpx;
+    margin: unset;
+    padding: unset;
+}

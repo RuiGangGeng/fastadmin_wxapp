@@ -1,22 +1,22 @@
 <view class="container">
     <view class="inner">
         <!-- 定位 -->
-        <view class="location">
+        <view wx:if="{{!review}}" class="location" bindtap="location">
             <image src="/images/index_location.png" style="width:27rpx; height:32rpx;"></image>
             <text>{{location.address}}</text>
             <image src="/images/icons/arrow_down.png" style="width:16rpx; height:10rpx;"></image>
         </view>
         <!-- 搜索 -->
-        <mp-sticky bindscroll="bindScroll">
+        <mp-sticky wx:if="{{!review}}" bindscroll="bindScroll">
             <view class="{{sticky&&'sticky'}}">
-                <view class="search" bindtap="search">
+                <navigator class="search" url="/pages/index/search/index?type=index">
                     <icon type="search" size="14"></icon>
                     搜索附近的商家商品
-                </view>
+                </navigator>
             </view>
         </mp-sticky>
         <!-- 轮播 -->
-        <swiper class="banner" autoplay="true" interval="3000" duration="500" circular="true">
+        <swiper wx:if="{{!review}}" class="banner" autoplay="true" interval="3000" duration="500" circular="true">
             <swiper-item wx:for="{{banner}}" wx:key="index">
                 <navigator url="/pages/index/shop/index?id={{item.shop_id}}">
                     <image src="{{item.image}}" mode="aspectFill" style="width:710rpx; height:320rpx"></image>
@@ -24,14 +24,14 @@
             </swiper-item>
         </swiper>
         <!-- 分类 -->
-        <view class="categories">
+        <view wx:if="{{!review}}" class="categories">
             <navigator wx:for="{{categories}}" wx:key="index" url="/pages/index/categories/index?category_id={{item.id}}">
                 <image src="{{item.image}}" mode="aspectFill" style="width:75rpx; height:75rpx"></image>
                 <text>{{item.name}}</text>
             </navigator>
         </view>
         <!-- 头条 -->
-        <view class="headlines">
+        <view wx:if="{{!review}}" class="headlines">
             <image src="/images/index_headlines.png" style="width:710rpx; height:55rpx; position: absolute; z-index:-1;"/>
             <view class="headlines-static">头条</view>
             <swiper class="headlines-swiper" vertical="true" autoplay="true" interval="3000" duration="500" circular="true">
@@ -42,7 +42,7 @@
         </view>
         <!-- 优惠 -->
         <!--位置:1=首页大图,2=首页小图,3=分类页大图,4=分类页小图-->
-        <view class="discount">
+        <view wx:if="{{!review}}" class="discount">
             <view class="discount-title">优惠专区</view>
             <swiper class="discount-swiper-top" autoplay="true" interval="3000" duration="500" circular="true" display-multiple-items="2">
                 <swiper-item wx:for="{{discount}}" wx:key="index" wx:if="{{item.type_list==='1'}}">

@@ -1,0 +1,19 @@
+.item {
+    width: 700rpx;
+    padding: 25rpx;
+    margin: 25rpx;
+}
+
+.item > view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 55rpx;
+}
+
+.status {
+    height: 65rpx;
+    border-bottom: 1rpx solid #d7d7d7d7;
+    justify-content: flex-end !important;
+    font-weight: bold;
+}
