@@ -28,14 +28,24 @@
             <view>意见反馈</view>
             <view class="angle"></view>
         </navigator>
-        <navigator class="nav-item" url="/pages/mine/shop/index?shop_id={{info.shop_id}}" wx:if="{{info.shop && !info.review}}">
+        <navigator class="nav-item" url="/pages/mine/shop/index?shop_id={{info.shop_id}}" wx:if="{{info.shop==='1' && !info.review}}">
             <image src="/images/mine_shop.png" style="width:43rpx; height:39rpx;"/>
             <view>我的店铺</view>
             <view class="angle"></view>
         </navigator>
-        <navigator class="nav-item" url="/pages/mine/shop/add" wx:if="{{!info.shop && !info.review}}">
+        <navigator class="nav-item" url="/pages/mine/shop/add" wx:if="{{!info.shop && !info.review && info}}">
             <image src="/images/mine_shop.png" style="width:43rpx; height:39rpx;"/>
             <view>商户入驻</view>
+            <view class="angle"></view>
+        </navigator>
+        <navigator class="nav-item" url="#" wx:if="{{info.shop==='2' && !info.review}}">
+            <image src="/images/mine_shop.png" style="width:43rpx; height:39rpx;"/>
+            <view>商户审核中</view>
+            <view class="angle"></view>
+        </navigator>
+        <navigator class="nav-item" url="#" wx:if="{{info.shop==='0' && !info.review}}">
+            <image src="/images/mine_shop.png" style="width:43rpx; height:39rpx;"/>
+            <view>商户禁用</view>
             <view class="angle"></view>
         </navigator>
         <navigator class="nav-item" url="/pages/mine/extension/index?user_id={{info.id}}" wx:if="{{!info.review && info.is_extension==='1'}}">

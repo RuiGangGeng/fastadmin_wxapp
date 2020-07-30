@@ -61,7 +61,10 @@
         </view>
         <!-- 店铺 -->
         <view class="shop">
-            <view class="shop-title">附近店铺</view>
+            <view class="shop-title">
+                <view bindtap="switch_location" data-type="0" class="{{select_type===0&&'select_type'}} status_">附近店铺</view>
+                <view bindtap="switch_location" wx:if="{{!review}}" data-type="1" class="{{select_type===1&&'select_type'}} status_">推荐店铺</view>
+            </view>
             <view class="item" wx:for="{{list}}" wx:key="index" bindtap="shop" data-id="{{item.id}}">
                 <view class="shop-logo">
                     <image src="{{item.logo_image}}" mode="aspectFill" style="width:120rpx; height:120rpx;"/>
@@ -80,12 +83,15 @@
                             <image src="/images/icons/start_active.png" style="width:23rpx;height:23rpx;"/>
                         </view>
                         <view>5.0</view>
-                        <view>{{item.distance}}km</view>
-                        <view>{{item.delivery}}分钟</view>
+                        <view wx:if="{{select_type===0}}">{{item.distance}}km</view>
+                        <view wx:if="{{select_type===0}}">{{item.delivery}}分钟</view>
                     </view>
                 </view>
             </view>
             <view class="no-more">暂无更多数据</view>
         </view>
+    </view>
+    <view class="version" wx:if="{{versionUpdate&&!sticky}}">
+        <image src="{{versionUpdate}}" mode="aspectFill" style="width:160rpx; height:160rpx;"></image>
     </view>
 </view>

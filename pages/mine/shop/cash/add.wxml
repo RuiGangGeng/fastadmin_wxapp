@@ -1,5 +1,5 @@
 <view class="container">
-    <view class="title text-danger">总收益：￥{{total_price}}</view>
+    <view class="title text-danger">实际收益：￥{{total_price}}</view>
     <view class="price text-green">
         <view>余额：￥{{balance}}</view>
         <view>已提现：￥{{cash}}</view>
@@ -20,11 +20,12 @@
         <label>提现金额：</label>
         <input placeholder="请输入提现金额" type="digit" bindinput="bindInput" data-field="cash" value="{{param.cash}}"></input>
     </view>
-
     <view class="btn_">
         <navigator class="btn btn-default btn-small" url="/pages/mine/shop/cash/index?shop_id={{param.shop_id}}">提现记录</navigator>
     </view>
-
+    <view class="content">
+        <parser html="{{content}}" tag-style="{}" />
+    </view>
     <view class="btn-box">
         <button class="btn btn-block btn-default" bindtap="onSubmit" disabled="{{onAsync}}">提交</button>
     </view>

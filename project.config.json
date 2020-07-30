@@ -63,36 +63,7 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/mine/shop/add",
-					"query": "q=https%3A%2F%2Fmini-jd.7758521.work%2Fapi%2Fshop%2Fextension%3Fuser_id%3D2&scancode_time=1594912950",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mine/index",
-					"pathName": "pages/mine/index",
-					"query": "q=https%3A%2F%2Fmini-jd.7758521.work%2Fapi%2Fshop%2Fextension%3Fuser_id%3D2&scancode_time=1594912950",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "pages/index/shop/index",
-					"pathName": "pages/index/shop/index",
-					"query": "id=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/good/index",
-					"pathName": "pages/index/good/index",
-					"query": "id=23",
-					"scene": null
-				}
-			]
+			"list": []
 		}
 	}
 }

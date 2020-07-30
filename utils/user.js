@@ -11,6 +11,10 @@ const wxLogin = (url) => {
             getApp().wxLoginCallback && getApp().wxLoginCallback() // callBack用户信息
         })
     } else {
+        wx.showLoading({
+          title: '加载中，请稍等',
+          mask: true
+        })
         wx.login({
             success: res => {
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -18,6 +22,7 @@ const wxLogin = (url) => {
                     getApp().globalData.user_info = true
                     getApp().globalData.token = res.data.token
                     storage.setStorage('token', res.data.token)
+                    wx.hideLoading()
                     getApp().wxLoginCallback && getApp().wxLoginCallback() // callBack用户信息
                 })
             }

@@ -10,12 +10,21 @@ Page({
         onAsync: false,
         param: {},
         success: false,
-        lock_name: false
+        lock_name: false,
+        content:''
     },
 
     onLoad: function (e) {
-        this.setData({'param.shop_id': e.shop_id})
-        this.initValidate()
+        let that = this
+        that.setData({'param.shop_id': e.shop_id})
+        that.initValidate()
+
+        // 获取提现说明
+        util.wxRequest("Index/getContentBalance", {}, res => {
+            res.code === 200 && that.setData({
+                content: res.data.content
+            })
+        })
     },
 
     onShow: function () {
@@ -31,9 +40,9 @@ Page({
                     'param.name': res.data.name,
                     'param.cash': '',
                 })
-                if (!res.data.name) {
+                if (res.data.name) {
                     this.setData({
-                        lock_name: false,
+                        lock_name: true,
                     })
                 }
             }
@@ -47,7 +56,6 @@ Page({
         param[field] = e.detail.value
         this.setData({param})
     },
-
 
     // 上传图片
     onSubmit: function () {

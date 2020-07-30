@@ -15,7 +15,9 @@ Page({
         page: 0,
         onAsync: false,
         sticky: false,
-        review: false
+        review: false,
+        select_type: 0,
+        versionUpdate: false
     },
 
     onLoad: function () {
@@ -23,7 +25,7 @@ Page({
 
         // 获取送审信息
         util.wxRequest("Index/review", {}, res => {
-            this.setData({ review: res.data })
+            this.setData({review: res.data})
         })
 
         // 获取地理位置
@@ -40,13 +42,7 @@ Page({
                         has_location: true,
                     })
                     app.globalData.location = that.data.location
-                    if (app.globalData.user_info) {
-                        that.loadData()
-                    } else {
-                        app.wxLoginCallback = e => {
-                            that.loadData()
-                        }
-                    }
+                    that.loadData()
                 })
             }
         })
@@ -78,24 +74,31 @@ Page({
                 categories: res.data
             })
         })
+
+        // 版本更新
+        util.wxRequest("Index/versionUpdate", {}, res => {
+            res.code === 200 && that.setData({
+                versionUpdate: res.data
+            })
+        })
     },
 
     onShow: function () {
         if (this.data.has_location) {
-            this.setData({ list: [], page: 0 })
+            this.setData({list: [], page: 0})
             this.loadData()
         }
     },
 
     // 是否吸顶
     bindScroll: function (e) {
-        this.setData({ sticky: e.detail.isFixed })
+        this.setData({sticky: e.detail.isFixed})
     },
 
     // 商家主页
     shop: function (e) {
         let id = e.currentTarget.dataset.id
-        wx.navigateTo({ url: "/pages/index/shop/index?id=" + id })
+        wx.navigateTo({url: "/pages/index/shop/index?id=" + id})
     },
 
     // 触底加载
@@ -115,33 +118,33 @@ Page({
             })
         }
 
-        wx.showLoading()
-        setTimeout(function () {
-            wx.hideLoading()
-        }, 3000)
-
         let param = {
             page: that.data.page + 1,
             longitude: that.data.location.longitude,
             latitude: that.data.location.latitude,
+            type: that.data.select_type
         }
 
         util.wxRequest("Shop/getShops", param, res => {
-            let temp = that.data.list.concat(res.data.data)
+                let temp
+                if (that.data.page === 0) {
+                    temp = res.data.data
+                } else {
+                    temp = that.data.list.concat(res.data.data)
+                }
 
-            that.setData({
-                page: res.data.current_page,
-                list: temp
-            })
+                that.setData({
+                    page: res.data.current_page,
+                    list: temp
+                })
 
-        }, () => {
-        }, () => {
-            that.setData({
-                onAsync: false
-            })
-            wx.hideLoading()
-            wx.stopPullDownRefresh()
-        }
+            }, () => {
+            }, () => {
+                that.setData({
+                    onAsync: false
+                })
+                wx.stopPullDownRefresh()
+            }
         )
     },
 
@@ -150,7 +153,8 @@ Page({
         let that = this
         that.setData({
             page: 0,
-            list: []
+            list: [],
+            select_type: 0
         })
         storage.removeStorage('token')
         app.wxLoginCallback = function () {
@@ -203,8 +207,22 @@ Page({
                 })
             },
             fail: function (res) {
-                res.errMsg === "chooseLocation:fail auth deny" && that.setData({ has_location: false })
+                res.errMsg === "chooseLocation:fail auth deny" && that.setData({has_location: false})
             }
         })
     },
+
+    // 切换商家显示策略
+    switch_location: function (e) {
+        let type = Number(e.currentTarget.dataset.type)
+        this.setData({
+            select_type: type,
+            page: 0,
+        })
+        this.loadData()
+    },
+
+    // 分享到朋友圈
+    onShareTimeline: function () {
+    }
 })

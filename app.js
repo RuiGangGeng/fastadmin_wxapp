@@ -3,7 +3,7 @@ const user = require('/utils/user.js');
 const storage = require('/utils/storage.js');
 App({
     onLaunch: function () {
-        storage.removeStorage('token')
+        // storage.removeStorage('token')
         user.wxLogin("User/wxAppLogIn")
         user.wxAuthUserInfo('User/wxAppAuthUser')
     },

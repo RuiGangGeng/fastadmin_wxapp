@@ -1,4 +1,6 @@
 {
-    "usingComponents": {},
+    "usingComponents": {
+        "parser":"/components/parser.min/parser"
+    },
     "navigationBarTitleText": "我要提现"
 }

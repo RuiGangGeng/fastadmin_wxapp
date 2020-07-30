@@ -10,7 +10,7 @@ Page({
     onLoad: function (e) {
         let that = this
 
-        if (app.wxLoginCallback) {
+        if (app.globalData.user_info) {
             // 获取商品详情
             util.wxRequest("Good/getGood", { id: e.id }, res => {
                 if (res.code === 200) {
@@ -133,4 +133,13 @@ Page({
             }
         }
     },
+
+    // 分享到朋友圈
+    onShareTimeline: function () {
+        let that = this;
+        return {
+            title: that.data.info.short,
+            imageUrl: that.data.info.images[0], // 分享的封面图
+        }
+    }
 })

@@ -26,7 +26,7 @@ Page({
     onLoad: function (e) {
         let that = this
         that.setData({ shop_id: e.id, bar_height: app.globalData.status_bar_height })
-        if (app.wxLoginCallback) {
+        if (app.globalData.user_info) {
             // 获取该商家的信息
             util.wxRequest("Shop/getShop", { id: e.id }, res => {
                 res.code === 200 && that.setData({ shop_info: res.data })
@@ -34,6 +34,7 @@ Page({
             util.wxRequest("Index/like_", { shop_id: e.id }, res => {
                 res.code === 200 && that.setData({ like: true })
             })
+            that.setData({ flag: true })
         } else {
             app.wxLoginCallback = function () {
                 // 获取该商家的信息
@@ -51,7 +52,7 @@ Page({
 
     // 页面显示刷新 购物车与商品的对应关系
     onShow: function () {
-        if (app.wxLoginCallback && this.data.flag) {
+        if (app.globalData.user_info && this.data.flag) {
             // 获取该商家的分类
             this.data.categories === false && util.wxRequest("Category/getCategories", { shop_id: this.data.shop_id, list_rows: 1000 }, res => {
                 if (res.code === 200) {
@@ -68,7 +69,6 @@ Page({
                 that.loadData()
             }(this)
         }
-
     },
 
     // 返回上一页
@@ -251,5 +251,14 @@ Page({
                 }
             })
         })
+    },
+
+    // 分享到朋友圈
+    onShareTimeline: function () {
+        let that = this;
+        return {
+            title: that.data.shop_info.short,
+            imageUrl: that.data.shop_info.logo_image,
+        }
     }
 });
