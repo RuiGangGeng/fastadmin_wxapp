@@ -64,6 +64,7 @@
             <view class="shop-title">
                 <view bindtap="switch_location" data-type="0" class="{{select_type===0&&'select_type'}} status_">附近店铺</view>
                 <view bindtap="switch_location" wx:if="{{!review}}" data-type="1" class="{{select_type===1&&'select_type'}} status_">推荐店铺</view>
+                <view bindtap="switch_location" wx:if="{{!review&&user_info.shop_status==='1'}}" data-type="2" class="{{select_type===2&&'select_type'}} status_">批发中心</view>
             </view>
             <view class="item" wx:for="{{list}}" wx:key="index" bindtap="shop" data-id="{{item.id}}">
                 <view class="shop-logo">

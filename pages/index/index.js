@@ -17,7 +17,8 @@ Page({
         sticky: false,
         review: false,
         select_type: 0,
-        versionUpdate: false
+        versionUpdate: false,
+        user_info:false,
     },
 
     onLoad: function () {
@@ -81,10 +82,18 @@ Page({
                 versionUpdate: res.data
             })
         })
+
+        if(app.globalData.user_info){
+            util.wxRequest("User/getUserInfo", {}, res => { this.setData({ user_info: res.data }) })
+        }else {
+            app.wxLoginCallback = function (){
+                util.wxRequest("User/getUserInfo", {}, res => { this.setData({ user_info: res.data }) })
+            }
+        }
     },
 
     onShow: function () {
-        if (this.data.has_location) {
+        if (this.data.has_location && this.data.page === 0) {
             this.setData({list: [], page: 0})
             this.loadData()
         }

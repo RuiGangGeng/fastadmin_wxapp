@@ -18,7 +18,7 @@
             <view>收货地址</view>
             <view class="angle"></view>
         </navigator>
-        <navigator class="nav-item" url="/pages/mine/help/index">
+        <navigator class="nav-item" url="/pages/mine/help/index" wx:if="{{!info.review}}">
             <image src="/images/mine_help.png" style="width:40rpx; height:39rpx;"/>
             <view>帮助说明</view>
             <view class="angle"></view>
